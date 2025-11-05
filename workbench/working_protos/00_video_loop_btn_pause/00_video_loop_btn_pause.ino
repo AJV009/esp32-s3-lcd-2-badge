@@ -1,7 +1,9 @@
 /*******************************************************************************
  * ESP32-S3-LCD-2 MJPEG Video Player
  * Plays MJPEG video from flash memory in infinite loop
- * BOOT button (pin 0) toggles pause/play
+ * BOOT button (pin 0):
+ *   - Click: Toggle pause/play
+ *   - Long press: Power off/on (blank screen + backlight off)
  ******************************************************************************/
 
 #include <FFat.h>
@@ -42,6 +44,7 @@ class VideoPlayer {
   MemoryStream *stream;
   uint8_t *videoBuf, *decodeBuf;
   bool paused;
+  bool powered;
 
   static VideoPlayer *instance;
   static int drawCallback(JPEGDRAW *d) {
@@ -50,12 +53,35 @@ class VideoPlayer {
   }
 
 public:
-  VideoPlayer() : display(nullptr), stream(nullptr), videoBuf(nullptr), decodeBuf(nullptr), paused(false) {
+  VideoPlayer() : display(nullptr), stream(nullptr), videoBuf(nullptr), decodeBuf(nullptr), paused(false), powered(true) {
     instance = this;
   }
 
   void togglePause() {
     paused = !paused;
+  }
+
+  void powerOff() {
+    if (!powered) return;
+    powered = false;
+    paused = true;
+    display->fillScreen(BLACK);
+    digitalWrite(LCD_BL, LOW);
+  }
+
+  void powerOn() {
+    if (powered) return;
+    powered = true;
+    paused = false;
+    digitalWrite(LCD_BL, HIGH);
+  }
+
+  void togglePower() {
+    if (powered) {
+      powerOff();
+    } else {
+      powerOn();
+    }
   }
 
   bool begin() {
@@ -87,7 +113,7 @@ public:
   }
 
   void play() {
-    if (paused) return;
+    if (!powered || paused) return;
 
     if (decoder.readMjpegBuf()) {
       decoder.drawJpg();
@@ -108,6 +134,10 @@ void onButtonClick() {
   player.togglePause();
 }
 
+void onButtonLongPressStart() {
+  player.togglePower();
+}
+
 void setup() {
   if (!player.begin()) {
     pinMode(LED_BUILTIN, OUTPUT);
@@ -115,6 +145,7 @@ void setup() {
   }
 
   button.attachClick(onButtonClick);
+  button.attachLongPressStart(onButtonLongPressStart);
 }
 
 void loop() {
