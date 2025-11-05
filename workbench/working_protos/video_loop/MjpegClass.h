@@ -1,39 +1,18 @@
 /*******************************************************************************
- * MJPEG Parser and Decoder Class
- *
- * This class parses MJPEG format files and decodes individual JPEG frames
- * using the JPEGDEC software decoder.
- *
- * Based on Arduino_GFX MJPEG examples
- * Adapted for ESP32-S3-LCD-2 Event Badge
+ * MJPEG Parser and Decoder
+ * Parses MJPEG format and decodes JPEG frames using JPEGDEC library
  ******************************************************************************/
 
 #pragma once
-
 #include <FS.h>
-#include <SD.h>
 #include <JPEGDEC.h>
 
 #define READ_BUFFER_SIZE 1024
 
 class MjpegClass {
 public:
-  /*
-   * Initialize MJPEG player
-   *
-   * @param input File stream from SD card
-   * @param mjpeg_buf Buffer for reading compressed JPEG data
-   * @param pfnDraw Callback function for drawing decoded pixels
-   * @param useBigEndian Use big endian format for RGB565 output
-   * @param x X position on screen
-   * @param y Y position on screen
-   * @param widthLimit Maximum width
-   * @param heightLimit Maximum height
-   * @return true if successful, false otherwise
-   */
   bool setup(Stream *input, uint8_t *mjpeg_buf, JPEG_DRAW_CALLBACK *pfnDraw,
              bool useBigEndian, int x, int y, int widthLimit, int heightLimit) {
-
     _input = input;
     _mjpeg_buf = mjpeg_buf;
     _pfnDraw = pfnDraw;
@@ -47,23 +26,10 @@ public:
     if (!_read_buf) {
       _read_buf = (uint8_t *)malloc(READ_BUFFER_SIZE);
     }
-
-    if (!_read_buf) {
-      Serial.println("ERROR: Failed to allocate read buffer");
-      return false;
-    }
-
-    return true;
+    return _read_buf != nullptr;
   }
 
-  /*
-   * Read next JPEG frame from MJPEG stream
-   *
-   * Searches for JPEG SOI marker (FF D8) and EOI marker (FF D9)
-   * to extract a complete JPEG frame
-   *
-   * @return true if frame found, false if end of file
-   */
+  // Read next JPEG frame from MJPEG stream (searches for FF D8/FF D9 markers)
   bool readMjpegBuf() {
     if (_inputindex == 0) {
       _buf_read = _input->readBytes(_read_buf, READ_BUFFER_SIZE);
@@ -73,7 +39,7 @@ public:
     int i = 0;
     bool found_FFD8 = false;
 
-    // Search for JPEG Start of Image marker (FF D8)
+    // Search for JPEG Start of Image (FF D8)
     while ((_buf_read > 0) && (!found_FFD8)) {
       i = 0;
       while ((i < _buf_read) && (!found_FFD8)) {
@@ -93,12 +59,11 @@ public:
     _buf_read -= i;
     bool found_FFD9 = false;
 
-    // Copy JPEG data and search for End of Image marker (FF D9)
+    // Copy JPEG data and search for End of Image (FF D9)
     if (_buf_read > 0) {
       i = 3;
       while ((_buf_read > 0) && (!found_FFD9)) {
-        if ((_mjpeg_buf_offset > 0) && (_mjpeg_buf[_mjpeg_buf_offset - 1] == 0xFF) &&
-            (_p[0] == 0xD9)) {
+        if ((_mjpeg_buf_offset > 0) && (_mjpeg_buf[_mjpeg_buf_offset - 1] == 0xFF) && (_p[0] == 0xD9)) {
           found_FFD9 = true;
         } else {
           while ((i < _buf_read) && (!found_FFD9)) {
@@ -127,29 +92,16 @@ public:
         }
         i = 0;
       }
-
-      if (found_FFD9) {
-        return true;
-      }
+      return found_FFD9;
     }
-
     return false;
   }
 
-  /*
-   * Decode and draw current JPEG frame
-   *
-   * Uses JPEGDEC library for software decoding
-   *
-   * @return true if successful, false otherwise
-   */
+  // Decode and draw current JPEG frame
   bool drawJpg() {
     _remain = _mjpeg_buf_offset;
 
-    if (_jpeg.openRAM(_mjpeg_buf, _remain, _pfnDraw) != 1) {
-      Serial.println("ERROR: Failed to open JPEG");
-      return false;
-    }
+    if (_jpeg.openRAM(_mjpeg_buf, _remain, _pfnDraw) != 1) return false;
 
     if (_scale == -1) {
       // Calculate scale to fit screen
@@ -188,7 +140,6 @@ public:
     }
 
     if (_jpeg.decode(_x, _y, _scale) != 1) {
-      Serial.println("ERROR: JPEG decode failed");
       _jpeg.close();
       return false;
     }
@@ -197,18 +148,11 @@ public:
     return true;
   }
 
-  /*
-   * Get width of decoded frame
-   */
-  int16_t getWidth() {
-    return _jpeg.getWidth();
-  }
-
-  /*
-   * Get height of decoded frame
-   */
-  int16_t getHeight() {
-    return _jpeg.getHeight();
+  // Reset decoder state for looping
+  void reset() {
+    _inputindex = 0;
+    _buf_read = 0;
+    _mjpeg_buf_offset = 0;
   }
 
 private:
@@ -216,17 +160,11 @@ private:
   uint8_t *_mjpeg_buf;
   JPEG_DRAW_CALLBACK *_pfnDraw;
   bool _useBigEndian;
-  int _x;
-  int _y;
-  int _widthLimit;
-  int _heightLimit;
-
+  int _x, _y, _widthLimit, _heightLimit;
   uint8_t *_read_buf = nullptr;
   int32_t _mjpeg_buf_offset = 0;
-
   JPEGDEC _jpeg;
   int _scale = -1;
-
   int32_t _inputindex = 0;
   int32_t _buf_read;
   int32_t _remain = 0;
