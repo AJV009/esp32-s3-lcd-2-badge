@@ -1,0 +1,1 @@
+ffmpeg -i input.mp4 -vf "scale=320:240" -q:v 15 -r 10 output.mjpeg
