@@ -50,11 +50,11 @@ int miso = -1;
 int mosi = -1;
 int cs = -1;
 */
-
-int sck = 39;
-int miso = 40;
-int mosi = 38;
+#define REASSIGN_PINS
 int cs = 41;
+int mosi = 38;
+int miso = 40;
+int sck = 39;
 
 void listDir(fs::FS &fs, const char *dirname, uint8_t levels) {
   Serial.printf("Listing directory: %s\n", dirname);
@@ -211,7 +211,9 @@ void testFileIO(fs::FS &fs, const char *path) {
   Serial.printf("%u bytes written for %lu ms\n", 2048 * 512, end);
   file.close();
 }
+
 uint64_t cardSize;
+
 void setup() {
   Serial.begin(115200);
   while (!Serial) {
