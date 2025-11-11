@@ -22,11 +22,13 @@
 
 #include <driver/i2s.h>
 
-// === ADJUST THESE PINS IF NEEDED ===
-#define I2S_BCK_PIN   18    // Bit Clock (SCK on INMP441)
-#define I2S_WS_PIN    19    // Word Select (WS on INMP441)
-#define I2S_DIN_PIN   20    // Data In (SD on INMP441)
-// ===================================
+// === CORRECTED PINS (verified from PinOut) ===
+#define I2S_BCK_PIN   2     // Bit Clock (SCK on INMP441)
+#define I2S_WS_PIN    4     // Word Select (WS on INMP441)
+#define I2S_DIN_PIN   18    // Data In (SD on INMP441)
+// ==============================================
+// Note: IO2 and IO4 are camera pins (safe if no camera attached)
+// IO18 is free and not assigned to any peripheral
 
 #define I2S_PORT      I2S_NUM_0
 #define SAMPLE_RATE   16000
@@ -103,14 +105,16 @@ void loop() {
     if (abs(right) > right_peak) right_peak = abs(right);
   }
 
-  // Print levels as bar graphs
-  Serial.print("LEFT:  ");
-  printBar(left_peak, 8388607);  // 24-bit max value
-  Serial.printf(" (%7d)  |  ", left_peak);
+  // Only print when sound is detected on either channel (above noise floor)
+  if (left_peak > 1000 || right_peak > 1000) {
+    Serial.print("LEFT:  ");
+    printBar(left_peak, 8388607);  // 24-bit max value
+    Serial.printf(" (%7d)  |  ", left_peak);
 
-  Serial.print("RIGHT: ");
-  printBar(right_peak, 8388607);
-  Serial.printf(" (%7d)\n", right_peak);
+    Serial.print("RIGHT: ");
+    printBar(right_peak, 8388607);
+    Serial.printf(" (%7d)\n", right_peak);
+  }
 
   delay(100);  // Update ~10 times per second
 }

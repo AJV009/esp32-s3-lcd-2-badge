@@ -25,38 +25,68 @@
 
 ### Recommended (Default in sketch):
 ```
-BCK (Bit Clock):    GPIO 18
-WS  (Word Select):  GPIO 19
-DIN (Data In):      GPIO 20
+BCK (Bit Clock):    GPIO 2
+WS  (Word Select):  GPIO 4
+DIN (Data In):      GPIO 18
 ```
+
+**IMPORTANT LIMITATIONS:**
+- GPIO 19, 20: Occupied by USB (USB_N, USB_P)
+- GPIO 33-37: NOT broken out to pin headers (internal only)
+- GPIO 2, 4: Camera pins (safe to use if camera not attached)
 
 ### Available Alternatives on ESP32-S3-LCD-2:
 
-**Free GPIO pins you can try** (avoid pins listed as "Used" in analysis):
+**Pins broken out to headers** (from PinOut in schematic):
+- IO2, IO4, IO6, IO7, IO8, IO9, IO10, IO11, IO12, IO13, IO14, IO15, IO16, IO17, IO18, IO21, IO43, IO44, IO47, IO48
 
-**Safe options:**
-- GPIO 3, 18, 19, 20, 33, 34, 35, 36, 37, 43, 44, 46
+**Truly free pins** (no camera attached):
+- **GPIO 18** - Free, not assigned
+- **GPIO 2, 4, 6-17** - Camera pins (safe if camera not attached)
 
 **Avoid these** (already in use):
-- GPIO 0 (BOOT), 1 (BL), 5 (BAT)
-- GPIO 38,39,40,41,42,45 (SPI/LCD/SD)
-- GPIO 47,48 (I2C/IMU)
-- GPIO 2,4,6,7,8,9,10,11,12,13,14,15,16,17,21 (Camera - if attached)
+- GPIO 0 (BOOT), 1 (BL), 5 (BAT) - System pins
+- GPIO 19, 20 (USB_N, USB_P) - USB occupied
+- GPIO 33-37 - **NOT broken out to headers!**
+- GPIO 38-42, 45 (SPI/LCD/SD) - Display/SD card
+- GPIO 43, 44 (U0_TXD, U0_RXD) - Serial console
+- GPIO 46 (TP_INT) - Touch panel interrupt
+- GPIO 47, 48 (I2C) - IMU and touch panel
 
 ## How to Test Different Pins
 
-1. **Edit line 24-26** in `mic_pin_test.ino`:
+1. **Edit lines in the sketch** (line numbers vary by sketch):
    ```cpp
-   #define I2S_BCK_PIN   18    // Try different pin here
-   #define I2S_WS_PIN    19    // Try different pin here
-   #define I2S_DIN_PIN   20    // Try different pin here
+   #define I2S_BCK_PIN   2     // Try different pin here
+   #define I2S_WS_PIN    4     // Try different pin here
+   #define I2S_DIN_PIN   18    // Try different pin here
    ```
+
+   **Alternative pin combinations** (if camera not attached):
+   - 18, 2, 4 (default)
+   - 6, 7, 8
+   - 10, 11, 12
 
 2. **Re-upload** and check Serial Monitor
 3. **Note which pins work** for your final implementation
 
+## Sketch Options
+
+### `mic_pin_test.ino` - Dual Microphone Test
+- Tests TWO INMP441 microphones in stereo configuration
+- LEFT mic: L/R pin → GND
+- RIGHT mic: L/R pin → VDD
+- Good for validating stereo recording setup
+
+### `single_mic_test.ino` - Single Microphone Test
+- Tests ONE INMP441 microphone
+- Simpler wiring and validation
+- Use this first to verify basic I2S functionality
+- Wire mic L/R pin → GND
+
 ## Wiring Diagram
 
+### Dual Microphone (stereo):
 ```
 ESP32-S3-LCD-2                INMP441 #1 (LEFT)       INMP441 #2 (RIGHT)
 ──────────────                ─────────────────       ──────────────────
@@ -64,14 +94,29 @@ ESP32-S3-LCD-2                INMP441 #1 (LEFT)       INMP441 #2 (RIGHT)
                  │
 GND ─────────────┼──────────── GND ──────────────┬─── GND
                  │                                │
-GPIO 18 (BCK) ───┼──────────── SCK ───────────────┼─── SCK
+GPIO 2 (BCK) ────┼──────────── SCK ───────────────┼─── SCK
                  │                                │
-GPIO 19 (WS) ────┼──────────── WS ────────────────┼─── WS
+GPIO 4 (WS) ─────┼──────────── WS ────────────────┼─── WS
                  │                                │
-GPIO 20 (DIN) ───┴──────────── SD ────────────────┴─── SD
+GPIO 18 (DIN) ───┴──────────── SD ────────────────┴─── SD
                                 │                     │
                                 L/R ──> GND           L/R ──> 3.3V
                                       (LEFT)                (RIGHT)
+```
+
+### Single Microphone (mono):
+```
+ESP32-S3-LCD-2                INMP441
+──────────────                ─────────
+3.3V ────────────────────────── VDD
+GND ─────────────┬───────────── GND
+                 │
+GPIO 2 (BCK) ────┼───────────── SCK
+GPIO 4 (WS) ─────┼───────────── WS
+GPIO 18 (DIN) ───┴───────────── SD
+                                │
+                                L/R ──> GND (for LEFT)
+                                    or  3.3V (for RIGHT)
 ```
 
 ## Troubleshooting

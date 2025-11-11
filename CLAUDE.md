@@ -18,6 +18,9 @@ This is an ESP32-S3-LCD-2 development repository for creating OAISYS25 conferenc
 **Key Pins:**
 - LCD: CS=45, DC=42, BL=1, SCK=39, MOSI=38, MISO=40
 - SPI shared with SD card and LCD
+- I2C: SCL=47, SDA=48 (IMU and Touch Panel)
+- Serial: TXD=43, RXD=44
+- USB: D-=19, D+=20 (occupied, not available for GPIO)
 
 ## Repository Structure
 
@@ -26,12 +29,15 @@ badge/
 ├── workbench/
 │   ├── working_protos/        # Active development prototypes
 │   │   └── video_loop/        # Optimized MJPEG video player (103 lines)
+│   ├── mic_pin_test/          # INMP441 dual microphone test
+│   ├── single_mic_test/       # Single INMP441 microphone test
+│   ├── speaker_test/          # MAX98357A speaker test
 │   └── ESP32-S3-LCD-2-Demo/   # Reference examples from Waveshare
 │       ├── Arduino/           # Arduino framework examples
 │       │   ├── examples/01_factory/  # Full-featured factory demo
 │       │   └── libraries/     # Bundled LVGL library
 │       └── ESP-IDF/           # ESP-IDF framework examples
-└── /home/alphons/Arduino/libraries/  # External Arduino libraries
+└── ~/Arduino/libraries/  # External Arduino libraries
     ├── Arduino_GFX_Library/   # Display driver
     ├── JPEGDEC/               # JPEG decoder
     ├── FastIMU/               # QMI8658 IMU support
@@ -42,6 +48,11 @@ badge/
 ## Development Commands
 
 ### Arduino IDE
+
+**IMPORTANT: Arduino Sketch Requirements:**
+- Each `.ino` file MUST be in a folder with the same name
+- Example: `my_sketch.ino` must be in folder `my_sketch/`
+- Incorrect structure will cause "Sketch not found" errors
 
 **Build and Upload:**
 ```bash
@@ -239,3 +250,39 @@ When modifying code, prioritize:
 3. Minimal interfaces (begin/run pattern)
 4. Fail-fast error handling
 5. Production code = no debug spam
+
+## GPIO Pin Availability
+
+Based on ESP32-S3-Touch-LCD-2 schematic **PinOut** section:
+
+**Pins broken out to headers:**
+- IO2, IO4, IO6-18, IO21, IO43, IO44, IO47, IO48
+
+**Truly free pins** (no peripherals attached):
+- **GPIO 18** - Completely free
+- **GPIO 2, 4, 6-17, 21** - Camera pins (safe if camera not attached)
+
+**Occupied pins:**
+- GPIO 0 (BOOT), 1 (BL), 5 (BAT) - System
+- GPIO 19, 20 - USB D-, D+ (**not available**)
+- GPIO 33-37 - **NOT broken out** to headers
+- GPIO 38-42, 45 - SPI (LCD/SD card)
+- GPIO 43, 44 - Serial console (U0_TXD/RXD)
+- GPIO 46 - Touch panel interrupt
+- GPIO 47, 48 - I2C (IMU and touch panel)
+
+## Audio Hardware
+
+### Microphone (INMP441)
+- **Pins:** GPIO 2 (BCK), 4 (WS), 18 (DIN)
+- **I2S Port:** I2S_NUM_0 (RX mode)
+- **Config:** Stereo capable, 24-bit samples, 16kHz sample rate
+- **Test sketch:** `workbench/mic_pin_test/` or `workbench/single_mic_test/`
+
+### Speaker (MAX98357A)
+- **Pins:** GPIO 6 (BCLK), 7 (LRC), 8 (DIN)
+- **I2S Port:** I2S_NUM_1 (TX mode)
+- **Power:** 5V recommended for full power (3-5W capable)
+- **Config:** 16-bit samples, 44.1kHz sample rate, mono/stereo
+- **Test sketch:** `workbench/speaker_test/`
+- **Note:** GAIN pin controls volume (Float=9dB, GND=12dB, VDD=15dB)

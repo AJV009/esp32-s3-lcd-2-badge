@@ -50,7 +50,7 @@ int miso = -1;
 int mosi = -1;
 int cs = -1;
 */
-#define REASSIGN_PINS
+// #define REASSIGN_PINS
 int cs = 41;
 int mosi = 38;
 int miso = 40;
