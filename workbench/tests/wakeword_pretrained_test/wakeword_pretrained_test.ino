@@ -68,14 +68,17 @@
 // Detection config - V1 model uses lower threshold
 // V1: probability_cutoff=0.5, sliding_window_average_size=10
 // V2: probability_cutoff=0.97, sliding_window_size=5
-#define PROBABILITY_CUTOFF  0.5f
+#define PROBABILITY_CUTOFF  0.99f
 #define SLIDING_WINDOW_SIZE 10
+#define MIN_HIGH_FRAMES     10      // Require 6/10 frames above MIN_FRAME_PROB
+#define MIN_FRAME_PROB      0.9f   // Individual frame threshold
+#define COOLDOWN_MS         1500   // Ignore detections for 1.5s after trigger
 #define DEBUG_FEATURES      1      // Set to 1 to debug feature values
 
 // Memory config - v1 models need larger arena (~90KB), v2 needs ~23KB + var arena
-#define TENSOR_ARENA_SIZE   100000
-#define VAR_ARENA_SIZE      10000
-#define MAX_RESOURCE_VARS   20
+#define TENSOR_ARENA_SIZE   500000
+#define VAR_ARENA_SIZE      50000
+#define MAX_RESOURCE_VARS   100
 
 // TFLite globals
 static uint8_t* tensor_arena = nullptr;
@@ -107,6 +110,9 @@ static int feature_frame_count = 0;
 static float probability_window[SLIDING_WINDOW_SIZE];
 static int window_pos = 0;
 static bool window_filled = false;
+
+// Cooldown to prevent multiple triggers
+static unsigned long last_detection_ms = 0;
 
 // Forward declarations
 bool initSD();
@@ -524,21 +530,35 @@ bool detectWakeword(float probability) {
     return false;
   }
 
-  // Calculate average probability
+  // Cooldown check - ignore detections for a period after last trigger
+  if (millis() - last_detection_ms < COOLDOWN_MS) {
+    return false;
+  }
+
+  // Calculate average probability AND count high frames
   float avg = 0.0f;
+  int high_frames = 0;
   for (int i = 0; i < SLIDING_WINDOW_SIZE; i++) {
     avg += probability_window[i];
+    if (probability_window[i] >= MIN_FRAME_PROB) {
+      high_frames++;
+    }
   }
   avg /= SLIDING_WINDOW_SIZE;
 
   // Log probability (always show for debugging)
   static int log_count = 0;
   if (probability > 0.01f || ++log_count >= 100) {
-    Serial.printf("prob: %.4f, avg: %.4f\n", probability, avg);
+    Serial.printf("prob: %.4f, avg: %.4f, high: %d/%d\n", probability, avg, high_frames, SLIDING_WINDOW_SIZE);
     log_count = 0;
   }
 
-  return avg >= PROBABILITY_CUTOFF;
+  // Require BOTH: high average AND sustained detection (filters partial words)
+  if (avg >= PROBABILITY_CUTOFF && high_frames >= MIN_HIGH_FRAMES) {
+    last_detection_ms = millis();  // Start cooldown
+    return true;
+  }
+  return false;
 }
 
 void errorBlink() {
