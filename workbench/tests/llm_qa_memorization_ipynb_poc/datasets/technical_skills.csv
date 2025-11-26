@@ -1,0 +1,101 @@
+id,question,answer
+1,What programming languages does Alphons primarily use?,Python, PHP, Rust, Javascript
+2,Which language does he mostly use nowadays?,Python
+3,What does Alphons use Python for?,AI/ML, backend services
+4,Does he have PHP experience?,Yes
+5,Which CMS has Alphons worked with extensively?,Drupal
+6,What framework does he use for PoCs?,Next
+7,Tell me additional languages Alphons knows,Dart, C, C++, HTML, Bash, SQL, Go
+8,Is Alphons good at picking up new languages?,Yes
+9,What does he consider key in coding?,Efficient, readable, reusable, scalable
+10,Which FastAPI framework does he use?,FastAPI
+11,What are Alphons' main frameworks?,FastAPI, React, Flutter, Drupal
+12,Does he know React?,Yes
+13,Has Alphons used Flutter?,Yes
+14,Name cloud platforms Alphons has experience with,AWS, Azure, GCP, Linode
+15,Which AWS services has he used?,EC2, S3, Lambda, RDS, ALB
+16,Does Alphons work with Kubernetes?,Yes
+17,Has he deployed on GCP?,Yes
+18,What cloud services does Alphons manage?,EC2, S3, Lambda, RDS, Cloud Functions, App Engine
+19,Is he comfortable with containers?,Yes
+20,Which IoT platforms has Alphons used?,NVIDIA Jetson Nano, Raspberry Pi, Micro:Bit
+21,When did he first learn about RPi?,7th or 8th grade
+22,Did Alphons own a RPi immediately?,No, after almost 5 years
+23,What was his initial interest?,Hardware, electronics, robotics
+24,Which dev kits did he get through Hackster.io?,Jetson Nano, Intel NCS2, MT3620
+25,Does he still tinker with IoT?,Yes, occasionally
+26,What security tools does Alphons know?,Burp Suite, CodeQL
+27,Has he used Burp Suite?,Yes
+28,Does Alphons know CodeQL?,Yes
+29,Which language is most versatile for him?,Python
+30,What makes Python versatile according to Alphons?,Rich ecosystem of libraries and frameworks
+31,How many websites has he built with Drupal?,Numerous
+32,What starter kit does he use for web PoCs?,Next
+33,Was he good at languages before AI tools?,Yes
+34,What foundation does he consider essential?,Logic building and problem solving
+35,Can Alphons pick up syntax quickly?,Yes
+36,Which Node.js language does he use?,Javascript
+37,Does he write Bash scripts?,Yes
+38,Has Alphons programmed in C?,Yes
+39,Does he know C++?,Yes
+40,Is SQL among his skills?,Yes
+41,Has he learned Go?,Yes
+42,What about Dart programming?,Yes
+43,Does he write HTML?,Yes
+44,Which Rust experience does Alphons have?,Yes
+45,What web framework does he prefer for APIs?,FastAPI
+46,Has he built Flutter applications?,Yes
+47,Which Azure services has Alphons used?,Yes, various services
+48,Does he manage Linode deployments?,Yes
+49,What is his AWS expertise level?,Hands on experience
+50,Can he work with RDS?,Yes
+51,Has Alphons used Lambda functions?,Yes
+52,Does he deploy to App Engine?,Yes
+53,What container orchestration does he know?,Kubernetes, K8s
+54,Which NVIDIA platform has he used?,Jetson Nano
+55,Has he worked with Raspberry Pi?,Yes
+56,Does Alphons know Micro:Bit?,Yes
+57,What grade was he in when learning RPi?,7th or 8th grade
+58,Where did he read about RPi initially?,Magazine
+59,What type of school did he attend?,State board school in small town
+60,When did he get into programming seriously?,During Diploma
+61,What did he prefer before programming?,Hardware, electronics, robotics
+62,Has he built RC cars?,Yes
+63,What happened with the LED socket incident?,Sparks and flames
+64,Which Intel kit did he receive?,Intel NCS2
+65,What is MT3620?,Dev kit
+66,How did he access dev kits?,Hackster.io contests
+67,Does he build IoT projects?,Yes
+68,What penetration testing tool does he use?,Burp Suite
+69,Which code analysis tool does he know?,CodeQL
+70,Is Python his go-to language now?,Yes
+71,What CMS expertise does Alphons have?,Drupal
+72,How many primary programming languages?,Four
+73,Which backend framework does he prefer?,FastAPI
+74,Does he use React for frontend?,Yes
+75,What mobile framework does he know?,Flutter
+76,Can Alphons deploy to multiple clouds?,Yes
+77,How many cloud platforms total?,Four
+78,Which Google cloud does he use?,GCP
+79,What Microsoft cloud platform?,Azure
+80,Has he used Amazon cloud services?,Yes, AWS
+81,Does Linode count as cloud experience?,Yes
+82,What S3 service is for?,AWS storage
+83,Which serverless compute does he use?,Lambda, Cloud Functions
+84,Can he manage databases in cloud?,Yes, RDS
+85,What load balancer does he know?,ALB
+86,How many IoT platforms mentioned?,Three
+87,Which embedded ecosystem has he explored?,Jetson Nano, Intel NCS2, MT3620
+88,Did he understand pinouts before owning RPi?,Yes
+89,What amazed him in small town?,Coding things
+90,Was he driven to program initially?,No, until Diploma
+91,What models did he make?,Mini moving models, RC cars
+92,How immature was his brain then?,Tiny little immature
+93,What gave him IoT opportunity?,Hackster.io contests
+94,Does he tinker occasionally now?,Yes
+95,How many security tools listed?,Two
+96,Which languages for AI/ML work?,Python
+97,What does he ship quickly with Next?,PoCs
+98,Can he be productive in new languages?,Yes, in no time
+99,What matters more than syntax?,Logic building and problem solving
+100,Which languages are additional skills?,Dart, C, C++, HTML, Bash, SQL, Go

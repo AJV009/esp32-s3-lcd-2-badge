@@ -1,6 +1,5 @@
 Its gonna be a full fledged app with a working cycle:
 
-
 An ideal working loop:
 1: Boots
 
@@ -51,4 +50,13 @@ An ideal working loop:
 5.4: Once stream completes, UNLOAD the LLM
 5.5: speak it out using TTS from the speaker 
 5.6: Hold text on display for next 10 seconds, continue LOGO looping
+
+Following are the projects you need to refer along the way:
+1. Working Video loop example: @workbench/working_protos/00_video_loop_btn_pause_gyro_rotate 
+2. LLM Inference library and code: @workbench/working_protos/01_llm_inference_stories260k 
+3. Accessing the Mic-Speaker Combo: @workbench/working_protos/02_speaker_mic_combo 
+4. Audio Embedding PoC: @workbench/tests/yamnet_audio_embedding_ipynb_poc
+5. LLM-QA-Dataset & SFT Training docs and PoC: @workbench/tests/llm_qa_memorization_ipynb_poc 
+
+-----------------------------
 
