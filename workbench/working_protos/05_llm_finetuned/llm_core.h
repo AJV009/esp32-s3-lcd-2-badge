@@ -1,12 +1,19 @@
 // llm_core.h - Int8 Quantized LLM Inference for ESP32-S3
 // Based on llama2.c/runq.c - Single-core, adaptive to any model size
 // Supports 1M-6M models with 512/768/1024 vocab sizes
+// Optimized with ESP-DSP PIE SIMD instructions
 
 #ifndef LLM_CORE_H
 #define LLM_CORE_H
 
 #include <Arduino.h>
 #include <SD.h>
+
+// ESP-DSP library (pre-built in Arduino ESP32 core)
+#include "dsps_dotprod.h"   // dsps_dotprod_f32_aes3() - Float SIMD dot product
+#include "dsps_mulc.h"      // dsps_mulc_f32_ae32() - Scalar multiply
+#include "dsps_add.h"       // dsps_add_f32_ae32() - Vector add
+#include "dsps_mul.h"       // dsps_mul_f32_ae32() - Element-wise multiply
 
 // Type alias for compatibility with tokenizer/sampler (originally SIMD, now plain float)
 typedef float v4sf;
@@ -88,6 +95,10 @@ typedef struct {
     uint8_t* raw_data;       // Raw model file data in PSRAM
     size_t file_size;
     uint8_t shared_classifier; // 1 if wcls shares memory with q_tokens
+
+    // RoPE cache (precomputed sin/cos for each position)
+    float* rope_cos;  // [seq_len * head_size/2]
+    float* rope_sin;  // [seq_len * head_size/2]
 } Transformer;
 
 // ============================================================================
@@ -108,6 +119,9 @@ void quantize(QuantizedTensor *qx, float* x, int n);
 // Reads config from header, adapts to any model size
 // max_seq_len: override model's seq_len to reduce KV cache (0 = use model default)
 bool build_transformer_q8(Transformer* t, const char* checkpoint_path, int max_seq_len = 0);
+
+// Initialize RoPE cache (precompute sin/cos values)
+void init_rope_cache(Transformer* t);
 
 // Free all allocated memory
 void free_transformer(Transformer* t);
