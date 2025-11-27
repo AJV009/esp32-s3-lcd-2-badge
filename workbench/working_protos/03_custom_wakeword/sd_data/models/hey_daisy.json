@@ -1,0 +1,13 @@
+{
+  "type": "micro",
+  "wake_word": "Hey Daisy",
+  "model": "hey_daisy.tflite",
+  "version": 1,
+  "micro": {
+    "probability_cutoff": 0.5,
+    "sliding_window_average_size": 10,
+    "min_high_frames": 6,
+    "min_frame_prob": 0.5,
+    "cooldown_ms": 1500
+  }
+}

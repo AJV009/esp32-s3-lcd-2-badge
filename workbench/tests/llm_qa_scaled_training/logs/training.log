@@ -1,0 +1,863 @@
+[2025-11-27 15:28:18] Phase: P1_stories | STARTING
+[2025-11-27 15:28:31] Phase: P1_stories | Step: 100 | Loss: 5.2218 | LR: 3.00e-04
+[2025-11-27 15:28:42] Phase: P1_stories | Step: 200 | Loss: 3.9214 | LR: 3.00e-04
+[2025-11-27 15:28:53] Phase: P1_stories | Step: 300 | Loss: 3.4341 | LR: 3.00e-04
+[2025-11-27 15:29:04] Phase: P1_stories | Step: 400 | Loss: 3.1430 | LR: 3.00e-04
+[2025-11-27 15:29:15] Phase: P1_stories | Step: 500 | Loss: 2.9317 | LR: 3.00e-04
+[2025-11-27 15:29:26] Phase: P1_stories | Step: 600 | Loss: 2.7746 | LR: 3.00e-04
+[2025-11-27 15:29:37] Phase: P1_stories | Step: 700 | Loss: 2.6603 | LR: 3.00e-04
+[2025-11-27 15:29:48] Phase: P1_stories | Step: 800 | Loss: 2.5767 | LR: 3.00e-04
+[2025-11-27 15:29:58] Phase: P1_stories | Step: 900 | Loss: 2.5113 | LR: 3.00e-04
+[2025-11-27 15:30:09] Phase: P1_stories | Step: 1000 | Loss: 2.4514 | LR: 3.00e-04
+[2025-11-27 15:30:09] Phase: P1_stories | CHECKPOINT saved: ckpt_1000.pt
+[2025-11-27 15:30:09] Phase: P1_stories | BEST model saved (loss: 3.1626)
+[2025-11-27 15:30:20] Phase: P1_stories | Step: 1100 | Loss: 2.4066 | LR: 3.00e-04
+[2025-11-27 15:30:31] Phase: P1_stories | Step: 1200 | Loss: 2.3657 | LR: 3.00e-04
+[2025-11-27 15:30:42] Phase: P1_stories | Step: 1300 | Loss: 2.3309 | LR: 3.00e-04
+[2025-11-27 15:30:53] Phase: P1_stories | Step: 1400 | Loss: 2.2948 | LR: 3.00e-04
+[2025-11-27 15:31:04] Phase: P1_stories | Step: 1500 | Loss: 2.2675 | LR: 3.00e-04
+[2025-11-27 15:31:15] Phase: P1_stories | Step: 1600 | Loss: 2.2379 | LR: 3.00e-04
+[2025-11-27 15:31:27] Phase: P1_stories | Step: 1700 | Loss: 2.2161 | LR: 3.00e-04
+[2025-11-27 15:31:38] Phase: P1_stories | Step: 1800 | Loss: 2.1889 | LR: 3.00e-04
+[2025-11-27 15:31:49] Phase: P1_stories | Step: 1900 | Loss: 2.1630 | LR: 3.00e-04
+[2025-11-27 15:32:00] Phase: P1_stories | Step: 2000 | Loss: 2.1518 | LR: 3.00e-04
+[2025-11-27 15:32:00] Phase: P1_stories | CHECKPOINT saved: ckpt_2000.pt
+[2025-11-27 15:32:00] Phase: P1_stories | BEST model saved (loss: 2.2623)
+[2025-11-27 15:32:11] Phase: P1_stories | Step: 2100 | Loss: 2.1332 | LR: 3.00e-04
+[2025-11-27 15:32:22] Phase: P1_stories | Step: 2200 | Loss: 2.1218 | LR: 3.00e-04
+[2025-11-27 15:32:33] Phase: P1_stories | Step: 2300 | Loss: 2.0976 | LR: 3.00e-04
+[2025-11-27 15:32:44] Phase: P1_stories | Step: 2400 | Loss: 2.0949 | LR: 3.00e-04
+[2025-11-27 15:32:55] Phase: P1_stories | Step: 2500 | Loss: 2.0807 | LR: 3.00e-04
+[2025-11-27 15:33:06] Phase: P1_stories | Step: 2600 | Loss: 2.0698 | LR: 3.00e-04
+[2025-11-27 15:33:17] Phase: P1_stories | Step: 2700 | Loss: 2.0530 | LR: 3.00e-04
+[2025-11-27 15:33:28] Phase: P1_stories | Step: 2800 | Loss: 2.0463 | LR: 3.00e-04
+[2025-11-27 15:33:39] Phase: P1_stories | Step: 2900 | Loss: 2.0364 | LR: 3.00e-04
+[2025-11-27 15:33:50] Phase: P1_stories | Step: 3000 | Loss: 2.0330 | LR: 3.00e-04
+[2025-11-27 15:33:50] Phase: P1_stories | CHECKPOINT saved: ckpt_3000.pt
+[2025-11-27 15:33:50] Phase: P1_stories | BEST model saved (loss: 2.0767)
+[2025-11-27 15:34:01] Phase: P1_stories | Step: 3100 | Loss: 2.0184 | LR: 3.00e-04
+[2025-11-27 15:34:12] Phase: P1_stories | Step: 3200 | Loss: 2.0104 | LR: 3.00e-04
+[2025-11-27 15:34:23] Phase: P1_stories | Step: 3300 | Loss: 2.0116 | LR: 3.00e-04
+[2025-11-27 15:34:34] Phase: P1_stories | Step: 3400 | Loss: 1.9996 | LR: 3.00e-04
+[2025-11-27 15:34:45] Phase: P1_stories | Step: 3500 | Loss: 1.9828 | LR: 3.00e-04
+[2025-11-27 15:34:56] Phase: P1_stories | Step: 3600 | Loss: 1.9808 | LR: 3.00e-04
+[2025-11-27 15:35:07] Phase: P1_stories | Step: 3700 | Loss: 1.9787 | LR: 3.00e-04
+[2025-11-27 15:35:18] Phase: P1_stories | Step: 3800 | Loss: 1.9756 | LR: 3.00e-04
+[2025-11-27 15:35:29] Phase: P1_stories | Step: 3900 | Loss: 1.9640 | LR: 3.00e-04
+[2025-11-27 15:35:40] Phase: P1_stories | Step: 4000 | Loss: 1.9630 | LR: 3.00e-04
+[2025-11-27 15:35:40] Phase: P1_stories | CHECKPOINT saved: ckpt_4000.pt
+[2025-11-27 15:35:40] Phase: P1_stories | BEST model saved (loss: 1.9885)
+[2025-11-27 15:35:51] Phase: P1_stories | Step: 4100 | Loss: 1.9527 | LR: 3.00e-04
+[2025-11-27 15:36:02] Phase: P1_stories | Step: 4200 | Loss: 1.9500 | LR: 3.00e-04
+[2025-11-27 15:36:13] Phase: P1_stories | Step: 4300 | Loss: 1.9507 | LR: 3.00e-04
+[2025-11-27 15:36:24] Phase: P1_stories | Step: 4400 | Loss: 1.9409 | LR: 3.00e-04
+[2025-11-27 15:36:35] Phase: P1_stories | Step: 4500 | Loss: 1.9368 | LR: 3.00e-04
+[2025-11-27 15:36:46] Phase: P1_stories | Step: 4600 | Loss: 1.9330 | LR: 3.00e-04
+[2025-11-27 15:36:57] Phase: P1_stories | Step: 4700 | Loss: 1.9322 | LR: 3.00e-04
+[2025-11-27 15:37:07] Phase: P1_stories | Step: 4800 | Loss: 1.9250 | LR: 3.00e-04
+[2025-11-27 15:37:18] Phase: P1_stories | Step: 4900 | Loss: 1.9260 | LR: 3.00e-04
+[2025-11-27 15:37:29] Phase: P1_stories | Step: 5000 | Loss: 1.9146 | LR: 3.00e-04
+[2025-11-27 15:37:29] Phase: P1_stories | CHECKPOINT saved: ckpt_5000.pt
+[2025-11-27 15:37:29] Phase: P1_stories | BEST model saved (loss: 1.9362)
+[2025-11-27 15:37:41] Phase: P1_stories | Step: 5100 | Loss: 1.9181 | LR: 3.00e-04
+[2025-11-27 15:37:52] Phase: P1_stories | Step: 5200 | Loss: 1.9083 | LR: 3.00e-04
+[2025-11-27 15:38:03] Phase: P1_stories | Step: 5300 | Loss: 1.9035 | LR: 3.00e-04
+[2025-11-27 15:38:14] Phase: P1_stories | Step: 5400 | Loss: 1.9055 | LR: 3.00e-04
+[2025-11-27 15:38:25] Phase: P1_stories | Step: 5500 | Loss: 1.8991 | LR: 3.00e-04
+[2025-11-27 15:38:36] Phase: P1_stories | Step: 5600 | Loss: 1.8977 | LR: 3.00e-04
+[2025-11-27 15:38:47] Phase: P1_stories | Step: 5700 | Loss: 1.8955 | LR: 3.00e-04
+[2025-11-27 15:38:58] Phase: P1_stories | Step: 5800 | Loss: 1.8929 | LR: 3.00e-04
+[2025-11-27 15:39:09] Phase: P1_stories | Step: 5900 | Loss: 1.8909 | LR: 3.00e-04
+[2025-11-27 15:39:20] Phase: P1_stories | Step: 6000 | Loss: 1.8882 | LR: 3.00e-04
+[2025-11-27 15:39:20] Phase: P1_stories | CHECKPOINT saved: ckpt_6000.pt
+[2025-11-27 15:39:20] Phase: P1_stories | BEST model saved (loss: 1.9000)
+[2025-11-27 15:39:31] Phase: P1_stories | Step: 6100 | Loss: 1.8863 | LR: 3.00e-04
+[2025-11-27 15:39:42] Phase: P1_stories | Step: 6200 | Loss: 1.8810 | LR: 3.00e-04
+[2025-11-27 15:39:53] Phase: P1_stories | Step: 6300 | Loss: 1.8837 | LR: 3.00e-04
+[2025-11-27 15:40:04] Phase: P1_stories | Step: 6400 | Loss: 1.8783 | LR: 3.00e-04
+[2025-11-27 15:40:14] Phase: P1_stories | Step: 6500 | Loss: 1.8731 | LR: 3.00e-04
+[2025-11-27 15:40:25] Phase: P1_stories | Step: 6600 | Loss: 1.8757 | LR: 3.00e-04
+[2025-11-27 15:40:36] Phase: P1_stories | Step: 6700 | Loss: 1.8752 | LR: 3.00e-04
+[2025-11-27 15:40:48] Phase: P1_stories | Step: 6800 | Loss: 1.8621 | LR: 3.00e-04
+[2025-11-27 15:40:59] Phase: P1_stories | Step: 6900 | Loss: 1.8616 | LR: 3.00e-04
+[2025-11-27 15:41:10] Phase: P1_stories | Step: 7000 | Loss: 1.8663 | LR: 3.00e-04
+[2025-11-27 15:41:10] Phase: P1_stories | CHECKPOINT saved: ckpt_7000.pt
+[2025-11-27 15:41:10] Phase: P1_stories | BEST model saved (loss: 1.8743)
+[2025-11-27 15:41:20] Phase: P1_stories | Step: 7100 | Loss: 1.8572 | LR: 3.00e-04
+[2025-11-27 15:41:31] Phase: P1_stories | Step: 7200 | Loss: 1.8639 | LR: 3.00e-04
+[2025-11-27 15:41:42] Phase: P1_stories | Step: 7300 | Loss: 1.8631 | LR: 3.00e-04
+[2025-11-27 15:41:53] Phase: P1_stories | Step: 7400 | Loss: 1.8540 | LR: 3.00e-04
+[2025-11-27 15:42:04] Phase: P1_stories | Step: 7500 | Loss: 1.8556 | LR: 3.00e-04
+[2025-11-27 15:42:15] Phase: P1_stories | Step: 7600 | Loss: 1.8546 | LR: 3.00e-04
+[2025-11-27 15:42:26] Phase: P1_stories | Step: 7700 | Loss: 1.8515 | LR: 3.00e-04
+[2025-11-27 15:42:37] Phase: P1_stories | Step: 7800 | Loss: 1.8520 | LR: 3.00e-04
+[2025-11-27 15:42:48] Phase: P1_stories | Step: 7900 | Loss: 1.8470 | LR: 3.00e-04
+[2025-11-27 15:42:59] Phase: P1_stories | Step: 8000 | Loss: 1.8471 | LR: 3.00e-04
+[2025-11-27 15:42:59] Phase: P1_stories | CHECKPOINT saved: ckpt_8000.pt
+[2025-11-27 15:42:59] Phase: P1_stories | BEST model saved (loss: 1.8546)
+[2025-11-27 15:43:10] Phase: P1_stories | Step: 8100 | Loss: 1.8494 | LR: 3.00e-04
+[2025-11-27 15:43:21] Phase: P1_stories | Step: 8200 | Loss: 1.8436 | LR: 3.00e-04
+[2025-11-27 15:43:32] Phase: P1_stories | Step: 8300 | Loss: 1.8457 | LR: 3.00e-04
+[2025-11-27 15:43:43] Phase: P1_stories | Step: 8400 | Loss: 1.8387 | LR: 3.00e-04
+[2025-11-27 15:43:54] Phase: P1_stories | Step: 8500 | Loss: 1.8319 | LR: 3.00e-04
+[2025-11-27 15:44:05] Phase: P1_stories | Step: 8600 | Loss: 1.8341 | LR: 3.00e-04
+[2025-11-27 15:44:16] Phase: P1_stories | Step: 8700 | Loss: 1.8334 | LR: 3.00e-04
+[2025-11-27 15:44:27] Phase: P1_stories | Step: 8800 | Loss: 1.8300 | LR: 3.00e-04
+[2025-11-27 15:44:38] Phase: P1_stories | Step: 8900 | Loss: 1.8323 | LR: 3.00e-04
+[2025-11-27 15:44:49] Phase: P1_stories | Step: 9000 | Loss: 1.8328 | LR: 3.00e-04
+[2025-11-27 15:44:49] Phase: P1_stories | CHECKPOINT saved: ckpt_9000.pt
+[2025-11-27 15:44:49] Phase: P1_stories | BEST model saved (loss: 1.8372)
+[2025-11-27 15:45:00] Phase: P1_stories | Step: 9100 | Loss: 1.8320 | LR: 3.00e-04
+[2025-11-27 15:45:11] Phase: P1_stories | Step: 9200 | Loss: 1.8290 | LR: 3.00e-04
+[2025-11-27 15:45:22] Phase: P1_stories | Step: 9300 | Loss: 1.8242 | LR: 3.00e-04
+[2025-11-27 15:45:33] Phase: P1_stories | Step: 9400 | Loss: 1.8271 | LR: 3.00e-04
+[2025-11-27 15:45:44] Phase: P1_stories | Step: 9500 | Loss: 1.8290 | LR: 3.00e-04
+[2025-11-27 15:45:55] Phase: P1_stories | Step: 9600 | Loss: 1.8218 | LR: 3.00e-04
+[2025-11-27 15:46:05] Phase: P1_stories | Step: 9700 | Loss: 1.8248 | LR: 3.00e-04
+[2025-11-27 15:46:16] Phase: P1_stories | Step: 9800 | Loss: 1.8282 | LR: 3.00e-04
+[2025-11-27 15:46:28] Phase: P1_stories | Step: 9900 | Loss: 1.8228 | LR: 3.00e-04
+[2025-11-27 15:46:39] Phase: P1_stories | Step: 10000 | Loss: 1.8193 | LR: 3.00e-04
+[2025-11-27 15:46:39] Phase: P1_stories | CHECKPOINT saved: ckpt_10000.pt
+[2025-11-27 15:46:39] Phase: P1_stories | BEST model saved (loss: 1.8258)
+[2025-11-27 15:46:39] Phase: P1_stories | COMPLETE | Final loss: 1.8193 | Time: 18.3 min
+[2025-11-27 15:46:39] Phase: P1_stories | Loaded best model (loss: 1.8258)
+[2025-11-27 15:46:39] Phase: P2_profile | STARTING
+[2025-11-27 15:46:52] Phase: P2_profile | Step: 100 | Loss: 2.1805 | LR: 1.00e-04
+[2025-11-27 15:47:05] Phase: P2_profile | Step: 200 | Loss: 0.3500 | LR: 1.00e-04
+[2025-11-27 15:47:18] Phase: P2_profile | Step: 300 | Loss: 0.1682 | LR: 1.00e-04
+[2025-11-27 15:47:31] Phase: P2_profile | Step: 400 | Loss: 0.1172 | LR: 1.00e-04
+[2025-11-27 15:47:44] Phase: P2_profile | Step: 500 | Loss: 0.0926 | LR: 1.00e-04
+[2025-11-27 15:47:57] Phase: P2_profile | Step: 600 | Loss: 0.0789 | LR: 1.00e-04
+[2025-11-27 15:48:10] Phase: P2_profile | Step: 700 | Loss: 0.0700 | LR: 1.00e-04
+[2025-11-27 15:48:23] Phase: P2_profile | Step: 800 | Loss: 0.0646 | LR: 1.00e-04
+[2025-11-27 15:48:36] Phase: P2_profile | Step: 900 | Loss: 0.0607 | LR: 1.00e-04
+[2025-11-27 15:48:49] Phase: P2_profile | Step: 1000 | Loss: 0.0576 | LR: 1.00e-04
+[2025-11-27 15:48:49] Phase: P2_profile | CHECKPOINT saved: ckpt_1000.pt
+[2025-11-27 15:48:49] Phase: P2_profile | BEST model saved (loss: 0.3240)
+[2025-11-27 15:49:03] Phase: P2_profile | Step: 1100 | Loss: 0.0554 | LR: 1.00e-04
+[2025-11-27 15:49:16] Phase: P2_profile | Step: 1200 | Loss: 0.0535 | LR: 1.00e-04
+[2025-11-27 15:49:29] Phase: P2_profile | Step: 1300 | Loss: 0.0519 | LR: 1.00e-04
+[2025-11-27 15:49:42] Phase: P2_profile | Step: 1400 | Loss: 0.0503 | LR: 1.00e-04
+[2025-11-27 15:49:55] Phase: P2_profile | Step: 1500 | Loss: 0.0490 | LR: 1.00e-04
+[2025-11-27 15:50:08] Phase: P2_profile | Step: 1600 | Loss: 0.0477 | LR: 1.00e-04
+[2025-11-27 15:50:21] Phase: P2_profile | Step: 1700 | Loss: 0.0463 | LR: 1.00e-04
+[2025-11-27 15:50:34] Phase: P2_profile | Step: 1800 | Loss: 0.0454 | LR: 1.00e-04
+[2025-11-27 15:50:47] Phase: P2_profile | Step: 1900 | Loss: 0.0440 | LR: 1.00e-04
+[2025-11-27 15:51:00] Phase: P2_profile | Step: 2000 | Loss: 0.0430 | LR: 1.00e-04
+[2025-11-27 15:51:00] Phase: P2_profile | CHECKPOINT saved: ckpt_2000.pt
+[2025-11-27 15:51:00] Phase: P2_profile | BEST model saved (loss: 0.0487)
+[2025-11-27 15:51:13] Phase: P2_profile | Step: 2100 | Loss: 0.0420 | LR: 1.00e-04
+[2025-11-27 15:51:26] Phase: P2_profile | Step: 2200 | Loss: 0.0409 | LR: 1.00e-04
+[2025-11-27 15:51:39] Phase: P2_profile | Step: 2300 | Loss: 0.0396 | LR: 1.00e-04
+[2025-11-27 15:51:52] Phase: P2_profile | Step: 2400 | Loss: 0.0386 | LR: 1.00e-04
+[2025-11-27 15:52:05] Phase: P2_profile | Step: 2500 | Loss: 0.0374 | LR: 1.00e-04
+[2025-11-27 15:52:18] Phase: P2_profile | Step: 2600 | Loss: 0.0363 | LR: 1.00e-04
+[2025-11-27 15:52:31] Phase: P2_profile | Step: 2700 | Loss: 0.0352 | LR: 1.00e-04
+[2025-11-27 15:52:44] Phase: P2_profile | Step: 2800 | Loss: 0.0341 | LR: 1.00e-04
+[2025-11-27 15:52:58] Phase: P2_profile | Step: 2900 | Loss: 0.0329 | LR: 1.00e-04
+[2025-11-27 15:53:10] Phase: P2_profile | Step: 3000 | Loss: 0.0317 | LR: 1.00e-04
+[2025-11-27 15:53:10] Phase: P2_profile | CHECKPOINT saved: ckpt_3000.pt
+[2025-11-27 15:53:10] Phase: P2_profile | BEST model saved (loss: 0.0369)
+[2025-11-27 15:53:24] Phase: P2_profile | Step: 3100 | Loss: 0.0308 | LR: 1.00e-04
+[2025-11-27 15:53:36] Phase: P2_profile | Step: 3200 | Loss: 0.0295 | LR: 1.00e-04
+[2025-11-27 15:53:50] Phase: P2_profile | Step: 3300 | Loss: 0.0286 | LR: 1.00e-04
+[2025-11-27 15:54:03] Phase: P2_profile | Step: 3400 | Loss: 0.0276 | LR: 1.00e-04
+[2025-11-27 15:54:16] Phase: P2_profile | Step: 3500 | Loss: 0.0267 | LR: 1.00e-04
+[2025-11-27 15:54:28] Phase: P2_profile | Step: 3600 | Loss: 0.0258 | LR: 1.00e-04
+[2025-11-27 15:54:42] Phase: P2_profile | Step: 3700 | Loss: 0.0249 | LR: 1.00e-04
+[2025-11-27 15:54:55] Phase: P2_profile | Step: 3800 | Loss: 0.0243 | LR: 1.00e-04
+[2025-11-27 15:55:08] Phase: P2_profile | Step: 3900 | Loss: 0.0235 | LR: 1.00e-04
+[2025-11-27 15:55:21] Phase: P2_profile | Step: 4000 | Loss: 0.0226 | LR: 1.00e-04
+[2025-11-27 15:55:21] Phase: P2_profile | CHECKPOINT saved: ckpt_4000.pt
+[2025-11-27 15:55:21] Phase: P2_profile | BEST model saved (loss: 0.0264)
+[2025-11-27 15:55:34] Phase: P2_profile | Step: 4100 | Loss: 0.0221 | LR: 1.00e-04
+[2025-11-27 15:55:47] Phase: P2_profile | Step: 4200 | Loss: 0.0215 | LR: 1.00e-04
+[2025-11-27 15:56:00] Phase: P2_profile | Step: 4300 | Loss: 0.0209 | LR: 1.00e-04
+[2025-11-27 15:56:13] Phase: P2_profile | Step: 4400 | Loss: 0.0204 | LR: 1.00e-04
+[2025-11-27 15:56:26] Phase: P2_profile | Step: 4500 | Loss: 0.0200 | LR: 1.00e-04
+[2025-11-27 15:56:39] Phase: P2_profile | Step: 4600 | Loss: 0.0195 | LR: 1.00e-04
+[2025-11-27 15:56:52] Phase: P2_profile | Step: 4700 | Loss: 0.0190 | LR: 1.00e-04
+[2025-11-27 15:57:05] Phase: P2_profile | Step: 4800 | Loss: 0.0187 | LR: 1.00e-04
+[2025-11-27 15:57:18] Phase: P2_profile | Step: 4900 | Loss: 0.0182 | LR: 1.00e-04
+[2025-11-27 15:57:31] Phase: P2_profile | Step: 5000 | Loss: 0.0181 | LR: 1.00e-04
+[2025-11-27 15:57:31] Phase: P2_profile | CHECKPOINT saved: ckpt_5000.pt
+[2025-11-27 15:57:31] Phase: P2_profile | BEST model saved (loss: 0.0198)
+[2025-11-27 15:57:32] Phase: P2_profile | COMPLETE | Final loss: 0.0181 | Time: 10.9 min
+[2025-11-27 15:57:32] Phase: P2_profile | Loaded best model (loss: 0.0198)
+[2025-11-27 15:57:32] Phase: P3_qa | STARTING
+[2025-11-27 15:57:43] Phase: P3_qa | Step: 100 | Loss: 2.5906 | LR: 5.00e-05
+[2025-11-27 15:57:55] Phase: P3_qa | Step: 200 | Loss: 1.5698 | LR: 5.00e-05
+[2025-11-27 15:58:06] Phase: P3_qa | Step: 300 | Loss: 1.2440 | LR: 5.00e-05
+[2025-11-27 15:58:17] Phase: P3_qa | Step: 400 | Loss: 1.0282 | LR: 5.00e-05
+[2025-11-27 15:58:29] Phase: P3_qa | Step: 500 | Loss: 0.8705 | LR: 5.00e-05
+[2025-11-27 15:58:40] Phase: P3_qa | Step: 600 | Loss: 0.7504 | LR: 5.00e-05
+[2025-11-27 15:58:52] Phase: P3_qa | Step: 700 | Loss: 0.6571 | LR: 5.00e-05
+[2025-11-27 15:59:03] Phase: P3_qa | Step: 800 | Loss: 0.5895 | LR: 5.00e-05
+[2025-11-27 15:59:14] Phase: P3_qa | Step: 900 | Loss: 0.5392 | LR: 5.00e-05
+[2025-11-27 15:59:25] Phase: P3_qa | Step: 1000 | Loss: 0.4996 | LR: 5.00e-05
+[2025-11-27 15:59:25] Phase: P3_qa | CHECKPOINT saved: ckpt_1000.pt
+[2025-11-27 15:59:25] Phase: P3_qa | BEST model saved (loss: 1.0339)
+[2025-11-27 15:59:37] Phase: P3_qa | Step: 1100 | Loss: 0.4709 | LR: 5.00e-05
+[2025-11-27 15:59:48] Phase: P3_qa | Step: 1200 | Loss: 0.4485 | LR: 5.00e-05
+[2025-11-27 15:59:59] Phase: P3_qa | Step: 1300 | Loss: 0.4301 | LR: 5.00e-05
+[2025-11-27 16:00:11] Phase: P3_qa | Step: 1400 | Loss: 0.4159 | LR: 5.00e-05
+[2025-11-27 16:00:22] Phase: P3_qa | Step: 1500 | Loss: 0.4040 | LR: 5.00e-05
+[2025-11-27 16:00:34] Phase: P3_qa | Step: 1600 | Loss: 0.3945 | LR: 5.00e-05
+[2025-11-27 16:00:45] Phase: P3_qa | Step: 1700 | Loss: 0.3864 | LR: 5.00e-05
+[2025-11-27 16:00:56] Phase: P3_qa | Step: 1800 | Loss: 0.3794 | LR: 5.00e-05
+[2025-11-27 16:01:08] Phase: P3_qa | Step: 1900 | Loss: 0.3742 | LR: 5.00e-05
+[2025-11-27 16:01:19] Phase: P3_qa | Step: 2000 | Loss: 0.3692 | LR: 5.00e-05
+[2025-11-27 16:01:19] Phase: P3_qa | CHECKPOINT saved: ckpt_2000.pt
+[2025-11-27 16:01:19] Phase: P3_qa | BEST model saved (loss: 0.4073)
+[2025-11-27 16:01:30] Phase: P3_qa | Step: 2100 | Loss: 0.3650 | LR: 5.00e-05
+[2025-11-27 16:01:42] Phase: P3_qa | Step: 2200 | Loss: 0.3608 | LR: 5.00e-05
+[2025-11-27 16:01:53] Phase: P3_qa | Step: 2300 | Loss: 0.3572 | LR: 5.00e-05
+[2025-11-27 16:02:05] Phase: P3_qa | Step: 2400 | Loss: 0.3549 | LR: 5.00e-05
+[2025-11-27 16:02:16] Phase: P3_qa | Step: 2500 | Loss: 0.3520 | LR: 5.00e-05
+[2025-11-27 16:02:27] Phase: P3_qa | Step: 2600 | Loss: 0.3496 | LR: 5.00e-05
+[2025-11-27 16:02:39] Phase: P3_qa | Step: 2700 | Loss: 0.3477 | LR: 5.00e-05
+[2025-11-27 16:02:50] Phase: P3_qa | Step: 2800 | Loss: 0.3454 | LR: 5.00e-05
+[2025-11-27 16:03:01] Phase: P3_qa | Step: 2900 | Loss: 0.3435 | LR: 5.00e-05
+[2025-11-27 16:03:13] Phase: P3_qa | Step: 3000 | Loss: 0.3422 | LR: 5.00e-05
+[2025-11-27 16:03:13] Phase: P3_qa | CHECKPOINT saved: ckpt_3000.pt
+[2025-11-27 16:03:13] Phase: P3_qa | BEST model saved (loss: 0.3518)
+[2025-11-27 16:03:24] Phase: P3_qa | Step: 3100 | Loss: 0.3404 | LR: 5.00e-05
+[2025-11-27 16:03:36] Phase: P3_qa | Step: 3200 | Loss: 0.3390 | LR: 5.00e-05
+[2025-11-27 16:03:47] Phase: P3_qa | Step: 3300 | Loss: 0.3376 | LR: 5.00e-05
+[2025-11-27 16:03:59] Phase: P3_qa | Step: 3400 | Loss: 0.3360 | LR: 5.00e-05
+[2025-11-27 16:04:10] Phase: P3_qa | Step: 3500 | Loss: 0.3355 | LR: 5.00e-05
+[2025-11-27 16:04:21] Phase: P3_qa | Step: 3600 | Loss: 0.3340 | LR: 5.00e-05
+[2025-11-27 16:04:33] Phase: P3_qa | Step: 3700 | Loss: 0.3328 | LR: 5.00e-05
+[2025-11-27 16:04:44] Phase: P3_qa | Step: 3800 | Loss: 0.3318 | LR: 5.00e-05
+[2025-11-27 16:04:55] Phase: P3_qa | Step: 3900 | Loss: 0.3308 | LR: 5.00e-05
+[2025-11-27 16:05:07] Phase: P3_qa | Step: 4000 | Loss: 0.3302 | LR: 5.00e-05
+[2025-11-27 16:05:07] Phase: P3_qa | CHECKPOINT saved: ckpt_4000.pt
+[2025-11-27 16:05:07] Phase: P3_qa | BEST model saved (loss: 0.3348)
+[2025-11-27 16:05:18] Phase: P3_qa | Step: 4100 | Loss: 0.3292 | LR: 5.00e-05
+[2025-11-27 16:05:29] Phase: P3_qa | Step: 4200 | Loss: 0.3281 | LR: 5.00e-05
+[2025-11-27 16:05:41] Phase: P3_qa | Step: 4300 | Loss: 0.3275 | LR: 5.00e-05
+[2025-11-27 16:05:52] Phase: P3_qa | Step: 4400 | Loss: 0.3268 | LR: 5.00e-05
+[2025-11-27 16:06:03] Phase: P3_qa | Step: 4500 | Loss: 0.3260 | LR: 5.00e-05
+[2025-11-27 16:06:15] Phase: P3_qa | Step: 4600 | Loss: 0.3253 | LR: 5.00e-05
+[2025-11-27 16:06:26] Phase: P3_qa | Step: 4700 | Loss: 0.3246 | LR: 5.00e-05
+[2025-11-27 16:06:38] Phase: P3_qa | Step: 4800 | Loss: 0.3243 | LR: 5.00e-05
+[2025-11-27 16:06:49] Phase: P3_qa | Step: 4900 | Loss: 0.3235 | LR: 5.00e-05
+[2025-11-27 16:07:00] Phase: P3_qa | Step: 5000 | Loss: 0.3224 | LR: 5.00e-05
+[2025-11-27 16:07:00] Phase: P3_qa | CHECKPOINT saved: ckpt_5000.pt
+[2025-11-27 16:07:00] Phase: P3_qa | BEST model saved (loss: 0.3258)
+[2025-11-27 16:07:12] Phase: P3_qa | Step: 5100 | Loss: 0.3226 | LR: 5.00e-05
+[2025-11-27 16:07:23] Phase: P3_qa | Step: 5200 | Loss: 0.3220 | LR: 5.00e-05
+[2025-11-27 16:07:34] Phase: P3_qa | Step: 5300 | Loss: 0.3210 | LR: 5.00e-05
+[2025-11-27 16:07:46] Phase: P3_qa | Step: 5400 | Loss: 0.3204 | LR: 5.00e-05
+[2025-11-27 16:07:57] Phase: P3_qa | Step: 5500 | Loss: 0.3201 | LR: 5.00e-05
+[2025-11-27 16:08:08] Phase: P3_qa | Step: 5600 | Loss: 0.3196 | LR: 5.00e-05
+[2025-11-27 16:08:19] Phase: P3_qa | Step: 5700 | Loss: 0.3195 | LR: 5.00e-05
+[2025-11-27 16:08:31] Phase: P3_qa | Step: 5800 | Loss: 0.3192 | LR: 5.00e-05
+[2025-11-27 16:08:42] Phase: P3_qa | Step: 5900 | Loss: 0.3184 | LR: 5.00e-05
+[2025-11-27 16:08:54] Phase: P3_qa | Step: 6000 | Loss: 0.3177 | LR: 5.00e-05
+[2025-11-27 16:08:54] Phase: P3_qa | CHECKPOINT saved: ckpt_6000.pt
+[2025-11-27 16:08:54] Phase: P3_qa | BEST model saved (loss: 0.3201)
+[2025-11-27 16:08:54] Phase: P3_qa | COMPLETE | Final loss: 0.3177 | Time: 11.4 min
+[2025-11-27 16:08:54] Phase: P3_qa | Loaded best model (loss: 0.3201)
+[2025-11-27 16:33:46] Phase: P1_stories | STARTING
+[2025-11-27 16:33:46] Phase: P1_stories | STARTING
+[2025-11-27 16:34:06] Phase: P1_stories | Step: 100 | Loss: 4.9164 | LR: 3.00e-04
+[2025-11-27 16:34:06] Phase: P1_stories | Step: 100 | Loss: 4.9164 | LR: 3.00e-04
+[2025-11-27 16:34:26] Phase: P1_stories | Step: 200 | Loss: 3.5775 | LR: 3.00e-04
+[2025-11-27 16:34:26] Phase: P1_stories | Step: 200 | Loss: 3.5775 | LR: 3.00e-04
+[2025-11-27 16:34:45] Phase: P1_stories | Step: 300 | Loss: 3.0610 | LR: 3.00e-04
+[2025-11-27 16:34:45] Phase: P1_stories | Step: 300 | Loss: 3.0610 | LR: 3.00e-04
+[2025-11-27 16:35:05] Phase: P1_stories | Step: 400 | Loss: 2.7565 | LR: 3.00e-04
+[2025-11-27 16:35:05] Phase: P1_stories | Step: 400 | Loss: 2.7565 | LR: 3.00e-04
+[2025-11-27 16:35:24] Phase: P1_stories | Step: 500 | Loss: 2.5803 | LR: 3.00e-04
+[2025-11-27 16:35:24] Phase: P1_stories | Step: 500 | Loss: 2.5803 | LR: 3.00e-04
+[2025-11-27 16:35:44] Phase: P1_stories | Step: 600 | Loss: 2.4650 | LR: 3.00e-04
+[2025-11-27 16:35:44] Phase: P1_stories | Step: 600 | Loss: 2.4650 | LR: 3.00e-04
+[2025-11-27 16:36:04] Phase: P1_stories | Step: 700 | Loss: 2.3802 | LR: 3.00e-04
+[2025-11-27 16:36:04] Phase: P1_stories | Step: 700 | Loss: 2.3802 | LR: 3.00e-04
+[2025-11-27 16:36:24] Phase: P1_stories | Step: 800 | Loss: 2.3069 | LR: 3.00e-04
+[2025-11-27 16:36:24] Phase: P1_stories | Step: 800 | Loss: 2.3069 | LR: 3.00e-04
+[2025-11-27 16:36:44] Phase: P1_stories | Step: 900 | Loss: 2.2427 | LR: 3.00e-04
+[2025-11-27 16:36:44] Phase: P1_stories | Step: 900 | Loss: 2.2427 | LR: 3.00e-04
+[2025-11-27 16:37:04] Phase: P1_stories | Step: 1000 | Loss: 2.1940 | LR: 3.00e-04
+[2025-11-27 16:37:04] Phase: P1_stories | Step: 1000 | Loss: 2.1940 | LR: 3.00e-04
+[2025-11-27 16:37:04] Phase: P1_stories | CHECKPOINT saved: ckpt_1000.pt
+[2025-11-27 16:37:04] Phase: P1_stories | CHECKPOINT saved: ckpt_1000.pt
+[2025-11-27 16:37:04] Phase: P1_stories | BEST model saved (loss: 2.8480)
+[2025-11-27 16:37:04] Phase: P1_stories | BEST model saved (loss: 2.8480)
+[2025-11-27 16:37:24] Phase: P1_stories | Step: 1100 | Loss: 2.1524 | LR: 3.00e-04
+[2025-11-27 16:37:24] Phase: P1_stories | Step: 1100 | Loss: 2.1524 | LR: 3.00e-04
+[2025-11-27 16:37:43] Phase: P1_stories | Step: 1200 | Loss: 2.1106 | LR: 3.00e-04
+[2025-11-27 16:37:43] Phase: P1_stories | Step: 1200 | Loss: 2.1106 | LR: 3.00e-04
+[2025-11-27 16:38:03] Phase: P1_stories | Step: 1300 | Loss: 2.0832 | LR: 3.00e-04
+[2025-11-27 16:38:03] Phase: P1_stories | Step: 1300 | Loss: 2.0832 | LR: 3.00e-04
+[2025-11-27 16:38:23] Phase: P1_stories | Step: 1400 | Loss: 2.0493 | LR: 3.00e-04
+[2025-11-27 16:38:23] Phase: P1_stories | Step: 1400 | Loss: 2.0493 | LR: 3.00e-04
+[2025-11-27 16:38:42] Phase: P1_stories | Step: 1500 | Loss: 2.0239 | LR: 3.00e-04
+[2025-11-27 16:38:42] Phase: P1_stories | Step: 1500 | Loss: 2.0239 | LR: 3.00e-04
+[2025-11-27 16:39:02] Phase: P1_stories | Step: 1600 | Loss: 2.0033 | LR: 3.00e-04
+[2025-11-27 16:39:02] Phase: P1_stories | Step: 1600 | Loss: 2.0033 | LR: 3.00e-04
+[2025-11-27 16:39:22] Phase: P1_stories | Step: 1700 | Loss: 1.9772 | LR: 3.00e-04
+[2025-11-27 16:39:22] Phase: P1_stories | Step: 1700 | Loss: 1.9772 | LR: 3.00e-04
+[2025-11-27 16:39:42] Phase: P1_stories | Step: 1800 | Loss: 1.9534 | LR: 3.00e-04
+[2025-11-27 16:39:42] Phase: P1_stories | Step: 1800 | Loss: 1.9534 | LR: 3.00e-04
+[2025-11-27 16:40:02] Phase: P1_stories | Step: 1900 | Loss: 1.9369 | LR: 3.00e-04
+[2025-11-27 16:40:02] Phase: P1_stories | Step: 1900 | Loss: 1.9369 | LR: 3.00e-04
+[2025-11-27 16:40:21] Phase: P1_stories | Step: 2000 | Loss: 1.9241 | LR: 3.00e-04
+[2025-11-27 16:40:21] Phase: P1_stories | Step: 2000 | Loss: 1.9241 | LR: 3.00e-04
+[2025-11-27 16:40:21] Phase: P1_stories | CHECKPOINT saved: ckpt_2000.pt
+[2025-11-27 16:40:21] Phase: P1_stories | CHECKPOINT saved: ckpt_2000.pt
+[2025-11-27 16:40:21] Phase: P1_stories | BEST model saved (loss: 2.0214)
+[2025-11-27 16:40:21] Phase: P1_stories | BEST model saved (loss: 2.0214)
+[2025-11-27 16:40:41] Phase: P1_stories | Step: 2100 | Loss: 1.9087 | LR: 3.00e-04
+[2025-11-27 16:40:41] Phase: P1_stories | Step: 2100 | Loss: 1.9087 | LR: 3.00e-04
+[2025-11-27 16:41:01] Phase: P1_stories | Step: 2200 | Loss: 1.9056 | LR: 3.00e-04
+[2025-11-27 16:41:01] Phase: P1_stories | Step: 2200 | Loss: 1.9056 | LR: 3.00e-04
+[2025-11-27 16:41:20] Phase: P1_stories | Step: 2300 | Loss: 1.8865 | LR: 3.00e-04
+[2025-11-27 16:41:20] Phase: P1_stories | Step: 2300 | Loss: 1.8865 | LR: 3.00e-04
+[2025-11-27 16:41:40] Phase: P1_stories | Step: 2400 | Loss: 1.8734 | LR: 3.00e-04
+[2025-11-27 16:41:40] Phase: P1_stories | Step: 2400 | Loss: 1.8734 | LR: 3.00e-04
+[2025-11-27 16:42:00] Phase: P1_stories | Step: 2500 | Loss: 1.8637 | LR: 3.00e-04
+[2025-11-27 16:42:00] Phase: P1_stories | Step: 2500 | Loss: 1.8637 | LR: 3.00e-04
+[2025-11-27 16:42:20] Phase: P1_stories | Step: 2600 | Loss: 1.8567 | LR: 3.00e-04
+[2025-11-27 16:42:20] Phase: P1_stories | Step: 2600 | Loss: 1.8567 | LR: 3.00e-04
+[2025-11-27 16:42:39] Phase: P1_stories | Step: 2700 | Loss: 1.8500 | LR: 3.00e-04
+[2025-11-27 16:42:39] Phase: P1_stories | Step: 2700 | Loss: 1.8500 | LR: 3.00e-04
+[2025-11-27 16:42:59] Phase: P1_stories | Step: 2800 | Loss: 1.8378 | LR: 3.00e-04
+[2025-11-27 16:42:59] Phase: P1_stories | Step: 2800 | Loss: 1.8378 | LR: 3.00e-04
+[2025-11-27 16:43:19] Phase: P1_stories | Step: 2900 | Loss: 1.8328 | LR: 3.00e-04
+[2025-11-27 16:43:19] Phase: P1_stories | Step: 2900 | Loss: 1.8328 | LR: 3.00e-04
+[2025-11-27 16:43:38] Phase: P1_stories | Step: 3000 | Loss: 1.8244 | LR: 3.00e-04
+[2025-11-27 16:43:38] Phase: P1_stories | Step: 3000 | Loss: 1.8244 | LR: 3.00e-04
+[2025-11-27 16:43:38] Phase: P1_stories | CHECKPOINT saved: ckpt_3000.pt
+[2025-11-27 16:43:38] Phase: P1_stories | CHECKPOINT saved: ckpt_3000.pt
+[2025-11-27 16:43:38] Phase: P1_stories | BEST model saved (loss: 1.8640)
+[2025-11-27 16:43:38] Phase: P1_stories | BEST model saved (loss: 1.8640)
+[2025-11-27 16:43:58] Phase: P1_stories | Step: 3100 | Loss: 1.8147 | LR: 3.00e-04
+[2025-11-27 16:43:58] Phase: P1_stories | Step: 3100 | Loss: 1.8147 | LR: 3.00e-04
+[2025-11-27 16:44:18] Phase: P1_stories | Step: 3200 | Loss: 1.8085 | LR: 3.00e-04
+[2025-11-27 16:44:18] Phase: P1_stories | Step: 3200 | Loss: 1.8085 | LR: 3.00e-04
+[2025-11-27 16:44:37] Phase: P1_stories | Step: 3300 | Loss: 1.8039 | LR: 3.00e-04
+[2025-11-27 16:44:37] Phase: P1_stories | Step: 3300 | Loss: 1.8039 | LR: 3.00e-04
+[2025-11-27 16:44:58] Phase: P1_stories | Step: 3400 | Loss: 1.7908 | LR: 3.00e-04
+[2025-11-27 16:44:58] Phase: P1_stories | Step: 3400 | Loss: 1.7908 | LR: 3.00e-04
+[2025-11-27 16:45:17] Phase: P1_stories | Step: 3500 | Loss: 1.7793 | LR: 3.00e-04
+[2025-11-27 16:45:17] Phase: P1_stories | Step: 3500 | Loss: 1.7793 | LR: 3.00e-04
+[2025-11-27 16:45:37] Phase: P1_stories | Step: 3600 | Loss: 1.7781 | LR: 3.00e-04
+[2025-11-27 16:45:37] Phase: P1_stories | Step: 3600 | Loss: 1.7781 | LR: 3.00e-04
+[2025-11-27 16:45:57] Phase: P1_stories | Step: 3700 | Loss: 1.7735 | LR: 3.00e-04
+[2025-11-27 16:45:57] Phase: P1_stories | Step: 3700 | Loss: 1.7735 | LR: 3.00e-04
+[2025-11-27 16:46:16] Phase: P1_stories | Step: 3800 | Loss: 1.7672 | LR: 3.00e-04
+[2025-11-27 16:46:16] Phase: P1_stories | Step: 3800 | Loss: 1.7672 | LR: 3.00e-04
+[2025-11-27 16:46:36] Phase: P1_stories | Step: 3900 | Loss: 1.7655 | LR: 3.00e-04
+[2025-11-27 16:46:36] Phase: P1_stories | Step: 3900 | Loss: 1.7655 | LR: 3.00e-04
+[2025-11-27 16:46:56] Phase: P1_stories | Step: 4000 | Loss: 1.7629 | LR: 3.00e-04
+[2025-11-27 16:46:56] Phase: P1_stories | Step: 4000 | Loss: 1.7629 | LR: 3.00e-04
+[2025-11-27 16:46:56] Phase: P1_stories | CHECKPOINT saved: ckpt_4000.pt
+[2025-11-27 16:46:56] Phase: P1_stories | CHECKPOINT saved: ckpt_4000.pt
+[2025-11-27 16:46:56] Phase: P1_stories | BEST model saved (loss: 1.7844)
+[2025-11-27 16:46:56] Phase: P1_stories | BEST model saved (loss: 1.7844)
+[2025-11-27 16:47:15] Phase: P1_stories | Step: 4100 | Loss: 1.7533 | LR: 3.00e-04
+[2025-11-27 16:47:15] Phase: P1_stories | Step: 4100 | Loss: 1.7533 | LR: 3.00e-04
+[2025-11-27 16:47:35] Phase: P1_stories | Step: 4200 | Loss: 1.7508 | LR: 3.00e-04
+[2025-11-27 16:47:35] Phase: P1_stories | Step: 4200 | Loss: 1.7508 | LR: 3.00e-04
+[2025-11-27 16:47:55] Phase: P1_stories | Step: 4300 | Loss: 1.7465 | LR: 3.00e-04
+[2025-11-27 16:47:55] Phase: P1_stories | Step: 4300 | Loss: 1.7465 | LR: 3.00e-04
+[2025-11-27 16:48:15] Phase: P1_stories | Step: 4400 | Loss: 1.7474 | LR: 3.00e-04
+[2025-11-27 16:48:15] Phase: P1_stories | Step: 4400 | Loss: 1.7474 | LR: 3.00e-04
+[2025-11-27 16:48:34] Phase: P1_stories | Step: 4500 | Loss: 1.7382 | LR: 3.00e-04
+[2025-11-27 16:48:34] Phase: P1_stories | Step: 4500 | Loss: 1.7382 | LR: 3.00e-04
+[2025-11-27 16:48:54] Phase: P1_stories | Step: 4600 | Loss: 1.7404 | LR: 3.00e-04
+[2025-11-27 16:48:54] Phase: P1_stories | Step: 4600 | Loss: 1.7404 | LR: 3.00e-04
+[2025-11-27 16:49:14] Phase: P1_stories | Step: 4700 | Loss: 1.7303 | LR: 3.00e-04
+[2025-11-27 16:49:14] Phase: P1_stories | Step: 4700 | Loss: 1.7303 | LR: 3.00e-04
+[2025-11-27 16:49:34] Phase: P1_stories | Step: 4800 | Loss: 1.7303 | LR: 3.00e-04
+[2025-11-27 16:49:34] Phase: P1_stories | Step: 4800 | Loss: 1.7303 | LR: 3.00e-04
+[2025-11-27 16:49:53] Phase: P1_stories | Step: 4900 | Loss: 1.7250 | LR: 3.00e-04
+[2025-11-27 16:49:53] Phase: P1_stories | Step: 4900 | Loss: 1.7250 | LR: 3.00e-04
+[2025-11-27 16:50:13] Phase: P1_stories | Step: 5000 | Loss: 1.7267 | LR: 3.00e-04
+[2025-11-27 16:50:13] Phase: P1_stories | Step: 5000 | Loss: 1.7267 | LR: 3.00e-04
+[2025-11-27 16:50:13] Phase: P1_stories | CHECKPOINT saved: ckpt_5000.pt
+[2025-11-27 16:50:13] Phase: P1_stories | CHECKPOINT saved: ckpt_5000.pt
+[2025-11-27 16:50:13] Phase: P1_stories | BEST model saved (loss: 1.7389)
+[2025-11-27 16:50:13] Phase: P1_stories | BEST model saved (loss: 1.7389)
+[2025-11-27 16:50:33] Phase: P1_stories | Step: 5100 | Loss: 1.7148 | LR: 3.00e-04
+[2025-11-27 16:50:33] Phase: P1_stories | Step: 5100 | Loss: 1.7148 | LR: 3.00e-04
+[2025-11-27 16:50:53] Phase: P1_stories | Step: 5200 | Loss: 1.7084 | LR: 3.00e-04
+[2025-11-27 16:50:53] Phase: P1_stories | Step: 5200 | Loss: 1.7084 | LR: 3.00e-04
+[2025-11-27 16:51:13] Phase: P1_stories | Step: 5300 | Loss: 1.7017 | LR: 3.00e-04
+[2025-11-27 16:51:13] Phase: P1_stories | Step: 5300 | Loss: 1.7017 | LR: 3.00e-04
+[2025-11-27 16:51:32] Phase: P1_stories | Step: 5400 | Loss: 1.7025 | LR: 3.00e-04
+[2025-11-27 16:51:32] Phase: P1_stories | Step: 5400 | Loss: 1.7025 | LR: 3.00e-04
+[2025-11-27 16:51:52] Phase: P1_stories | Step: 5500 | Loss: 1.7025 | LR: 3.00e-04
+[2025-11-27 16:51:52] Phase: P1_stories | Step: 5500 | Loss: 1.7025 | LR: 3.00e-04
+[2025-11-27 16:52:12] Phase: P1_stories | Step: 5600 | Loss: 1.6997 | LR: 3.00e-04
+[2025-11-27 16:52:12] Phase: P1_stories | Step: 5600 | Loss: 1.6997 | LR: 3.00e-04
+[2025-11-27 16:52:31] Phase: P1_stories | Step: 5700 | Loss: 1.6971 | LR: 3.00e-04
+[2025-11-27 16:52:31] Phase: P1_stories | Step: 5700 | Loss: 1.6971 | LR: 3.00e-04
+[2025-11-27 16:52:51] Phase: P1_stories | Step: 5800 | Loss: 1.6959 | LR: 3.00e-04
+[2025-11-27 16:52:51] Phase: P1_stories | Step: 5800 | Loss: 1.6959 | LR: 3.00e-04
+[2025-11-27 16:53:11] Phase: P1_stories | Step: 5900 | Loss: 1.6957 | LR: 3.00e-04
+[2025-11-27 16:53:11] Phase: P1_stories | Step: 5900 | Loss: 1.6957 | LR: 3.00e-04
+[2025-11-27 16:53:30] Phase: P1_stories | Step: 6000 | Loss: 1.6931 | LR: 3.00e-04
+[2025-11-27 16:53:30] Phase: P1_stories | Step: 6000 | Loss: 1.6931 | LR: 3.00e-04
+[2025-11-27 16:53:30] Phase: P1_stories | CHECKPOINT saved: ckpt_6000.pt
+[2025-11-27 16:53:30] Phase: P1_stories | CHECKPOINT saved: ckpt_6000.pt
+[2025-11-27 16:53:31] Phase: P1_stories | BEST model saved (loss: 1.7011)
+[2025-11-27 16:53:31] Phase: P1_stories | BEST model saved (loss: 1.7011)
+[2025-11-27 16:53:50] Phase: P1_stories | Step: 6100 | Loss: 1.6945 | LR: 3.00e-04
+[2025-11-27 16:53:50] Phase: P1_stories | Step: 6100 | Loss: 1.6945 | LR: 3.00e-04
+[2025-11-27 16:54:10] Phase: P1_stories | Step: 6200 | Loss: 1.6916 | LR: 3.00e-04
+[2025-11-27 16:54:10] Phase: P1_stories | Step: 6200 | Loss: 1.6916 | LR: 3.00e-04
+[2025-11-27 16:54:30] Phase: P1_stories | Step: 6300 | Loss: 1.6875 | LR: 3.00e-04
+[2025-11-27 16:54:30] Phase: P1_stories | Step: 6300 | Loss: 1.6875 | LR: 3.00e-04
+[2025-11-27 16:54:49] Phase: P1_stories | Step: 6400 | Loss: 1.6811 | LR: 3.00e-04
+[2025-11-27 16:54:49] Phase: P1_stories | Step: 6400 | Loss: 1.6811 | LR: 3.00e-04
+[2025-11-27 16:55:09] Phase: P1_stories | Step: 6500 | Loss: 1.6828 | LR: 3.00e-04
+[2025-11-27 16:55:09] Phase: P1_stories | Step: 6500 | Loss: 1.6828 | LR: 3.00e-04
+[2025-11-27 16:55:29] Phase: P1_stories | Step: 6600 | Loss: 1.6780 | LR: 3.00e-04
+[2025-11-27 16:55:29] Phase: P1_stories | Step: 6600 | Loss: 1.6780 | LR: 3.00e-04
+[2025-11-27 16:55:48] Phase: P1_stories | Step: 6700 | Loss: 1.6768 | LR: 3.00e-04
+[2025-11-27 16:55:48] Phase: P1_stories | Step: 6700 | Loss: 1.6768 | LR: 3.00e-04
+[2025-11-27 17:02:14] Phase: P1_stories | STARTING
+[2025-11-27 17:02:14] Phase: P1_stories | RESUMED from step 6000
+[2025-11-27 17:02:35] Phase: P1_stories | Step: 6100 | Loss: 1.6865 | LR: 3.00e-04
+[2025-11-27 17:02:55] Phase: P1_stories | Step: 6200 | Loss: 1.6846 | LR: 3.00e-04
+[2025-11-27 17:03:15] Phase: P1_stories | Step: 6300 | Loss: 1.6823 | LR: 3.00e-04
+[2025-11-27 17:03:34] Phase: P1_stories | Step: 6400 | Loss: 1.6752 | LR: 3.00e-04
+[2025-11-27 17:03:54] Phase: P1_stories | Step: 6500 | Loss: 1.6795 | LR: 3.00e-04
+[2025-11-27 17:04:13] Phase: P1_stories | Step: 6600 | Loss: 1.6752 | LR: 3.00e-04
+[2025-11-27 17:04:33] Phase: P1_stories | Step: 6700 | Loss: 1.6711 | LR: 3.00e-04
+[2025-11-27 17:04:53] Phase: P1_stories | Step: 6800 | Loss: 1.6732 | LR: 3.00e-04
+[2025-11-27 17:05:12] Phase: P1_stories | Step: 6900 | Loss: 1.6718 | LR: 3.00e-04
+[2025-11-27 17:05:32] Phase: P1_stories | Step: 7000 | Loss: 1.6751 | LR: 3.00e-04
+[2025-11-27 17:05:32] Phase: P1_stories | CHECKPOINT saved: ckpt_7000.pt
+[2025-11-27 17:05:32] Phase: P1_stories | BEST model saved (loss: 1.6774)
+[2025-11-27 17:05:52] Phase: P1_stories | Step: 7100 | Loss: 1.6659 | LR: 3.00e-04
+[2025-11-27 17:06:12] Phase: P1_stories | Step: 7200 | Loss: 1.6674 | LR: 3.00e-04
+[2025-11-27 17:06:31] Phase: P1_stories | Step: 7300 | Loss: 1.6635 | LR: 3.00e-04
+[2025-11-27 17:06:51] Phase: P1_stories | Step: 7400 | Loss: 1.6626 | LR: 3.00e-04
+[2025-11-27 17:07:11] Phase: P1_stories | Step: 7500 | Loss: 1.6614 | LR: 3.00e-04
+[2025-11-27 17:07:31] Phase: P1_stories | Step: 7600 | Loss: 1.6606 | LR: 3.00e-04
+[2025-11-27 17:07:51] Phase: P1_stories | Step: 7700 | Loss: 1.6556 | LR: 3.00e-04
+[2025-11-27 17:08:11] Phase: P1_stories | Step: 7800 | Loss: 1.6456 | LR: 3.00e-04
+[2025-11-27 17:08:30] Phase: P1_stories | Step: 7900 | Loss: 1.6438 | LR: 3.00e-04
+[2025-11-27 17:08:50] Phase: P1_stories | Step: 8000 | Loss: 1.6421 | LR: 3.00e-04
+[2025-11-27 17:08:50] Phase: P1_stories | CHECKPOINT saved: ckpt_8000.pt
+[2025-11-27 17:08:50] Phase: P1_stories | BEST model saved (loss: 1.6569)
+[2025-11-27 17:09:10] Phase: P1_stories | Step: 8100 | Loss: 1.6420 | LR: 3.00e-04
+[2025-11-27 17:09:30] Phase: P1_stories | Step: 8200 | Loss: 1.6509 | LR: 3.00e-04
+[2025-11-27 17:09:49] Phase: P1_stories | Step: 8300 | Loss: 1.6464 | LR: 3.00e-04
+[2025-11-27 17:10:09] Phase: P1_stories | Step: 8400 | Loss: 1.6452 | LR: 3.00e-04
+[2025-11-27 17:10:29] Phase: P1_stories | Step: 8500 | Loss: 1.6444 | LR: 3.00e-04
+[2025-11-27 17:10:48] Phase: P1_stories | Step: 8600 | Loss: 1.6408 | LR: 3.00e-04
+[2025-11-27 17:11:08] Phase: P1_stories | Step: 8700 | Loss: 1.6407 | LR: 3.00e-04
+[2025-11-27 17:11:28] Phase: P1_stories | Step: 8800 | Loss: 1.6400 | LR: 3.00e-04
+[2025-11-27 17:11:47] Phase: P1_stories | Step: 8900 | Loss: 1.6409 | LR: 3.00e-04
+[2025-11-27 17:12:07] Phase: P1_stories | Step: 9000 | Loss: 1.6371 | LR: 3.00e-04
+[2025-11-27 17:12:07] Phase: P1_stories | CHECKPOINT saved: ckpt_9000.pt
+[2025-11-27 17:12:07] Phase: P1_stories | BEST model saved (loss: 1.6428)
+[2025-11-27 17:12:27] Phase: P1_stories | Step: 9100 | Loss: 1.6338 | LR: 3.00e-04
+[2025-11-27 17:12:47] Phase: P1_stories | Step: 9200 | Loss: 1.6320 | LR: 3.00e-04
+[2025-11-27 17:13:06] Phase: P1_stories | Step: 9300 | Loss: 1.6353 | LR: 3.00e-04
+[2025-11-27 17:13:27] Phase: P1_stories | Step: 9400 | Loss: 1.6271 | LR: 3.00e-04
+[2025-11-27 17:13:46] Phase: P1_stories | Step: 9500 | Loss: 1.6185 | LR: 3.00e-04
+[2025-11-27 17:14:06] Phase: P1_stories | Step: 9600 | Loss: 1.6232 | LR: 3.00e-04
+[2025-11-27 17:14:26] Phase: P1_stories | Step: 9700 | Loss: 1.6190 | LR: 3.00e-04
+[2025-11-27 17:14:45] Phase: P1_stories | Step: 9800 | Loss: 1.6210 | LR: 3.00e-04
+[2025-11-27 17:15:05] Phase: P1_stories | Step: 9900 | Loss: 1.6228 | LR: 3.00e-04
+[2025-11-27 17:15:25] Phase: P1_stories | Step: 10000 | Loss: 1.6192 | LR: 3.00e-04
+[2025-11-27 17:15:25] Phase: P1_stories | CHECKPOINT saved: ckpt_10000.pt
+[2025-11-27 17:15:25] Phase: P1_stories | BEST model saved (loss: 1.6252)
+[2025-11-27 17:15:45] Phase: P1_stories | Step: 10100 | Loss: 1.6180 | LR: 3.00e-04
+[2025-11-27 17:16:05] Phase: P1_stories | Step: 10200 | Loss: 1.6234 | LR: 3.00e-04
+[2025-11-27 17:16:24] Phase: P1_stories | Step: 10300 | Loss: 1.6190 | LR: 3.00e-04
+[2025-11-27 17:16:44] Phase: P1_stories | Step: 10400 | Loss: 1.6172 | LR: 3.00e-04
+[2025-11-27 17:17:04] Phase: P1_stories | Step: 10500 | Loss: 1.6211 | LR: 3.00e-04
+[2025-11-27 17:17:23] Phase: P1_stories | Step: 10600 | Loss: 1.6135 | LR: 3.00e-04
+[2025-11-27 17:17:43] Phase: P1_stories | Step: 10700 | Loss: 1.6172 | LR: 3.00e-04
+[2025-11-27 17:18:03] Phase: P1_stories | Step: 10800 | Loss: 1.6200 | LR: 3.00e-04
+[2025-11-27 17:18:23] Phase: P1_stories | Step: 10900 | Loss: 1.6154 | LR: 3.00e-04
+[2025-11-27 17:18:43] Phase: P1_stories | Step: 11000 | Loss: 1.6146 | LR: 3.00e-04
+[2025-11-27 17:18:43] Phase: P1_stories | CHECKPOINT saved: ckpt_11000.pt
+[2025-11-27 17:18:43] Phase: P1_stories | BEST model saved (loss: 1.6180)
+[2025-11-27 17:19:03] Phase: P1_stories | Step: 11100 | Loss: 1.6011 | LR: 3.00e-04
+[2025-11-27 17:19:23] Phase: P1_stories | Step: 11200 | Loss: 1.5996 | LR: 3.00e-04
+[2025-11-27 17:19:42] Phase: P1_stories | Step: 11300 | Loss: 1.6011 | LR: 3.00e-04
+[2025-11-27 17:20:02] Phase: P1_stories | Step: 11400 | Loss: 1.6023 | LR: 3.00e-04
+[2025-11-27 17:20:22] Phase: P1_stories | Step: 11500 | Loss: 1.6033 | LR: 3.00e-04
+[2025-11-27 17:20:42] Phase: P1_stories | Step: 11600 | Loss: 1.6043 | LR: 3.00e-04
+[2025-11-27 17:21:01] Phase: P1_stories | Step: 11700 | Loss: 1.6037 | LR: 3.00e-04
+[2025-11-27 17:21:21] Phase: P1_stories | Step: 11800 | Loss: 1.6013 | LR: 3.00e-04
+[2025-11-27 17:21:41] Phase: P1_stories | Step: 11900 | Loss: 1.6020 | LR: 3.00e-04
+[2025-11-27 17:22:00] Phase: P1_stories | Step: 12000 | Loss: 1.6016 | LR: 3.00e-04
+[2025-11-27 17:22:00] Phase: P1_stories | CHECKPOINT saved: ckpt_12000.pt
+[2025-11-27 17:22:00] Phase: P1_stories | BEST model saved (loss: 1.6020)
+[2025-11-27 17:22:20] Phase: P1_stories | Step: 12100 | Loss: 1.6046 | LR: 3.00e-04
+[2025-11-27 17:22:40] Phase: P1_stories | Step: 12200 | Loss: 1.6017 | LR: 3.00e-04
+[2025-11-27 17:23:00] Phase: P1_stories | Step: 12300 | Loss: 1.6014 | LR: 3.00e-04
+[2025-11-27 17:23:19] Phase: P1_stories | Step: 12400 | Loss: 1.6011 | LR: 3.00e-04
+[2025-11-27 17:23:39] Phase: P1_stories | Step: 12500 | Loss: 1.5987 | LR: 3.00e-04
+[2025-11-27 17:23:59] Phase: P1_stories | Step: 12600 | Loss: 1.5989 | LR: 3.00e-04
+[2025-11-27 17:24:19] Phase: P1_stories | Step: 12700 | Loss: 1.5957 | LR: 3.00e-04
+[2025-11-27 17:24:39] Phase: P1_stories | Step: 12800 | Loss: 1.5863 | LR: 3.00e-04
+[2025-11-27 17:24:59] Phase: P1_stories | Step: 12900 | Loss: 1.5862 | LR: 3.00e-04
+[2025-11-27 17:25:18] Phase: P1_stories | Step: 13000 | Loss: 1.5885 | LR: 3.00e-04
+[2025-11-27 17:25:18] Phase: P1_stories | CHECKPOINT saved: ckpt_13000.pt
+[2025-11-27 17:25:18] Phase: P1_stories | BEST model saved (loss: 1.5963)
+[2025-11-27 17:25:38] Phase: P1_stories | Step: 13100 | Loss: 1.5842 | LR: 3.00e-04
+[2025-11-27 17:25:58] Phase: P1_stories | Step: 13200 | Loss: 1.5914 | LR: 3.00e-04
+[2025-11-27 17:26:18] Phase: P1_stories | Step: 13300 | Loss: 1.5874 | LR: 3.00e-04
+[2025-11-27 17:26:37] Phase: P1_stories | Step: 13400 | Loss: 1.5911 | LR: 3.00e-04
+[2025-11-27 17:26:57] Phase: P1_stories | Step: 13500 | Loss: 1.5911 | LR: 3.00e-04
+[2025-11-27 17:27:17] Phase: P1_stories | Step: 13600 | Loss: 1.5880 | LR: 3.00e-04
+[2025-11-27 17:27:37] Phase: P1_stories | Step: 13700 | Loss: 1.5877 | LR: 3.00e-04
+[2025-11-27 17:27:57] Phase: P1_stories | Step: 13800 | Loss: 1.5865 | LR: 3.00e-04
+[2025-11-27 17:28:16] Phase: P1_stories | Step: 13900 | Loss: 1.5850 | LR: 3.00e-04
+[2025-11-27 17:28:36] Phase: P1_stories | Step: 14000 | Loss: 1.5867 | LR: 3.00e-04
+[2025-11-27 17:28:36] Phase: P1_stories | CHECKPOINT saved: ckpt_14000.pt
+[2025-11-27 17:28:36] Phase: P1_stories | BEST model saved (loss: 1.5879)
+[2025-11-27 17:28:56] Phase: P1_stories | Step: 14100 | Loss: 1.5846 | LR: 3.00e-04
+[2025-11-27 17:29:16] Phase: P1_stories | Step: 14200 | Loss: 1.5840 | LR: 3.00e-04
+[2025-11-27 17:29:35] Phase: P1_stories | Step: 14300 | Loss: 1.5865 | LR: 3.00e-04
+[2025-11-27 17:29:55] Phase: P1_stories | Step: 14400 | Loss: 1.5871 | LR: 3.00e-04
+[2025-11-27 17:30:15] Phase: P1_stories | Step: 14500 | Loss: 1.5683 | LR: 3.00e-04
+[2025-11-27 17:30:35] Phase: P1_stories | Step: 14600 | Loss: 1.5683 | LR: 3.00e-04
+[2025-11-27 17:30:55] Phase: P1_stories | Step: 14700 | Loss: 1.5749 | LR: 3.00e-04
+[2025-11-27 17:31:15] Phase: P1_stories | Step: 14800 | Loss: 1.5741 | LR: 3.00e-04
+[2025-11-27 17:31:35] Phase: P1_stories | Step: 14900 | Loss: 1.5755 | LR: 3.00e-04
+[2025-11-27 17:31:54] Phase: P1_stories | Step: 15000 | Loss: 1.5777 | LR: 3.00e-04
+[2025-11-27 17:31:54] Phase: P1_stories | CHECKPOINT saved: ckpt_15000.pt
+[2025-11-27 17:31:54] Phase: P1_stories | BEST model saved (loss: 1.5781)
+[2025-11-27 17:32:14] Phase: P1_stories | Step: 15100 | Loss: 1.5765 | LR: 3.00e-04
+[2025-11-27 17:32:34] Phase: P1_stories | Step: 15200 | Loss: 1.5783 | LR: 3.00e-04
+[2025-11-27 17:32:54] Phase: P1_stories | Step: 15300 | Loss: 1.5759 | LR: 3.00e-04
+[2025-11-27 17:33:13] Phase: P1_stories | Step: 15400 | Loss: 1.5781 | LR: 3.00e-04
+[2025-11-27 17:33:33] Phase: P1_stories | Step: 15500 | Loss: 1.5773 | LR: 3.00e-04
+[2025-11-27 17:33:53] Phase: P1_stories | Step: 15600 | Loss: 1.5786 | LR: 3.00e-04
+[2025-11-27 17:34:13] Phase: P1_stories | Step: 15700 | Loss: 1.5756 | LR: 3.00e-04
+[2025-11-27 17:34:33] Phase: P1_stories | Step: 15800 | Loss: 1.5755 | LR: 3.00e-04
+[2025-11-27 17:34:53] Phase: P1_stories | Step: 15900 | Loss: 1.5767 | LR: 3.00e-04
+[2025-11-27 17:35:13] Phase: P1_stories | Step: 16000 | Loss: 1.5723 | LR: 3.00e-04
+[2025-11-27 17:35:13] Phase: P1_stories | CHECKPOINT saved: ckpt_16000.pt
+[2025-11-27 17:35:13] Phase: P1_stories | BEST model saved (loss: 1.5765)
+[2025-11-27 17:35:33] Phase: P1_stories | Step: 16100 | Loss: 1.5720 | LR: 3.00e-04
+[2025-11-27 17:35:53] Phase: P1_stories | Step: 16200 | Loss: 1.5581 | LR: 3.00e-04
+[2025-11-27 17:36:12] Phase: P1_stories | Step: 16300 | Loss: 1.5608 | LR: 3.00e-04
+[2025-11-27 17:36:32] Phase: P1_stories | Step: 16400 | Loss: 1.5654 | LR: 3.00e-04
+[2025-11-27 17:36:52] Phase: P1_stories | Step: 16500 | Loss: 1.5662 | LR: 3.00e-04
+[2025-11-27 17:37:12] Phase: P1_stories | Step: 16600 | Loss: 1.5664 | LR: 3.00e-04
+[2025-11-27 17:37:32] Phase: P1_stories | Step: 16700 | Loss: 1.5642 | LR: 3.00e-04
+[2025-11-27 17:37:51] Phase: P1_stories | Step: 16800 | Loss: 1.5640 | LR: 3.00e-04
+[2025-11-27 17:38:11] Phase: P1_stories | Step: 16900 | Loss: 1.5667 | LR: 3.00e-04
+[2025-11-27 17:38:31] Phase: P1_stories | Step: 17000 | Loss: 1.5652 | LR: 3.00e-04
+[2025-11-27 17:38:31] Phase: P1_stories | CHECKPOINT saved: ckpt_17000.pt
+[2025-11-27 17:38:31] Phase: P1_stories | BEST model saved (loss: 1.5649)
+[2025-11-27 17:38:51] Phase: P1_stories | Step: 17100 | Loss: 1.5690 | LR: 3.00e-04
+[2025-11-27 17:39:11] Phase: P1_stories | Step: 17200 | Loss: 1.5638 | LR: 3.00e-04
+[2025-11-27 17:39:30] Phase: P1_stories | Step: 17300 | Loss: 1.5606 | LR: 3.00e-04
+[2025-11-27 17:39:50] Phase: P1_stories | Step: 17400 | Loss: 1.5663 | LR: 3.00e-04
+[2025-11-27 17:40:10] Phase: P1_stories | Step: 17500 | Loss: 1.5675 | LR: 3.00e-04
+[2025-11-27 17:40:30] Phase: P1_stories | Step: 17600 | Loss: 1.5723 | LR: 3.00e-04
+[2025-11-27 17:40:50] Phase: P1_stories | Step: 17700 | Loss: 1.5624 | LR: 3.00e-04
+[2025-11-27 17:41:10] Phase: P1_stories | Step: 17800 | Loss: 1.5611 | LR: 3.00e-04
+[2025-11-27 17:41:30] Phase: P1_stories | Step: 17900 | Loss: 1.5511 | LR: 3.00e-04
+[2025-11-27 17:41:50] Phase: P1_stories | Step: 18000 | Loss: 1.5549 | LR: 3.00e-04
+[2025-11-27 17:41:50] Phase: P1_stories | CHECKPOINT saved: ckpt_18000.pt
+[2025-11-27 17:41:50] Phase: P1_stories | BEST model saved (loss: 1.5629)
+[2025-11-27 17:42:10] Phase: P1_stories | Step: 18100 | Loss: 1.5521 | LR: 3.00e-04
+[2025-11-27 17:42:29] Phase: P1_stories | Step: 18200 | Loss: 1.5561 | LR: 3.00e-04
+[2025-11-27 17:42:49] Phase: P1_stories | Step: 18300 | Loss: 1.5522 | LR: 3.00e-04
+[2025-11-27 17:43:09] Phase: P1_stories | Step: 18400 | Loss: 1.5586 | LR: 3.00e-04
+[2025-11-27 17:43:29] Phase: P1_stories | Step: 18500 | Loss: 1.5568 | LR: 3.00e-04
+[2025-11-27 17:43:49] Phase: P1_stories | Step: 18600 | Loss: 1.5607 | LR: 3.00e-04
+[2025-11-27 17:44:08] Phase: P1_stories | Step: 18700 | Loss: 1.5568 | LR: 3.00e-04
+[2025-11-27 17:44:28] Phase: P1_stories | Step: 18800 | Loss: 1.5587 | LR: 3.00e-04
+[2025-11-27 17:44:48] Phase: P1_stories | Step: 18900 | Loss: 1.5594 | LR: 3.00e-04
+[2025-11-27 17:45:08] Phase: P1_stories | Step: 19000 | Loss: 1.5591 | LR: 3.00e-04
+[2025-11-27 17:45:08] Phase: P1_stories | CHECKPOINT saved: ckpt_19000.pt
+[2025-11-27 17:45:08] Phase: P1_stories | BEST model saved (loss: 1.5571)
+[2025-11-27 17:45:28] Phase: P1_stories | Step: 19100 | Loss: 1.5545 | LR: 3.00e-04
+[2025-11-27 17:45:47] Phase: P1_stories | Step: 19200 | Loss: 1.5568 | LR: 3.00e-04
+[2025-11-27 17:46:07] Phase: P1_stories | Step: 19300 | Loss: 1.5557 | LR: 3.00e-04
+[2025-11-27 17:46:27] Phase: P1_stories | Step: 19400 | Loss: 1.5592 | LR: 3.00e-04
+[2025-11-27 17:46:47] Phase: P1_stories | Step: 19500 | Loss: 1.5481 | LR: 3.00e-04
+[2025-11-27 17:47:07] Phase: P1_stories | Step: 19600 | Loss: 1.5412 | LR: 3.00e-04
+[2025-11-27 17:47:27] Phase: P1_stories | Step: 19700 | Loss: 1.5438 | LR: 3.00e-04
+[2025-11-27 17:47:47] Phase: P1_stories | Step: 19800 | Loss: 1.5493 | LR: 3.00e-04
+[2025-11-27 17:48:07] Phase: P1_stories | Step: 19900 | Loss: 1.5512 | LR: 3.00e-04
+[2025-11-27 17:48:26] Phase: P1_stories | Step: 20000 | Loss: 1.5469 | LR: 3.00e-04
+[2025-11-27 17:48:26] Phase: P1_stories | CHECKPOINT saved: ckpt_20000.pt
+[2025-11-27 17:48:27] Phase: P1_stories | BEST model saved (loss: 1.5507)
+[2025-11-27 17:48:27] Phase: P1_stories | COMPLETE | Final loss: 1.5469 | Time: 46.2 min
+[2025-11-27 17:48:27] Phase: P1_stories | Loaded best model (loss: 1.5507)
+[2025-11-27 17:48:27] Phase: P2_profile | STARTING
+[2025-11-27 17:48:49] Phase: P2_profile | Step: 100 | Loss: 1.6861 | LR: 1.00e-04
+[2025-11-27 17:49:11] Phase: P2_profile | Step: 200 | Loss: 0.2089 | LR: 1.00e-04
+[2025-11-27 17:49:33] Phase: P2_profile | Step: 300 | Loss: 0.1142 | LR: 1.00e-04
+[2025-11-27 17:49:55] Phase: P2_profile | Step: 400 | Loss: 0.0876 | LR: 1.00e-04
+[2025-11-27 17:50:17] Phase: P2_profile | Step: 500 | Loss: 0.0774 | LR: 1.00e-04
+[2025-11-27 17:50:39] Phase: P2_profile | Step: 600 | Loss: 0.0717 | LR: 1.00e-04
+[2025-11-27 17:51:01] Phase: P2_profile | Step: 700 | Loss: 0.0681 | LR: 1.00e-04
+[2025-11-27 17:51:23] Phase: P2_profile | Step: 800 | Loss: 0.0651 | LR: 1.00e-04
+[2025-11-27 17:51:44] Phase: P2_profile | Step: 900 | Loss: 0.0627 | LR: 1.00e-04
+[2025-11-27 17:52:06] Phase: P2_profile | Step: 1000 | Loss: 0.0600 | LR: 1.00e-04
+[2025-11-27 17:52:06] Phase: P2_profile | CHECKPOINT saved: ckpt_1000.pt
+[2025-11-27 17:52:07] Phase: P2_profile | BEST model saved (loss: 0.2502)
+[2025-11-27 17:52:28] Phase: P2_profile | Step: 1100 | Loss: 0.0580 | LR: 1.00e-04
+[2025-11-27 17:52:51] Phase: P2_profile | Step: 1200 | Loss: 0.0556 | LR: 1.00e-04
+[2025-11-27 17:53:13] Phase: P2_profile | Step: 1300 | Loss: 0.0535 | LR: 1.00e-04
+[2025-11-27 17:53:35] Phase: P2_profile | Step: 1400 | Loss: 0.0510 | LR: 1.00e-04
+[2025-11-27 17:53:57] Phase: P2_profile | Step: 1500 | Loss: 0.0490 | LR: 1.00e-04
+[2025-11-27 17:54:19] Phase: P2_profile | Step: 1600 | Loss: 0.0466 | LR: 1.00e-04
+[2025-11-27 17:54:41] Phase: P2_profile | Step: 1700 | Loss: 0.0441 | LR: 1.00e-04
+[2025-11-27 17:55:02] Phase: P2_profile | Step: 1800 | Loss: 0.0419 | LR: 1.00e-04
+[2025-11-27 17:55:24] Phase: P2_profile | Step: 1900 | Loss: 0.0396 | LR: 1.00e-04
+[2025-11-27 17:55:46] Phase: P2_profile | Step: 2000 | Loss: 0.0377 | LR: 1.00e-04
+[2025-11-27 17:55:46] Phase: P2_profile | CHECKPOINT saved: ckpt_2000.pt
+[2025-11-27 17:55:46] Phase: P2_profile | BEST model saved (loss: 0.0477)
+[2025-11-27 17:56:09] Phase: P2_profile | Step: 2100 | Loss: 0.0356 | LR: 1.00e-04
+[2025-11-27 17:56:30] Phase: P2_profile | Step: 2200 | Loss: 0.0336 | LR: 1.00e-04
+[2025-11-27 17:56:52] Phase: P2_profile | Step: 2300 | Loss: 0.0316 | LR: 1.00e-04
+[2025-11-27 17:57:14] Phase: P2_profile | Step: 2400 | Loss: 0.0300 | LR: 1.00e-04
+[2025-11-27 17:57:36] Phase: P2_profile | Step: 2500 | Loss: 0.0283 | LR: 1.00e-04
+[2025-11-27 17:57:58] Phase: P2_profile | Step: 2600 | Loss: 0.0267 | LR: 1.00e-04
+[2025-11-27 17:58:20] Phase: P2_profile | Step: 2700 | Loss: 0.0253 | LR: 1.00e-04
+[2025-11-27 17:58:42] Phase: P2_profile | Step: 2800 | Loss: 0.0241 | LR: 1.00e-04
+[2025-11-27 17:59:04] Phase: P2_profile | Step: 2900 | Loss: 0.0231 | LR: 1.00e-04
+[2025-11-27 17:59:26] Phase: P2_profile | Step: 3000 | Loss: 0.0220 | LR: 1.00e-04
+[2025-11-27 17:59:26] Phase: P2_profile | CHECKPOINT saved: ckpt_3000.pt
+[2025-11-27 17:59:26] Phase: P2_profile | BEST model saved (loss: 0.0280)
+[2025-11-27 17:59:48] Phase: P2_profile | Step: 3100 | Loss: 0.0214 | LR: 1.00e-04
+[2025-11-27 18:00:10] Phase: P2_profile | Step: 3200 | Loss: 0.0205 | LR: 1.00e-04
+[2025-11-27 18:00:32] Phase: P2_profile | Step: 3300 | Loss: 0.0199 | LR: 1.00e-04
+[2025-11-27 18:00:54] Phase: P2_profile | Step: 3400 | Loss: 0.0193 | LR: 1.00e-04
+[2025-11-27 18:01:16] Phase: P2_profile | Step: 3500 | Loss: 0.0188 | LR: 1.00e-04
+[2025-11-27 18:01:37] Phase: P2_profile | Step: 3600 | Loss: 0.0184 | LR: 1.00e-04
+[2025-11-27 18:02:00] Phase: P2_profile | Step: 3700 | Loss: 0.0181 | LR: 1.00e-04
+[2025-11-27 18:02:21] Phase: P2_profile | Step: 3800 | Loss: 0.0176 | LR: 1.00e-04
+[2025-11-27 18:02:44] Phase: P2_profile | Step: 3900 | Loss: 0.0174 | LR: 1.00e-04
+[2025-11-27 18:03:05] Phase: P2_profile | Step: 4000 | Loss: 0.0170 | LR: 1.00e-04
+[2025-11-27 18:03:05] Phase: P2_profile | CHECKPOINT saved: ckpt_4000.pt
+[2025-11-27 18:03:05] Phase: P2_profile | BEST model saved (loss: 0.0188)
+[2025-11-27 18:03:27] Phase: P2_profile | Step: 4100 | Loss: 0.0166 | LR: 1.00e-04
+[2025-11-27 18:03:49] Phase: P2_profile | Step: 4200 | Loss: 0.0166 | LR: 1.00e-04
+[2025-11-27 18:04:11] Phase: P2_profile | Step: 4300 | Loss: 0.0163 | LR: 1.00e-04
+[2025-11-27 18:04:33] Phase: P2_profile | Step: 4400 | Loss: 0.0162 | LR: 1.00e-04
+[2025-11-27 18:04:55] Phase: P2_profile | Step: 4500 | Loss: 0.0159 | LR: 1.00e-04
+[2025-11-27 18:05:17] Phase: P2_profile | Step: 4600 | Loss: 0.0158 | LR: 1.00e-04
+[2025-11-27 18:05:39] Phase: P2_profile | Step: 4700 | Loss: 0.0154 | LR: 1.00e-04
+[2025-11-27 18:06:01] Phase: P2_profile | Step: 4800 | Loss: 0.0154 | LR: 1.00e-04
+[2025-11-27 18:06:22] Phase: P2_profile | Step: 4900 | Loss: 0.0153 | LR: 1.00e-04
+[2025-11-27 18:06:45] Phase: P2_profile | Step: 5000 | Loss: 0.0151 | LR: 1.00e-04
+[2025-11-27 18:06:45] Phase: P2_profile | CHECKPOINT saved: ckpt_5000.pt
+[2025-11-27 18:06:45] Phase: P2_profile | BEST model saved (loss: 0.0159)
+[2025-11-27 18:07:06] Phase: P2_profile | Step: 5100 | Loss: 0.0152 | LR: 1.00e-04
+[2025-11-27 18:07:29] Phase: P2_profile | Step: 5200 | Loss: 0.0149 | LR: 1.00e-04
+[2025-11-27 18:07:50] Phase: P2_profile | Step: 5300 | Loss: 0.0149 | LR: 1.00e-04
+[2025-11-27 18:08:12] Phase: P2_profile | Step: 5400 | Loss: 0.0147 | LR: 1.00e-04
+[2025-11-27 18:08:34] Phase: P2_profile | Step: 5500 | Loss: 0.0147 | LR: 1.00e-04
+[2025-11-27 18:08:56] Phase: P2_profile | Step: 5600 | Loss: 0.0144 | LR: 1.00e-04
+[2025-11-27 18:09:18] Phase: P2_profile | Step: 5700 | Loss: 0.0144 | LR: 1.00e-04
+[2025-11-27 18:09:40] Phase: P2_profile | Step: 5800 | Loss: 0.0143 | LR: 1.00e-04
+[2025-11-27 18:10:02] Phase: P2_profile | Step: 5900 | Loss: 0.0143 | LR: 1.00e-04
+[2025-11-27 18:10:24] Phase: P2_profile | Step: 6000 | Loss: 0.0142 | LR: 1.00e-04
+[2025-11-27 18:10:24] Phase: P2_profile | CHECKPOINT saved: ckpt_6000.pt
+[2025-11-27 18:10:24] Phase: P2_profile | BEST model saved (loss: 0.0146)
+[2025-11-27 18:10:46] Phase: P2_profile | Step: 6100 | Loss: 0.0141 | LR: 1.00e-04
+[2025-11-27 18:11:08] Phase: P2_profile | Step: 6200 | Loss: 0.0141 | LR: 1.00e-04
+[2025-11-27 18:11:30] Phase: P2_profile | Step: 6300 | Loss: 0.0140 | LR: 1.00e-04
+[2025-11-27 18:11:52] Phase: P2_profile | Step: 6400 | Loss: 0.0140 | LR: 1.00e-04
+[2025-11-27 18:12:14] Phase: P2_profile | Step: 6500 | Loss: 0.0138 | LR: 1.00e-04
+[2025-11-27 18:12:35] Phase: P2_profile | Step: 6600 | Loss: 0.0138 | LR: 1.00e-04
+[2025-11-27 18:12:58] Phase: P2_profile | Step: 6700 | Loss: 0.0137 | LR: 1.00e-04
+[2025-11-27 18:13:20] Phase: P2_profile | Step: 6800 | Loss: 0.0137 | LR: 1.00e-04
+[2025-11-27 18:13:41] Phase: P2_profile | Step: 6900 | Loss: 0.0136 | LR: 1.00e-04
+[2025-11-27 18:14:04] Phase: P2_profile | Step: 7000 | Loss: 0.0136 | LR: 1.00e-04
+[2025-11-27 18:14:04] Phase: P2_profile | CHECKPOINT saved: ckpt_7000.pt
+[2025-11-27 18:14:04] Phase: P2_profile | EARLY STOPPING at step 7000
+[2025-11-27 18:14:26] Phase: P2_profile | Step: 7100 | Loss: 0.0135 | LR: 1.00e-04
+[2025-11-27 18:14:48] Phase: P2_profile | Step: 7200 | Loss: 0.0135 | LR: 1.00e-04
+[2025-11-27 18:15:09] Phase: P2_profile | Step: 7300 | Loss: 0.0134 | LR: 1.00e-04
+[2025-11-27 18:15:32] Phase: P2_profile | Step: 7400 | Loss: 0.0134 | LR: 1.00e-04
+[2025-11-27 18:15:53] Phase: P2_profile | Step: 7500 | Loss: 0.0133 | LR: 1.00e-04
+[2025-11-27 18:16:15] Phase: P2_profile | Step: 7600 | Loss: 0.0133 | LR: 1.00e-04
+[2025-11-27 18:16:37] Phase: P2_profile | Step: 7700 | Loss: 0.0132 | LR: 1.00e-04
+[2025-11-27 18:17:00] Phase: P2_profile | Step: 7800 | Loss: 0.0132 | LR: 1.00e-04
+[2025-11-27 18:17:21] Phase: P2_profile | Step: 7900 | Loss: 0.0133 | LR: 1.00e-04
+[2025-11-27 18:17:44] Phase: P2_profile | Step: 8000 | Loss: 0.0132 | LR: 1.00e-04
+[2025-11-27 18:17:44] Phase: P2_profile | CHECKPOINT saved: ckpt_8000.pt
+[2025-11-27 18:17:44] Phase: P2_profile | BEST model saved (loss: 0.0133)
+[2025-11-27 18:18:05] Phase: P2_profile | Step: 8100 | Loss: 0.0132 | LR: 1.00e-04
+[2025-11-27 18:18:27] Phase: P2_profile | Step: 8200 | Loss: 0.0130 | LR: 1.00e-04
+[2025-11-27 18:18:50] Phase: P2_profile | Step: 8300 | Loss: 0.0131 | LR: 1.00e-04
+[2025-11-27 18:19:11] Phase: P2_profile | Step: 8400 | Loss: 0.0129 | LR: 1.00e-04
+[2025-11-27 18:19:33] Phase: P2_profile | Step: 8500 | Loss: 0.0130 | LR: 1.00e-04
+[2025-11-27 18:19:55] Phase: P2_profile | Step: 8600 | Loss: 0.0129 | LR: 1.00e-04
+[2025-11-27 18:20:17] Phase: P2_profile | Step: 8700 | Loss: 0.0130 | LR: 1.00e-04
+[2025-11-27 18:20:39] Phase: P2_profile | Step: 8800 | Loss: 0.0129 | LR: 1.00e-04
+[2025-11-27 18:21:01] Phase: P2_profile | Step: 8900 | Loss: 0.0128 | LR: 1.00e-04
+[2025-11-27 18:21:23] Phase: P2_profile | Step: 9000 | Loss: 0.0129 | LR: 1.00e-04
+[2025-11-27 18:21:23] Phase: P2_profile | CHECKPOINT saved: ckpt_9000.pt
+[2025-11-27 18:21:23] Phase: P2_profile | EARLY STOPPING at step 9000
+[2025-11-27 18:21:45] Phase: P2_profile | Step: 9100 | Loss: 0.0127 | LR: 1.00e-04
+[2025-11-27 18:22:07] Phase: P2_profile | Step: 9200 | Loss: 0.0128 | LR: 1.00e-04
+[2025-11-27 18:22:29] Phase: P2_profile | Step: 9300 | Loss: 0.0127 | LR: 1.00e-04
+[2025-11-27 18:22:51] Phase: P2_profile | Step: 9400 | Loss: 0.0128 | LR: 1.00e-04
+[2025-11-27 18:23:12] Phase: P2_profile | Step: 9500 | Loss: 0.0127 | LR: 1.00e-04
+[2025-11-27 18:23:35] Phase: P2_profile | Step: 9600 | Loss: 0.0127 | LR: 1.00e-04
+[2025-11-27 18:23:56] Phase: P2_profile | Step: 9700 | Loss: 0.0127 | LR: 1.00e-04
+[2025-11-27 18:24:18] Phase: P2_profile | Step: 9800 | Loss: 0.0127 | LR: 1.00e-04
+[2025-11-27 18:24:40] Phase: P2_profile | Step: 9900 | Loss: 0.0126 | LR: 1.00e-04
+[2025-11-27 18:25:02] Phase: P2_profile | Step: 10000 | Loss: 0.0126 | LR: 1.00e-04
+[2025-11-27 18:25:02] Phase: P2_profile | CHECKPOINT saved: ckpt_10000.pt
+[2025-11-27 18:25:02] Phase: P2_profile | EARLY STOPPING at step 10000
+[2025-11-27 18:25:02] Phase: P2_profile | COMPLETE | Final loss: 0.0126 | Time: 36.6 min
+[2025-11-27 18:25:02] Phase: P2_profile | Loaded best model (loss: 0.0133)
+[2025-11-27 18:25:02] Phase: P3_qa | STARTING
+[2025-11-27 18:25:23] Phase: P3_qa | Step: 100 | Loss: 2.3390 | LR: 5.00e-05
+[2025-11-27 18:25:43] Phase: P3_qa | Step: 200 | Loss: 1.2670 | LR: 5.00e-05
+[2025-11-27 18:26:03] Phase: P3_qa | Step: 300 | Loss: 0.8853 | LR: 5.00e-05
+[2025-11-27 18:26:23] Phase: P3_qa | Step: 400 | Loss: 0.6530 | LR: 5.00e-05
+[2025-11-27 18:26:43] Phase: P3_qa | Step: 500 | Loss: 0.5204 | LR: 5.00e-05
+[2025-11-27 18:27:03] Phase: P3_qa | Step: 600 | Loss: 0.4494 | LR: 5.00e-05
+[2025-11-27 18:27:23] Phase: P3_qa | Step: 700 | Loss: 0.4101 | LR: 5.00e-05
+[2025-11-27 18:27:44] Phase: P3_qa | Step: 800 | Loss: 0.3869 | LR: 5.00e-05
+[2025-11-27 18:28:04] Phase: P3_qa | Step: 900 | Loss: 0.3710 | LR: 5.00e-05
+[2025-11-27 18:28:24] Phase: P3_qa | Step: 1000 | Loss: 0.3606 | LR: 5.00e-05
+[2025-11-27 18:28:24] Phase: P3_qa | CHECKPOINT saved: ckpt_1000.pt
+[2025-11-27 18:28:24] Phase: P3_qa | BEST model saved (loss: 0.7643)
+[2025-11-27 18:28:44] Phase: P3_qa | Step: 1100 | Loss: 0.3517 | LR: 5.00e-05
+[2025-11-27 18:29:04] Phase: P3_qa | Step: 1200 | Loss: 0.3462 | LR: 5.00e-05
+[2025-11-27 18:29:25] Phase: P3_qa | Step: 1300 | Loss: 0.3412 | LR: 5.00e-05
+[2025-11-27 18:29:45] Phase: P3_qa | Step: 1400 | Loss: 0.3378 | LR: 5.00e-05
+[2025-11-27 18:30:05] Phase: P3_qa | Step: 1500 | Loss: 0.3340 | LR: 5.00e-05
+[2025-11-27 18:30:25] Phase: P3_qa | Step: 1600 | Loss: 0.3314 | LR: 5.00e-05
+[2025-11-27 18:30:45] Phase: P3_qa | Step: 1700 | Loss: 0.3289 | LR: 5.00e-05
+[2025-11-27 18:31:05] Phase: P3_qa | Step: 1800 | Loss: 0.3267 | LR: 5.00e-05
+[2025-11-27 18:31:26] Phase: P3_qa | Step: 1900 | Loss: 0.3250 | LR: 5.00e-05
+[2025-11-27 18:31:46] Phase: P3_qa | Step: 2000 | Loss: 0.3232 | LR: 5.00e-05
+[2025-11-27 18:31:46] Phase: P3_qa | CHECKPOINT saved: ckpt_2000.pt
+[2025-11-27 18:31:46] Phase: P3_qa | BEST model saved (loss: 0.3346)
+[2025-11-27 18:32:06] Phase: P3_qa | Step: 2100 | Loss: 0.3215 | LR: 5.00e-05
+[2025-11-27 18:32:26] Phase: P3_qa | Step: 2200 | Loss: 0.3200 | LR: 5.00e-05
+[2025-11-27 18:32:47] Phase: P3_qa | Step: 2300 | Loss: 0.3188 | LR: 5.00e-05
+[2025-11-27 18:33:07] Phase: P3_qa | Step: 2400 | Loss: 0.3181 | LR: 5.00e-05
+[2025-11-27 18:33:27] Phase: P3_qa | Step: 2500 | Loss: 0.3165 | LR: 5.00e-05
+[2025-11-27 18:33:47] Phase: P3_qa | Step: 2600 | Loss: 0.3155 | LR: 5.00e-05
+[2025-11-27 18:34:07] Phase: P3_qa | Step: 2700 | Loss: 0.3146 | LR: 5.00e-05
+[2025-11-27 18:34:28] Phase: P3_qa | Step: 2800 | Loss: 0.3136 | LR: 5.00e-05
+[2025-11-27 18:34:48] Phase: P3_qa | Step: 2900 | Loss: 0.3131 | LR: 5.00e-05
+[2025-11-27 18:35:08] Phase: P3_qa | Step: 3000 | Loss: 0.3118 | LR: 5.00e-05
+[2025-11-27 18:35:08] Phase: P3_qa | CHECKPOINT saved: ckpt_3000.pt
+[2025-11-27 18:35:08] Phase: P3_qa | BEST model saved (loss: 0.3163)
+[2025-11-27 18:35:28] Phase: P3_qa | Step: 3100 | Loss: 0.3112 | LR: 5.00e-05
+[2025-11-27 18:35:48] Phase: P3_qa | Step: 3200 | Loss: 0.3103 | LR: 5.00e-05
+[2025-11-27 18:36:08] Phase: P3_qa | Step: 3300 | Loss: 0.3098 | LR: 5.00e-05
+[2025-11-27 18:36:29] Phase: P3_qa | Step: 3400 | Loss: 0.3095 | LR: 5.00e-05
+[2025-11-27 18:36:49] Phase: P3_qa | Step: 3500 | Loss: 0.3084 | LR: 5.00e-05
+[2025-11-27 18:37:09] Phase: P3_qa | Step: 3600 | Loss: 0.3079 | LR: 5.00e-05
+[2025-11-27 18:37:29] Phase: P3_qa | Step: 3700 | Loss: 0.3070 | LR: 5.00e-05
+[2025-11-27 18:37:49] Phase: P3_qa | Step: 3800 | Loss: 0.3067 | LR: 5.00e-05
+[2025-11-27 18:38:09] Phase: P3_qa | Step: 3900 | Loss: 0.3061 | LR: 5.00e-05
+[2025-11-27 18:38:29] Phase: P3_qa | Step: 4000 | Loss: 0.3052 | LR: 5.00e-05
+[2025-11-27 18:38:29] Phase: P3_qa | CHECKPOINT saved: ckpt_4000.pt
+[2025-11-27 18:38:30] Phase: P3_qa | BEST model saved (loss: 0.3082)
+[2025-11-27 18:38:50] Phase: P3_qa | Step: 4100 | Loss: 0.3048 | LR: 5.00e-05
+[2025-11-27 18:39:10] Phase: P3_qa | Step: 4200 | Loss: 0.3042 | LR: 5.00e-05
+[2025-11-27 18:39:30] Phase: P3_qa | Step: 4300 | Loss: 0.3035 | LR: 5.00e-05
+[2025-11-27 18:39:50] Phase: P3_qa | Step: 4400 | Loss: 0.3029 | LR: 5.00e-05
+[2025-11-27 18:40:10] Phase: P3_qa | Step: 4500 | Loss: 0.3021 | LR: 5.00e-05
+[2025-11-27 18:40:30] Phase: P3_qa | Step: 4600 | Loss: 0.3021 | LR: 5.00e-05
+[2025-11-27 18:40:51] Phase: P3_qa | Step: 4700 | Loss: 0.3014 | LR: 5.00e-05
+[2025-11-27 18:41:12] Phase: P3_qa | Step: 4800 | Loss: 0.3007 | LR: 5.00e-05
+[2025-11-27 18:41:32] Phase: P3_qa | Step: 4900 | Loss: 0.3001 | LR: 5.00e-05
+[2025-11-27 18:41:52] Phase: P3_qa | Step: 5000 | Loss: 0.2991 | LR: 5.00e-05
+[2025-11-27 18:41:52] Phase: P3_qa | CHECKPOINT saved: ckpt_5000.pt
+[2025-11-27 18:41:52] Phase: P3_qa | BEST model saved (loss: 0.3021)
+[2025-11-27 18:42:12] Phase: P3_qa | Step: 5100 | Loss: 0.2990 | LR: 5.00e-05
+[2025-11-27 18:42:33] Phase: P3_qa | Step: 5200 | Loss: 0.2984 | LR: 5.00e-05
+[2025-11-27 18:42:53] Phase: P3_qa | Step: 5300 | Loss: 0.2973 | LR: 5.00e-05
+[2025-11-27 18:43:14] Phase: P3_qa | Step: 5400 | Loss: 0.2967 | LR: 5.00e-05
+[2025-11-27 18:43:34] Phase: P3_qa | Step: 5500 | Loss: 0.2962 | LR: 5.00e-05
+[2025-11-27 18:43:54] Phase: P3_qa | Step: 5600 | Loss: 0.2955 | LR: 5.00e-05
+[2025-11-27 18:44:15] Phase: P3_qa | Step: 5700 | Loss: 0.2950 | LR: 5.00e-05
+[2025-11-27 18:44:35] Phase: P3_qa | Step: 5800 | Loss: 0.2941 | LR: 5.00e-05
+[2025-11-27 18:44:56] Phase: P3_qa | Step: 5900 | Loss: 0.2931 | LR: 5.00e-05
+[2025-11-27 18:45:16] Phase: P3_qa | Step: 6000 | Loss: 0.2923 | LR: 5.00e-05
+[2025-11-27 18:45:16] Phase: P3_qa | CHECKPOINT saved: ckpt_6000.pt
+[2025-11-27 18:45:16] Phase: P3_qa | BEST model saved (loss: 0.2958)
+[2025-11-27 18:45:36] Phase: P3_qa | Step: 6100 | Loss: 0.2919 | LR: 5.00e-05
+[2025-11-27 18:45:58] Phase: P3_qa | Step: 6200 | Loss: 0.2909 | LR: 5.00e-05
+[2025-11-27 18:46:18] Phase: P3_qa | Step: 6300 | Loss: 0.2902 | LR: 5.00e-05
+[2025-11-27 18:46:39] Phase: P3_qa | Step: 6400 | Loss: 0.2891 | LR: 5.00e-05
+[2025-11-27 18:46:59] Phase: P3_qa | Step: 6500 | Loss: 0.2884 | LR: 5.00e-05
+[2025-11-27 18:47:19] Phase: P3_qa | Step: 6600 | Loss: 0.2873 | LR: 5.00e-05
+[2025-11-27 18:47:39] Phase: P3_qa | Step: 6700 | Loss: 0.2871 | LR: 5.00e-05
+[2025-11-27 18:48:00] Phase: P3_qa | Step: 6800 | Loss: 0.2860 | LR: 5.00e-05
+[2025-11-27 18:48:20] Phase: P3_qa | Step: 6900 | Loss: 0.2847 | LR: 5.00e-05
+[2025-11-27 18:48:41] Phase: P3_qa | Step: 7000 | Loss: 0.2839 | LR: 5.00e-05
+[2025-11-27 18:48:41] Phase: P3_qa | CHECKPOINT saved: ckpt_7000.pt
+[2025-11-27 18:48:41] Phase: P3_qa | BEST model saved (loss: 0.2879)
+[2025-11-27 18:49:01] Phase: P3_qa | Step: 7100 | Loss: 0.2831 | LR: 5.00e-05
+[2025-11-27 18:49:21] Phase: P3_qa | Step: 7200 | Loss: 0.2822 | LR: 5.00e-05
+[2025-11-27 18:49:41] Phase: P3_qa | Step: 7300 | Loss: 0.2812 | LR: 5.00e-05
+[2025-11-27 18:50:02] Phase: P3_qa | Step: 7400 | Loss: 0.2806 | LR: 5.00e-05
+[2025-11-27 18:50:22] Phase: P3_qa | Step: 7500 | Loss: 0.2790 | LR: 5.00e-05
+[2025-11-27 18:50:43] Phase: P3_qa | Step: 7600 | Loss: 0.2781 | LR: 5.00e-05
+[2025-11-27 18:51:03] Phase: P3_qa | Step: 7700 | Loss: 0.2775 | LR: 5.00e-05
+[2025-11-27 18:51:23] Phase: P3_qa | Step: 7800 | Loss: 0.2765 | LR: 5.00e-05
+[2025-11-27 18:51:44] Phase: P3_qa | Step: 7900 | Loss: 0.2754 | LR: 5.00e-05
+[2025-11-27 18:52:04] Phase: P3_qa | Step: 8000 | Loss: 0.2743 | LR: 5.00e-05
+[2025-11-27 18:52:04] Phase: P3_qa | CHECKPOINT saved: ckpt_8000.pt
+[2025-11-27 18:52:04] Phase: P3_qa | BEST model saved (loss: 0.2788)
+[2025-11-27 18:52:24] Phase: P3_qa | Step: 8100 | Loss: 0.2733 | LR: 5.00e-05
+[2025-11-27 18:52:45] Phase: P3_qa | Step: 8200 | Loss: 0.2723 | LR: 5.00e-05
+[2025-11-27 18:53:05] Phase: P3_qa | Step: 8300 | Loss: 0.2717 | LR: 5.00e-05
+[2025-11-27 18:53:25] Phase: P3_qa | Step: 8400 | Loss: 0.2705 | LR: 5.00e-05
+[2025-11-27 18:53:46] Phase: P3_qa | Step: 8500 | Loss: 0.2691 | LR: 5.00e-05
+[2025-11-27 18:54:06] Phase: P3_qa | Step: 8600 | Loss: 0.2683 | LR: 5.00e-05
+[2025-11-27 18:54:26] Phase: P3_qa | Step: 8700 | Loss: 0.2671 | LR: 5.00e-05
+[2025-11-27 18:54:47] Phase: P3_qa | Step: 8800 | Loss: 0.2664 | LR: 5.00e-05
+[2025-11-27 18:55:07] Phase: P3_qa | Step: 8900 | Loss: 0.2656 | LR: 5.00e-05
+[2025-11-27 18:55:28] Phase: P3_qa | Step: 9000 | Loss: 0.2639 | LR: 5.00e-05
+[2025-11-27 18:55:28] Phase: P3_qa | CHECKPOINT saved: ckpt_9000.pt
+[2025-11-27 18:55:28] Phase: P3_qa | BEST model saved (loss: 0.2688)
+[2025-11-27 18:55:48] Phase: P3_qa | Step: 9100 | Loss: 0.2630 | LR: 5.00e-05
+[2025-11-27 18:56:08] Phase: P3_qa | Step: 9200 | Loss: 0.2622 | LR: 5.00e-05
+[2025-11-27 18:56:29] Phase: P3_qa | Step: 9300 | Loss: 0.2611 | LR: 5.00e-05
+[2025-11-27 18:56:49] Phase: P3_qa | Step: 9400 | Loss: 0.2602 | LR: 5.00e-05
+[2025-11-27 18:57:10] Phase: P3_qa | Step: 9500 | Loss: 0.2588 | LR: 5.00e-05
+[2025-11-27 18:57:30] Phase: P3_qa | Step: 9600 | Loss: 0.2578 | LR: 5.00e-05
+[2025-11-27 18:57:50] Phase: P3_qa | Step: 9700 | Loss: 0.2566 | LR: 5.00e-05
+[2025-11-27 18:58:11] Phase: P3_qa | Step: 9800 | Loss: 0.2559 | LR: 5.00e-05
+[2025-11-27 18:58:31] Phase: P3_qa | Step: 9900 | Loss: 0.2547 | LR: 5.00e-05
+[2025-11-27 18:58:52] Phase: P3_qa | Step: 10000 | Loss: 0.2541 | LR: 5.00e-05
+[2025-11-27 18:58:52] Phase: P3_qa | CHECKPOINT saved: ckpt_10000.pt
+[2025-11-27 18:58:52] Phase: P3_qa | BEST model saved (loss: 0.2584)
+[2025-11-27 18:59:12] Phase: P3_qa | Step: 10100 | Loss: 0.2525 | LR: 5.00e-05
+[2025-11-27 18:59:32] Phase: P3_qa | Step: 10200 | Loss: 0.2516 | LR: 5.00e-05
+[2025-11-27 18:59:53] Phase: P3_qa | Step: 10300 | Loss: 0.2505 | LR: 5.00e-05
+[2025-11-27 19:00:13] Phase: P3_qa | Step: 10400 | Loss: 0.2498 | LR: 5.00e-05
+[2025-11-27 19:00:33] Phase: P3_qa | Step: 10500 | Loss: 0.2488 | LR: 5.00e-05
+[2025-11-27 19:00:54] Phase: P3_qa | Step: 10600 | Loss: 0.2473 | LR: 5.00e-05
+[2025-11-27 19:01:14] Phase: P3_qa | Step: 10700 | Loss: 0.2463 | LR: 5.00e-05
+[2025-11-27 19:01:34] Phase: P3_qa | Step: 10800 | Loss: 0.2452 | LR: 5.00e-05
+[2025-11-27 19:01:55] Phase: P3_qa | Step: 10900 | Loss: 0.2448 | LR: 5.00e-05
+[2025-11-27 19:02:15] Phase: P3_qa | Step: 11000 | Loss: 0.2437 | LR: 5.00e-05
+[2025-11-27 19:02:15] Phase: P3_qa | CHECKPOINT saved: ckpt_11000.pt
+[2025-11-27 19:02:15] Phase: P3_qa | BEST model saved (loss: 0.2480)
+[2025-11-27 19:02:36] Phase: P3_qa | Step: 11100 | Loss: 0.2422 | LR: 5.00e-05
+[2025-11-27 19:02:56] Phase: P3_qa | Step: 11200 | Loss: 0.2413 | LR: 5.00e-05
+[2025-11-27 19:03:17] Phase: P3_qa | Step: 11300 | Loss: 0.2404 | LR: 5.00e-05
+[2025-11-27 19:03:37] Phase: P3_qa | Step: 11400 | Loss: 0.2395 | LR: 5.00e-05
+[2025-11-27 19:03:57] Phase: P3_qa | Step: 11500 | Loss: 0.2386 | LR: 5.00e-05
+[2025-11-27 19:04:18] Phase: P3_qa | Step: 11600 | Loss: 0.2371 | LR: 5.00e-05
+[2025-11-27 19:04:38] Phase: P3_qa | Step: 11700 | Loss: 0.2362 | LR: 5.00e-05
+[2025-11-27 19:04:58] Phase: P3_qa | Step: 11800 | Loss: 0.2349 | LR: 5.00e-05
+[2025-11-27 19:05:19] Phase: P3_qa | Step: 11900 | Loss: 0.2340 | LR: 5.00e-05
+[2025-11-27 19:05:39] Phase: P3_qa | Step: 12000 | Loss: 0.2334 | LR: 5.00e-05
+[2025-11-27 19:05:39] Phase: P3_qa | CHECKPOINT saved: ckpt_12000.pt
+[2025-11-27 19:05:39] Phase: P3_qa | BEST model saved (loss: 0.2378)
+[2025-11-27 19:05:39] Phase: P3_qa | COMPLETE | Final loss: 0.2334 | Time: 40.6 min
+[2025-11-27 19:05:39] Phase: P3_qa | Loaded best model (loss: 0.2378)

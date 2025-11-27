@@ -1,0 +1,12 @@
+{
+  "phase": "P3_qa",
+  "step": 12000,
+  "best_loss": 0.23776236945390702,
+  "metrics": {},
+  "timestamp": "2025-11-27T19:05:39.398928",
+  "config": {
+    "model_size": "6M",
+    "vocab_size": 1024,
+    "use_pretrained": false
+  }
+}

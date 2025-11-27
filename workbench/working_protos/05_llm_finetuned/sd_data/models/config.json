@@ -1,0 +1,8 @@
+{
+    "model": "/models/ajv009_6M_1024TK_q80.bin",
+    "tokenizer": "/models/ajv009_1024TK.bin",
+    "temperature": 0.8,
+    "topp": 0.9,
+    "max_tokens": 128,
+    "max_seq_len": 128
+}
