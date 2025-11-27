@@ -1,0 +1,4 @@
+uv venv --python 3.11
+source .venv/bin/activate
+uv add ipykernel jupyter_archive
+uv run ipython kernel install --user --name=uv-py311 --display-name="Python 3.11 (uv)" --env VIRTUAL_ENV $(pwd)/.venv

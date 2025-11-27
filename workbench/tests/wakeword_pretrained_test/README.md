@@ -1,10 +1,8 @@
-# microWakeWord Pretrained Test
+# microWakeWord - Hey Daisy
 
-Tests wake word detection using microWakeWord TFLite models with EdgeNeuron library.
+Wake word detection using custom trained microWakeWord TFLite model with EdgeNeuron library.
 
-**Supported wake words:**
-- "Hey Daisy" (custom trained) - **default**
-- "Hey Jarvis" (pretrained)
+**Wake word: "Hey Daisy"**
 
 ## How It Works
 
@@ -15,29 +13,49 @@ Tests wake word detection using microWakeWord TFLite models with EdgeNeuron libr
 
 ## Setup
 
-### 1. Install EdgeNeuron Library
+### 1. Install Libraries
 
-Via Arduino Library Manager, search for "EdgeNeuron" by Consentium IoT.
+**Required libraries** (via Arduino Library Manager):
+- **EdgeNeuron** by Consentium IoT
+- **ArduinoJson** by Benoit Blanchon
 
-Or install from: https://github.com/ConsentiumIoT/EdgeNeuron
+### 2. Copy Files to SD Card
 
-### 2. Copy Model to SD Card
-
-Create this folder structure on your SD card:
 ```
 SD Card/
 └── models/
-    └── hey_daisy.tflite    (or hey_jarvis.tflite)
+    ├── hey_daisy.tflite    # The trained model
+    └── hey_daisy.json      # Configuration manifest
 ```
 
-### 3. Select Wake Word (optional)
+### 3. JSON Configuration
 
-Edit the sketch to select your model:
-```cpp
-// Uncomment ONE of these:
-// #define MODEL_HEY_JARVIS    // Pretrained "Hey Jarvis" model
-#define MODEL_HEY_DAISY     // Custom trained "Hey Daisy" model
+The `hey_daisy.json` file controls tunable detection parameters:
+
+```json
+{
+  "type": "micro",
+  "wake_word": "Hey Daisy",
+  "model": "hey_daisy.tflite",
+  "version": 1,
+  "micro": {
+    "probability_cutoff": 0.5,
+    "sliding_window_average_size": 10,
+    "min_high_frames": 6,
+    "min_frame_prob": 0.5,
+    "cooldown_ms": 1500
+  }
+}
 ```
+
+**Parameters:**
+| Parameter | Description | Default |
+|-----------|-------------|---------|
+| `probability_cutoff` | Average probability threshold to trigger | 0.5 |
+| `sliding_window_average_size` | Number of frames to average | 10 |
+| `min_high_frames` | Minimum frames above `min_frame_prob` | 6 |
+| `min_frame_prob` | Per-frame probability threshold | 0.5 |
+| `cooldown_ms` | Milliseconds to ignore after detection | 1500 |
 
 ### 4. Board Settings
 
@@ -47,7 +65,7 @@ Edit the sketch to select your model:
 
 ### 5. Upload and Test
 
-1. Insert SD card with model
+1. Insert SD card with model and config
 2. Upload sketch
 3. Open Serial Monitor (115200 baud)
 4. Say "Hey Daisy" - LED lights up on detection
@@ -55,14 +73,23 @@ Edit the sketch to select your model:
 ## Expected Output
 
 ```
-=== microWakeWord Test ===
-Wake word: "Hey Daisy"
-Model: /models/hey_daisy.tflite
+=== microWakeWord - Hey Daisy ===
 
 SD Card: OK
-Model loaded: 51234 bytes
+Config loaded: /models/hey_daisy.json
+
+Configuration:
+  Wake word: "Hey Daisy"
+  Probability cutoff: 0.50
+  Sliding window size: 10
+  Min high frames: 6
+  Min frame prob: 0.50
+  Cooldown: 1500 ms
+
+Model loaded: 132848 bytes
 TFLite: OK
-  Input: dims=[1,1,40], type=9
+  Arena used: 89432 bytes
+  Input: dims=[1,3,40], type=9
   Output: dims=[1,1], type=9
 Microphone: OK
 Frontend: OK
@@ -70,35 +97,44 @@ Frontend: OK
 Listening for "Hey Daisy"...
 ================================
 
-prob: 0.012, avg: 0.008
-prob: 0.867, avg: 0.512
-prob: 0.994, avg: 0.871
+prob: 0.012, avg: 0.008, high: 0/10
+prob: 0.867, avg: 0.512, high: 7/10
+prob: 0.994, avg: 0.871, high: 9/10
 
->>> HEY DAISY DETECTED! <<<
+>>> Hey Daisy DETECTED! <<<
 ```
 
-## Model Parameters
+## Tuning Tips
 
-- **probability_cutoff**: 0.5 (50% confidence)
-- **sliding_window_size**: 10 frames
+**Too many false positives:**
+- Increase `probability_cutoff` (try 0.7, 0.8, 0.9)
+- Increase `min_high_frames` (try 8 or 10)
+- Increase `min_frame_prob` (try 0.6 or 0.7)
+
+**Missing detections:**
+- Decrease `probability_cutoff` (try 0.3 or 0.4)
+- Decrease `min_high_frames` (try 4 or 5)
+- Speak closer to microphone
+
+**Multiple triggers per wake word:**
+- Increase `cooldown_ms` (try 2000 or 2500)
 
 ## Troubleshooting
+
+### "Cannot open config" / "Config load failed"
+- Check SD card has `/models/hey_daisy.json`
+- Verify JSON syntax is valid
 
 ### "Model load failed"
 - Check SD card has `/models/hey_daisy.tflite`
 - Try reformatting SD card as FAT32
 
 ### "TFLite init failed"
-- Increase TENSOR_ARENA_SIZE if needed
-- Check serial for specific error
-
-### No detection / false positives
-- Adjust PROBABILITY_CUTOFF (lower = more sensitive)
-- Check microphone gain
-- Speak clearly, closer to microphone
+- Model may need more memory - check serial for specific error
+- TENSOR_ARENA_SIZE is set to 500KB which should be sufficient
 
 ## Sources
 
 - [microWakeWord](https://github.com/kahrendt/microWakeWord)
-- [micro-wake-word-models](https://github.com/esphome/micro-wake-word-models)
 - [EdgeNeuron](https://github.com/ConsentiumIoT/EdgeNeuron)
+- [ArduinoJson](https://arduinojson.org/)

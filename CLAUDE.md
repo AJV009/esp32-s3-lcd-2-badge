@@ -27,19 +27,22 @@ This is an ESP32-S3-LCD-2 development repository for creating OAISYS25 conferenc
 ```
 badge/
 ├── workbench/
-│   ├── working_protos/        # Active development prototypes
-│   │   └── video_loop/        # Optimized MJPEG video player (103 lines)
-│   ├── mic_pin_test/          # INMP441 dual microphone test
-│   ├── single_mic_test/       # Single INMP441 microphone test
-│   ├── speaker_test/          # MAX98357A speaker test
-│   └── ESP32-S3-LCD-2-Demo/   # Reference examples from Waveshare
-│       ├── Arduino/           # Arduino framework examples
-│       │   ├── examples/01_factory/  # Full-featured factory demo
-│       │   └── libraries/     # Bundled LVGL library
-│       └── ESP-IDF/           # ESP-IDF framework examples
-└── ~/Arduino/libraries/  # External Arduino libraries
+│   ├── working_protos/        # Production-ready prototypes
+│   │   ├── 00_video_loop*/    # MJPEG video player variants
+│   │   ├── 01_llm_inference*/ # On-device LLM (llama2.c port)
+│   │   └── 02_speaker_mic_combo/ # Audio I/O with downmix
+│   ├── tests/                 # Experiments and PoCs
+│   │   ├── wakeword_*_test/   # microWakeWord detection
+│   │   ├── yamnet_*_ipynb_poc/ # YAMNet audio embeddings
+│   │   ├── llm_qa_memorization_ipynb_poc/ # Q&A fine-tuning
+│   │   └── *_mic_*/speaker_*/ # Audio hardware tests
+│   └── docs/                  # Schematics, datasheets
+│       └── WaveShare-ESP32-S3-LCD-2-Demo/ # Vendor reference
+└── ~/Arduino/libraries/       # External Arduino libraries
     ├── Arduino_GFX_Library/   # Display driver
     ├── JPEGDEC/               # JPEG decoder
+    ├── EdgeNeuron/            # TFLite inference (wake word)
+    ├── TensorFlowLite_ESP32/  # TFLite (YAMNet, larger models)
     ├── FastIMU/               # QMI8658 IMU support
     ├── lvgl/                  # LVGL GUI library
     └── OneButton/             # Button handling
@@ -88,9 +91,9 @@ idf.py flash monitor
 
 ## Code Architecture
 
-### Video Player Architecture (`working_protos/video_loop`)
+### Video Player Architecture (`working_protos/00_video_loop*`)
 
-This is the primary working prototype - heavily optimized from 250+ lines to 103 lines.
+Optimized MJPEG player variants with minimal code footprint.
 
 **Design Pattern:**
 - **MemoryStream class**: Minimal Stream implementation for PSRAM buffer access
@@ -98,14 +101,55 @@ This is the primary working prototype - heavily optimized from 250+ lines to 103
 - **Singleton pattern**: Static instance for JPEG callback access
 - **RAII initialization**: All setup in `begin()`, simple `play()` for loop
 
-**Workflow:**
-1. `setup()`: Call `player.begin()` - initializes display, mounts FFat, loads `/output.mjpeg` to PSRAM
-2. `loop()`: Call `player.play()` - decodes next frame, auto-loops on EOF
+**Variants:**
+- `00_video_loop/` - Base video loop
+- `00_video_loop_btn_pause/` - Button pause/resume
+- `00_video_loop_btn_pause_gyro_rotate/` - IMU-based orientation
 
-**Memory Management:**
-- Video loaded to PSRAM via `ps_malloc()` at startup
-- Decode buffer in heap: `320 * 240 / 2` bytes
-- No reloading during playback - pure memory streaming
+### LLM Inference Architecture (`working_protos/01_llm_inference*`)
+
+Port of llama2.c for on-device text generation.
+
+**Files:**
+- `llm_core.cpp/h` - Transformer forward pass, attention, RoPE
+- `tokenizer.cpp/h` - BPE tokenizer (SentencePiece format)
+- `sampler.cpp/h` - Temperature/top-p sampling
+- `sd_data/` - Model and tokenizer binaries for SD card
+
+**Model Specs:**
+- `stories15m` - 15M param TinyStories (~15MB)
+- `stories260k` - 260K param TinyStories (~300KB, faster)
+
+**Usage:** Load model from SD card to PSRAM, generate token-by-token.
+
+### Wake Word Detection (`tests/wakeword_pretrained_test/`)
+
+microWakeWord-based detection using EdgeNeuron TFLite runtime.
+
+**Pipeline:**
+1. INMP441 mic → 16kHz audio capture
+2. Microfrontend → 40-bin log-mel spectrogram (30ms window, 10ms stride)
+3. EdgeNeuron → TFLite inference every 10ms
+4. Sliding window → Probability averaging → Detection trigger
+
+**Configuration:** JSON config on SD card controls thresholds:
+```json
+{"probability_cutoff": 0.5, "sliding_window_average_size": 10, ...}
+```
+
+**Training:** See `tests/wakeword_training_ipynb_poc/` for custom wake word training via Colab.
+
+### Audio Embedding Architecture (`tests/yamnet_audio_embedding_ipynb_poc/`)
+
+YAMNet-based 1024-D audio embeddings on ESP32-S3.
+
+**Pipeline:**
+1. Dual INMP441 mics → stereo capture → mono downmix
+2. ESP-DSP accelerated FFT → 64-mel × 96-frame spectrogram
+3. TensorFlowLite_ESP32 → YAMNet inference (dual-core optimized)
+4. Extract 1024-D embedding → JSON output
+
+**Performance:** ~10-14 seconds total (inference is the bottleneck at 6-10s).
 
 ### Factory Demo Architecture (`ESP32-S3-LCD-2-Demo/Arduino/examples/01_factory`)
 
@@ -194,6 +238,33 @@ uint8_t* buffer = (uint8_t*)malloc(size);     // Heap
 - Small work buffers: Heap
 
 ## Common Patterns
+
+### Dual I2S Audio Architecture
+
+ESP32-S3 supports separate I2S buses for simultaneous input/output:
+
+```cpp
+// I2S0 for microphones (RX)
+i2s_config_t mic_config = {
+  .mode = I2S_MODE_MASTER | I2S_MODE_RX,
+  .sample_rate = 16000,
+  .bits_per_sample = I2S_BITS_PER_SAMPLE_32BIT,  // INMP441 sends 24-bit in 32-bit frame
+  .channel_format = I2S_CHANNEL_FMT_RIGHT_LEFT,
+  // ...
+};
+i2s_driver_install(I2S_NUM_0, &mic_config, 0, NULL);
+
+// I2S1 for speaker (TX)
+i2s_config_t spk_config = {
+  .mode = I2S_MODE_MASTER | I2S_MODE_TX,
+  .sample_rate = 16000,
+  .bits_per_sample = I2S_BITS_PER_SAMPLE_16BIT,
+  // ...
+};
+i2s_driver_install(I2S_NUM_1, &spk_config, 0, NULL);
+```
+
+See `workbench/working_protos/02_speaker_mic_combo/` for full duplex example.
 
 ### SPI Bus Sharing
 
@@ -284,5 +355,27 @@ Based on ESP32-S3-Touch-LCD-2 schematic **PinOut** section:
 - **I2S Port:** I2S_NUM_1 (TX mode)
 - **Power:** 5V recommended for full power (3-5W capable)
 - **Config:** 16-bit samples, 44.1kHz sample rate, mono/stereo
-- **Test sketch:** `workbench/speaker_test/`
+- **Test sketch:** `workbench/tests/speaker_beep_test/`
 - **Note:** GAIN pin controls volume (Float=9dB, GND=12dB, VDD=15dB)
+
+## ML Model Deployment
+
+### SD Card Layout for Models
+```
+SD:/
+├── models/
+│   ├── hey_daisy.tflite     # Wake word model (~130KB)
+│   └── hey_daisy.json       # Detection config
+├── yamnet.tflite            # Audio embedding model (167KB-4MB)
+├── stories260k.bin          # LLM model weights
+└── tokenizer.bin            # LLM tokenizer
+```
+
+### TensorFlow Lite Libraries
+- **EdgeNeuron**: Lightweight, good for small streaming models (wake word)
+- **TensorFlowLite_ESP32**: Full-featured, needed for larger models (YAMNet)
+
+### Colab Training Pipelines
+- `wakeword_training_ipynb_poc/wakeword_training.ipynb` - Custom wake word (~30-60 min)
+- `llm_qa_memorization_ipynb_poc/qa_memorization_poc.ipynb` - Fine-tune tiny LLM
+- `yamnet_audio_embedding_ipynb_poc/` - Audio embedding extraction
