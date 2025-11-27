@@ -1,6 +1,7 @@
 // sampler.cpp - Token sampling implementation
 
 #include "sampler.h"
+#include "dsps_mulc.h"  // For SIMD temperature scaling
 
 // Forward declarations
 static int sample_argmax(v4sf* probabilities, int n);
@@ -86,20 +87,25 @@ static v4sf random_f32(unsigned long long* state) {
 }
 
 static void softmax_sampling(v4sf* x, int size) {
+    // Find max (unrolled for pipelining)
     v4sf max_val = x[0];
-    for (int i = 1; i < size; i++) {
+    for (int i = 1; i < size; i += 4) {
         if (x[i] > max_val) max_val = x[i];
+        if (i+1 < size && x[i+1] > max_val) max_val = x[i+1];
+        if (i+2 < size && x[i+2] > max_val) max_val = x[i+2];
+        if (i+3 < size && x[i+3] > max_val) max_val = x[i+3];
     }
 
+    // Exp and sum
     v4sf sum = 0.0f;
     for (int i = 0; i < size; i++) {
         x[i] = expf(x[i] - max_val);
         sum += x[i];
     }
 
-    for (int i = 0; i < size; i++) {
-        x[i] /= sum;
-    }
+    // Vectorized division using SIMD multiply by inverse
+    v4sf inv_sum = 1.0f / sum;
+    dsps_mulc_f32_ae32(x, x, size, inv_sum, 1, 1);
 }
 
 void build_sampler(Sampler* sampler, int vocab_size, float temperature, float topp, unsigned long long rng_seed) {
@@ -120,9 +126,10 @@ int sample(Sampler* sampler, v4sf* logits) {
     if (sampler->temperature == 0.0f) {
         next = sample_argmax(logits, sampler->vocab_size);
     } else {
-        for (int q = 0; q < sampler->vocab_size; q++) {
-            logits[q] /= sampler->temperature;
-        }
+        // Temperature scaling using SIMD (multiply by 1/temperature)
+        v4sf inv_temp = 1.0f / sampler->temperature;
+        dsps_mulc_f32_ae32(logits, logits, sampler->vocab_size, inv_temp, 1, 1);
+
         softmax_sampling(logits, sampler->vocab_size);
         v4sf coin = random_f32(&sampler->rng_state);
         if (sampler->topp <= 0 || sampler->topp >= 1) {

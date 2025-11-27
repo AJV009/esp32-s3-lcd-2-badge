@@ -24,19 +24,34 @@ void quantize(QuantizedTensor *qx, float* x, int n) {
     float Q_MAX = 127.0f;
 
     for (int group = 0; group < num_groups; group++) {
+        float* gx = x + group * GS;
+        int8_t* gq = qx->q + group * GS;
+
+        // Find max absolute value using SIMD dot product trick:
+        // max(|x|) ≈ sqrt(max element of x²) but that's expensive
+        // Instead, unroll the loop for better pipelining
         float wmax = 0.0f;
-        for (int i = 0; i < GS; i++) {
-            float val = fabsf(x[group * GS + i]);
-            if (val > wmax) wmax = val;
+        for (int i = 0; i < GS; i += 4) {
+            float v0 = fabsf(gx[i]);
+            float v1 = fabsf(gx[i+1]);
+            float v2 = fabsf(gx[i+2]);
+            float v3 = fabsf(gx[i+3]);
+            if (v0 > wmax) wmax = v0;
+            if (v1 > wmax) wmax = v1;
+            if (v2 > wmax) wmax = v2;
+            if (v3 > wmax) wmax = v3;
         }
 
         float scale = wmax / Q_MAX;
         qx->s[group] = scale;
 
-        float inv_scale = (scale != 0.0f) ? 1.0f / scale : 0.0f;
-        for (int i = 0; i < GS; i++) {
-            float quant_value = x[group * GS + i] * inv_scale;
-            qx->q[group * GS + i] = (int8_t)roundf(quant_value);
+        // Quantize with reciprocal multiply (faster than division)
+        float inv_scale = (scale > 1e-10f) ? Q_MAX / wmax : 0.0f;
+        for (int i = 0; i < GS; i += 4) {
+            gq[i]   = (int8_t)(gx[i]   * inv_scale + 0.5f - (gx[i]   < 0));
+            gq[i+1] = (int8_t)(gx[i+1] * inv_scale + 0.5f - (gx[i+1] < 0));
+            gq[i+2] = (int8_t)(gx[i+2] * inv_scale + 0.5f - (gx[i+2] < 0));
+            gq[i+3] = (int8_t)(gx[i+3] * inv_scale + 0.5f - (gx[i+3] < 0));
         }
     }
 }
@@ -471,11 +486,22 @@ float* forward(Transformer* transformer, int token, int pos) {
         matmul_q8(s->hb, &s->xq, &w->w1[l], dim, hidden_dim);
         matmul_q8(s->hb2, &s->xq, &w->w3[l], dim, hidden_dim);
 
-        // SwiGLU
-        for (int i = 0; i < hidden_dim; i++) {
-            float val = s->hb[i];
-            val *= 1.0f / (1.0f + expf(-val));
-            s->hb[i] = val * s->hb2[i];
+        // SwiGLU with fast sigmoid approximation
+        // sigmoid(x) ≈ 0.5 + 0.5 * tanh(x * 0.5) ≈ x / (1 + |x|) for speed
+        // But for SiLU we need decent accuracy, use: 1/(1+exp(-x)) ≈ fast approx
+        for (int i = 0; i < hidden_dim; i += 4) {
+            // Unrolled for better pipelining
+            float v0 = s->hb[i], v1 = s->hb[i+1], v2 = s->hb[i+2], v3 = s->hb[i+3];
+            // SiLU: x * sigmoid(x)
+            v0 *= 1.0f / (1.0f + expf(-v0));
+            v1 *= 1.0f / (1.0f + expf(-v1));
+            v2 *= 1.0f / (1.0f + expf(-v2));
+            v3 *= 1.0f / (1.0f + expf(-v3));
+            // Gate multiply
+            s->hb[i]   = v0 * s->hb2[i];
+            s->hb[i+1] = v1 * s->hb2[i+1];
+            s->hb[i+2] = v2 * s->hb2[i+2];
+            s->hb[i+3] = v3 * s->hb2[i+3];
         }
 
         quantize(&s->hq, s->hb, hidden_dim);
