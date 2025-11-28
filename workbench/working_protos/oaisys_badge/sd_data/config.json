@@ -1,0 +1,15 @@
+{
+    "wifi_ssid": "YourNetworkSSID",
+    "wifi_pass": "YourNetworkPassword",
+    "server_url": "http://your-server-ip:8000",
+    "device_id": "badge_001",
+
+    "wake_word_threshold": 0.5,
+    "embed_threshold": 0.7,
+    "llm_temperature": 0.8,
+    "llm_topp": 0.9,
+    "llm_max_tokens": 128,
+
+    "idle_sleep_ms": 300000,
+    "record_duration_ms": 5000
+}

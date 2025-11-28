@@ -28,15 +28,19 @@ This is an ESP32-S3-LCD-2 development repository for creating OAISYS25 conferenc
 badge/
 ├── workbench/
 │   ├── working_protos/        # Production-ready prototypes
-│   │   ├── 00_video_loop*/    # MJPEG video player variants
-│   │   ├── 01_llm_inference*/ # On-device LLM (llama2.c port)
-│   │   └── 02_speaker_mic_combo/ # Audio I/O with downmix
+│   │   ├── oaisys_badge/      # ★ MAIN UNIFIED FIRMWARE ★
+│   │   ├── 00_video_loop*/    # MJPEG video player variants (reference)
+│   │   ├── 02_speaker_mic_combo/ # Audio I/O with downmix (reference)
+│   │   ├── 03_custom_wakeword/   # Wake word detection (reference)
+│   │   ├── 04_yamnet_audio_embedding/ # Audio embeddings (reference)
+│   │   └── 05_llm_finetuned/  # LLM inference (reference)
 │   ├── tests/                 # Experiments and PoCs
-│   │   ├── wakeword_*_test/   # microWakeWord detection
-│   │   ├── yamnet_*_ipynb_poc/ # YAMNet audio embeddings
-│   │   ├── llm_qa_memorization_ipynb_poc/ # Q&A fine-tuning
-│   │   └── *_mic_*/speaker_*/ # Audio hardware tests
-│   └── docs/                  # Schematics, datasheets
+│   │   ├── audio_semantic_xtts_ipynb/ # Embedding training
+│   │   ├── llm_qa_scaled_training/    # LLM fine-tuning
+│   │   └── *_test/            # Hardware tests
+│   └── docs/                  # Documentation
+│       ├── OAISYS_BADGE_PLAN.md   # Implementation plan
+│       ├── OAISYS_BADGE_TODO.md   # Progress tracker
 │       └── WaveShare-ESP32-S3-LCD-2-Demo/ # Vendor reference
 └── ~/Arduino/libraries/       # External Arduino libraries
     ├── Arduino_GFX_Library/   # Display driver
@@ -44,8 +48,56 @@ badge/
     ├── EdgeNeuron/            # TFLite inference (wake word)
     ├── TensorFlowLite_ESP32/  # TFLite (YAMNet, larger models)
     ├── FastIMU/               # QMI8658 IMU support
-    ├── lvgl/                  # LVGL GUI library
-    └── OneButton/             # Button handling
+    ├── OneButton/             # Button handling
+    └── ESP32-SAM/             # Robotic TTS (to be added)
+```
+
+## Main Project: oaisys_badge
+
+**Location:** `workbench/working_protos/oaisys_badge/`
+
+**Documentation:**
+- **Plan:** `workbench/docs/OAISYS_BADGE_PLAN.md` - Full implementation plan
+- **Progress:** `workbench/docs/OAISYS_BADGE_TODO.md` - Task tracker
+
+**Structure:**
+```
+oaisys_badge/
+├── oaisys_badge.ino           # Main sketch - state machine
+├── config.h                   # Pin definitions, constants
+├── src/                       # Arduino compiles src/ recursively
+│   ├── display/
+│   │   └── video_player.cpp/h # MJPEG playback + text overlay
+│   ├── sensors/
+│   │   └── orientation.cpp/h  # IMU-based rotation
+│   ├── audio/                 # (Phase 2)
+│   ├── ml/                    # (Phase 3-4)
+│   ├── tts/                   # (Phase 5)
+│   ├── network/               # (Phase 7)
+│   └── storage/               # (Phase 7-8)
+└── sd_data/                   # Files for SD card
+    ├── config.json            # WiFi + thresholds
+    ├── media/logo.mjpeg       # Boot animation
+    ├── models/                # ML models
+    └── data/                  # Embeddings, intents
+```
+
+**SD Card Layout:**
+```
+SD:/
+├── config.json               # WiFi creds, thresholds
+├── media/
+│   └── logo.mjpeg            # Boot animation (~1.2MB)
+├── models/
+│   ├── wake_word.tflite      # Wake word (~130KB)
+│   ├── yamnet.tflite         # Audio embeddings (~2.8MB)
+│   ├── projection.tflite     # Embedding projection (~663KB)
+│   ├── llm_model.bin         # LLM Q8_0 (~6MB)
+│   └── tokenizer.bin         # BPE tokenizer (~13KB)
+├── data/
+│   ├── embeddings.bin        # 300 × 256-dim float32 (307KB)
+│   └── intents.txt           # 300 intent strings
+└── stash/                    # Unrecognized audio (auto-created)
 ```
 
 ## Development Commands
@@ -376,6 +428,45 @@ SD:/
 - **TensorFlowLite_ESP32**: Full-featured, needed for larger models (YAMNet)
 
 ### Colab Training Pipelines
-- `wakeword_training_ipynb_poc/wakeword_training.ipynb` - Custom wake word (~30-60 min)
-- `llm_qa_memorization_ipynb_poc/qa_memorization_poc.ipynb` - Fine-tune tiny LLM
-- `yamnet_audio_embedding_ipynb_poc/` - Audio embedding extraction
+- `audio_semantic_xtts_ipynb/` - Audio semantic embeddings with XTTS-v2
+- `llm_qa_scaled_training/` - LLM Q&A fine-tuning with phases
+- `wakeword_training_ipynb_poc/` - Custom wake word training
+
+## OAISYS Badge Implementation Phases
+
+The unified `oaisys_badge` firmware is built in 8 phases. See `workbench/docs/OAISYS_BADGE_TODO.md` for current progress.
+
+| Phase | Description | Key Files |
+|-------|-------------|-----------|
+| 1 | Core (Video + Button + Text) | `video_player.cpp`, `orientation.cpp` |
+| 2 | Wake Word + Recording | `wake_word.cpp`, `audio_recorder.cpp` |
+| 3 | Embedding + Similarity | `yamnet_embed.cpp`, `embed_search.cpp` |
+| 4 | LLM Integration | `llm_core.cpp`, `tokenizer.cpp` |
+| 5 | Robotic TTS (SAM) | `robot_tts.cpp` |
+| 6 | Deep Sleep + Wake | `sleep_manager.cpp` |
+| 7 | WiFi + Model Updates | `wifi_manager.cpp`, `model_updater.cpp` |
+| 8 | Stash Upload | `stash_manager.cpp`, `data_uploader.cpp` |
+| Backend | FastAPI + Redis | `main.py`, `workers.py` |
+
+### State Machine Flow
+```
+BOOT → LOGO_LOOP ←→ DEEP_SLEEP (5min idle)
+         ↓ (button/wake word)
+      RECORDING (3-5 sec)
+         ↓
+      EMBEDDING → SIMILARITY
+         ↓
+   score ≥ 0.7 → LLM_INFERENCE → DISPLAY → TTS → LOGO_LOOP
+   score < 0.7 → TTS_SORRY → STASH_DATA → LOGO_LOOP
+```
+
+### Memory Management
+- Only ONE ML model loaded at a time
+- 6MB memory pool in PSRAM for model swapping
+- Load/unload via `begin()`/`end()` pattern
+
+### Working Methodology
+1. Check `workbench/docs/OAISYS_BADGE_TODO.md` for current phase
+2. Reference original prototypes in `working_protos/0X_*` for implementation patterns
+3. Update TODO tracker after completing each task
+4. Test each phase before moving to next
