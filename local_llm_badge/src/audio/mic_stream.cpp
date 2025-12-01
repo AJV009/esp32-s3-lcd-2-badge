@@ -117,7 +117,36 @@ bool MicStream::_initI2S() {
         return false;
     }
 
+    // Brief mic warm-up (500ms) to let INMP441 stabilize
+    // Full 2s warm-up happens after wake word detection, before recording
+    Serial.println("MicStream: Quick mic warm-up (500ms)...");
+    const int QUICK_WARMUP_SAMPLES = SAMPLE_RATE / 2;  // 500ms at 16kHz
+    int samplesDiscarded = 0;
+    size_t bytes_read;
+    while (samplesDiscarded < QUICK_WARMUP_SAMPLES) {
+        if (i2s_read(I2S_NUM_0, _i2sBuffer, 512 * 4, &bytes_read, 10) == ESP_OK) {
+            samplesDiscarded += bytes_read / 4;
+        }
+    }
+    Serial.println("MicStream: Warm-up done");
+
     return true;
+}
+
+void MicStream::_warmUpMic() {
+    const int WARMUP_SAMPLES = SAMPLE_RATE * 2;  // 2 seconds at 16kHz
+    int samplesDiscarded = 0;
+    size_t bytes_read;
+
+    unsigned long startTime = millis();
+
+    while (samplesDiscarded < WARMUP_SAMPLES) {
+        if (i2s_read(I2S_NUM_0, _i2sBuffer, 512 * 4, &bytes_read, 10) == ESP_OK) {
+            samplesDiscarded += bytes_read / 4;
+        }
+    }
+
+    Serial.printf("MicStream: Warm-up done (%d ms)\n", (int)(millis() - startTime));
 }
 
 bool MicStream::_initFrontend() {

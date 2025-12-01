@@ -6,6 +6,7 @@
 #include "../../config.h"
 
 #include <driver/i2s.h>
+#include <SD.h>
 
 AudioRecorder::AudioRecorder()
     : _buffer(nullptr)
@@ -102,6 +103,11 @@ void AudioRecorder::startRecording(float durationSec) {
     }
     i2s_set_pin(I2S_NUM_0, &pins);
 
+    // INMP441 microphone needs warm-up time after I2S init
+    // Discard first 2 seconds of audio (junk/noise from mic stabilization)
+    Serial.println("AudioRecorder: Mic warm-up (discarding 2s)...");
+    _warmUpMic();
+
     Serial.printf("AudioRecorder: Started %.1fs recording\n", durationSec);
 }
 
@@ -136,6 +142,28 @@ bool AudioRecorder::_captureChunk() {
     return true;
 }
 
+void AudioRecorder::_warmUpMic() {
+    // INMP441 needs ~100-200ms minimum to stabilize, but for best results
+    // we discard 2 full seconds of audio data
+    // At 16kHz, that's 32000 samples = 128KB of data to discard
+
+    const int WARMUP_SAMPLES = RECORDING_SAMPLE_RATE * 2;  // 2 seconds
+    int samplesDiscarded = 0;
+    size_t bytes_read;
+
+    unsigned long startTime = millis();
+
+    while (samplesDiscarded < WARMUP_SAMPLES) {
+        // Read and discard
+        if (i2s_read(I2S_NUM_0, _i2sBuffer, 512 * 4, &bytes_read, 10) == ESP_OK) {
+            samplesDiscarded += bytes_read / 4;
+        }
+    }
+
+    Serial.printf("AudioRecorder: Warm-up done (%d ms, %d samples discarded)\n",
+                  (int)(millis() - startTime), samplesDiscarded);
+}
+
 bool AudioRecorder::update() {
     if (!_recording) return false;
 
@@ -153,4 +181,54 @@ bool AudioRecorder::update() {
 float AudioRecorder::getProgress() const {
     if (_targetSamples == 0) return 0.0f;
     return (float)_sampleCount / _targetSamples;
+}
+
+bool AudioRecorder::saveToSD(const char* filepath) {
+    if (!_buffer || _sampleCount == 0) {
+        Serial.println("AudioRecorder: No recording to save");
+        return false;
+    }
+
+    File file = SD.open(filepath, FILE_WRITE);
+    if (!file) {
+        Serial.printf("AudioRecorder: Failed to create %s\n", filepath);
+        return false;
+    }
+
+    // Write WAV header
+    uint32_t dataSize = _sampleCount * sizeof(int16_t);
+    uint32_t fileSize = 36 + dataSize;
+
+    // RIFF header
+    file.write((const uint8_t*)"RIFF", 4);
+    file.write((uint8_t*)&fileSize, 4);
+    file.write((const uint8_t*)"WAVE", 4);
+
+    // fmt chunk
+    file.write((const uint8_t*)"fmt ", 4);
+    uint32_t fmtSize = 16;
+    file.write((uint8_t*)&fmtSize, 4);
+    uint16_t audioFormat = 1;  // PCM
+    file.write((uint8_t*)&audioFormat, 2);
+    uint16_t numChannels = 1;  // Mono
+    file.write((uint8_t*)&numChannels, 2);
+    uint32_t sampleRate = RECORDING_SAMPLE_RATE;
+    file.write((uint8_t*)&sampleRate, 4);
+    uint32_t byteRate = sampleRate * numChannels * sizeof(int16_t);
+    file.write((uint8_t*)&byteRate, 4);
+    uint16_t blockAlign = numChannels * sizeof(int16_t);
+    file.write((uint8_t*)&blockAlign, 2);
+    uint16_t bitsPerSample = 16;
+    file.write((uint8_t*)&bitsPerSample, 2);
+
+    // data chunk
+    file.write((const uint8_t*)"data", 4);
+    file.write((uint8_t*)&dataSize, 4);
+    file.write((uint8_t*)_buffer, dataSize);
+
+    file.close();
+
+    Serial.printf("AudioRecorder: Saved %s (%d samples, %.2fs)\n",
+                  filepath, _sampleCount, getDurationSec());
+    return true;
 }

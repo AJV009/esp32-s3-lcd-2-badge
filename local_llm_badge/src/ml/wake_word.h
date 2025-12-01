@@ -61,9 +61,9 @@ public:
     static size_t requiredMemory() { return TENSOR_ARENA_SIZE + VAR_ARENA_SIZE; }
 
 private:
-    // Memory sizes
-    static constexpr size_t TENSOR_ARENA_SIZE = 500000;
-    static constexpr size_t VAR_ARENA_SIZE = 50000;
+    // Memory sizes (with 2KB padding for alignment headroom)
+    static constexpr size_t TENSOR_ARENA_SIZE = 502000;
+    static constexpr size_t VAR_ARENA_SIZE = 52000;
     static constexpr int MAX_RESOURCE_VARS = 100;
     static constexpr int MAX_SLIDING_WINDOW = 20;
 

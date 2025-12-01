@@ -60,6 +60,10 @@ public:
     void togglePower();
     bool isPowered() const { return _powered; }
 
+    // Memory management - free video buffer to make room for LLM
+    void unloadVideo();    // Free video buffer (~1.2MB)
+    bool reloadVideo();    // Reload video from SD card
+
     // Orientation
     void setRotation(uint8_t rotation);
     uint8_t getRotation() const { return _rotation; }

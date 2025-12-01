@@ -72,4 +72,5 @@ private:
     bool _initI2S();
     bool _initFrontend();
     bool _captureAudio();
+    void _warmUpMic();  // Discard first 2s of audio (mic stabilization)
 };

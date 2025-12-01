@@ -10,10 +10,10 @@
 | Phase | Description | Status | Notes |
 |-------|-------------|--------|-------|
 | Phase 1 | Core (Video + Text + Gyro) | **COMPLETE** | Tested, working |
-| Phase 2 | Wake Word + Recording | **IN PROGRESS** | Code complete, needs testing |
-| Phase 3 | Embedding + Similarity | PENDING | |
-| Phase 4 | LLM Integration | PENDING | |
-| Phase 5 | Robotic TTS (SAM) | PENDING | |
+| Phase 2 | Wake Word + Recording | **COMPLETE** | Code complete, model on SD |
+| Phase 3 | Embedding + Similarity | **IN PROGRESS** | Firmware done, training audio encoder |
+| Phase 4 | LLM Integration | **COMPLETE** | Code + models ready |
+| Phase 5 | Robotic TTS (SAM) | **COMPLETE** | SAM with I2S output |
 | Phase 6 | Deep Sleep + Wake | PENDING | |
 | Phase 7 | WiFi + Model Updates | PENDING | |
 | Phase 8 | Stash Upload | PENDING | |
@@ -103,67 +103,132 @@ Copy from `03_custom_wakeword/sd_data/models/`:
 
 ---
 
-## Phase 3: Embedding + Similarity - PENDING
+## Phase 3: Embedding + Similarity - IN PROGRESS
 
-### Tasks
-- [ ] Create `ml/yamnet_embed.cpp/h` - Adapt from `04_yamnet_audio_embedding`
-- [ ] Create `ml/embed_search.cpp/h` - Cosine similarity search
-- [ ] Load pre-computed embeddings from SD card
-- [ ] Implement 300-vector similarity search
+### Completed Tasks
+- [x] Create `ml/audio_embed.cpp/h` - Custom CNN audio embedding (ESP-DSP FFT + TFLite)
+- [x] Create `ml/embed_search.cpp/h` - Cosine similarity search with loop unrolling
+- [x] Add STATE_EMBEDDING, STATE_SIMILARITY, STATE_TTS_SORRY to state machine
+- [x] Integrate embedding/search into main sketch
+- [x] Create `train_audio_encoder.ipynb` notebook for vast.ai (contrastive learning)
+
+### Pending Tasks
+- [ ] **Run training on vast.ai** - Train custom audio encoder CNN
+- [ ] Copy trained models to SD card:
+  - `audio_encoder.tflite` → `/models/audio_encoder.tflite`
+  - `embeddings.bin` → `/data/embeddings.bin`
+  - `intents.txt` → `/data/intents.txt`
 - [ ] Test: Record → embed → find closest intent
 
-### Files to Create
+### Files Created
 ```
 ml/
-├── yamnet_embed.cpp/h
-└── embed_search.cpp/h
+├── audio_embed.cpp/h      # Custom CNN embedding (64 mel × 96 frames → 256-dim)
+└── embed_search.cpp/h     # Cosine similarity search
+
+tests/audio_embedding_dataset_ipynb/
+└── train_audio_encoder.ipynb  # Training notebook for vast.ai
 ```
 
+### Model Architecture (Final)
+**Original plan:** TF Hub YAMNet (1024-dim, ~13MB) → Projection → Search
+**Discarded:** STM32 YAMNet-256 (was a classifier, not embedder)
+**Final approach:** Custom CNN trained with contrastive learning
+
+Custom audio encoder architecture:
+- Input: (64, 96, 1) mel-spectrogram
+- Conv2D 32 → MaxPool → Conv2D 64 → MaxPool → Conv2D 128 → MaxPool → Conv2D 128 → GlobalAvgPool → Dense 256
+- Output: 256-dim L2-normalized embedding
+- Size: ~100-300KB TFLite
+
+### Training Steps (vast.ai)
+1. Upload `audio_data/` folder to vast.ai instance
+2. Run `train_audio_encoder.ipynb` notebook
+3. Download outputs: `audio_encoder.tflite`, `embeddings.bin`, `intents.txt`
+4. Copy to SD card `/models/` and `/data/` folders
+
 ### Reference Prototypes
-- `04_yamnet_audio_embedding/*.cpp`
+- `04_yamnet_audio_embedding/*.cpp` (for mel-spectrogram code)
 
 ---
 
-## Phase 4: LLM Integration - PENDING
+## Phase 4: LLM Integration - COMPLETE
 
-### Tasks
-- [ ] Adapt `ml/llm_core.cpp/h` to use memory pool
-- [ ] Adapt `ml/tokenizer.cpp/h`
-- [ ] Adapt `ml/sampler.cpp/h`
-- [ ] Implement streaming token callback
-- [ ] Display response character-by-character
+### Completed Tasks
+- [x] Copy `llm_core.cpp/h` from `05_llm_finetuned` (optimized SIMD code)
+- [x] Copy `tokenizer.cpp/h` from `05_llm_finetuned`
+- [x] Copy `sampler.cpp/h` from `05_llm_finetuned`
+- [x] Create `llm_inference.cpp/h` - Thin wrapper for badge integration
+- [x] Add `STATE_LLM_INFERENCE` state handler
+- [x] Implement streaming token callback (`onLLMToken`)
+- [x] Display response character-by-character via `video.appendText()`
+- [x] Update similarity handler to transition to LLM state
+- [x] Copy model files to sd_data/models/ (from 05_llm_finetuned)
+
+### Model Files (Ready)
+```
+sd_data/models/
+├── llm_model.bin     # 6.0MB - Q8_0 quantized LLM (ajv009_6M_1024TK)
+└── tokenizer.bin     # 13KB - BPE tokenizer
+```
+
+### Pending Tasks
 - [ ] Test: Intent → LLM generates → displays
 
-### Files to Adapt
+### Files Created
 ```
 ml/
-├── llm_core.cpp/h
-├── tokenizer.cpp/h
-└── sampler.cpp/h
+├── llm_core.cpp/h       # Copied from 05_llm_finetuned (unchanged)
+├── tokenizer.cpp/h      # Copied from 05_llm_finetuned (unchanged)
+├── sampler.cpp/h        # Copied from 05_llm_finetuned (unchanged)
+└── llm_inference.cpp/h  # New wrapper class for badge
 ```
+
+### Model Requirements
+The LLM expects a Q8_0 quantized model file with:
+- Magic: `0x616b3432` (version 2 format)
+- Config header: dim, hidden_dim, n_layers, n_heads, n_kv_heads, vocab_size, seq_len
+- Weights: RMS norms (fp32) + quantized attention/FFN tensors (int8 + scales)
+
+See `tests/llm_qa_scaled_training/` for training notebook.
 
 ### Reference Prototypes
 - `05_llm_finetuned/*.cpp`
 
 ---
 
-## Phase 5: Robotic TTS (SAM) - PENDING
+## Phase 5: Robotic TTS (SAM) - COMPLETE
 
-### Tasks
-- [ ] Install ESP32-SAM library
-- [ ] Create `tts/robot_tts.cpp/h`
-- [ ] Configure I2S output to MAX98357A
-- [ ] Tune SAM parameters for "ultra robotic" voice
-- [ ] Test: Text → robotic speech output
+### Completed Tasks
+- [x] Install ESP32-SAM library (cloned to Arduino/libraries/SAM)
+- [x] Create `tts/robot_tts.cpp/h` - SAM wrapper with custom I2S output
+- [x] Configure I2S1 output to MAX98357A at 22050 Hz (SAM's native rate)
+- [x] Created ultra-robotic voice preset (speed=100, pitch=50, throat=200, mouth=200)
+- [x] Integrated into state machine (STATE_TTS_OUTPUT, STATE_TTS_SORRY)
+- [x] Startup greeting "Hello. I am ready."
 
-### Files to Create
+### Files Created
 ```
-tts/
-└── robot_tts.cpp/h
+src/tts/
+├── robot_tts.h        # RobotTTS class + SAMI2SOutput class
+└── robot_tts.cpp      # Implementation with voice presets
 ```
+
+### Voice Presets
+| Voice | Speed | Pitch | Throat | Mouth |
+|-------|-------|-------|--------|-------|
+| ROBOT (ultra) | 100 | 50 | 200 | 200 |
+| LITTLE_ROBOT | 92 | 60 | 190 | 190 |
+| ALIEN | 100 | 64 | 150 | 200 |
 
 ### Library
 - ESP32-SAM: https://github.com/pschatzmann/ESP32-SAM
+
+### Test Checklist
+- [ ] Startup says "Hello. I am ready."
+- [ ] TTS_OUTPUT speaks LLM response
+- [ ] TTS_SORRY speaks apology message
+- [ ] Audio plays clearly through MAX98357A
 
 ---
 
@@ -273,6 +338,44 @@ network/
 - Implemented 6MB memory pool for ML models
 - Removed button functionality (caused false triggers with I2S)
 
+### 2024-XX-XX - Phase 3 Firmware Complete
+- Switched from TF Hub YAMNet (13MB) to STM32 YAMNet-256 (182KB)
+- Created yamnet_embed.cpp/h with ESP-DSP FFT for mel-spectrogram
+- Created embed_search.cpp/h with cosine similarity search
+- Added STATE_EMBEDDING, STATE_SIMILARITY, STATE_TTS_SORRY states
+- Created retrain_yamnet256.ipynb for vast.ai retraining
+- Eliminated projection layer (direct 256-dim search)
+
+### 2024-XX-XX - Phase 4 Firmware Complete
+- Copied optimized llm_core/tokenizer/sampler from 05_llm_finetuned
+- Created llm_inference.cpp/h thin wrapper class
+- Added STATE_LLM_INFERENCE state with streaming token callback
+- LLM generates response from matched intent
+- Tokens stream character-by-character to display via appendText()
+- Transitions to TTS after generation
+
+### 2024-XX-XX - Phase 5 Firmware Complete
+- Cloned ESP32-SAM library from pschatzmann/arduino-SAM
+- Created custom SAMI2SOutput class for legacy I2S driver
+- Created robot_tts.cpp/h with voice presets
+- Integrated into state machine: STATE_TTS_OUTPUT and STATE_TTS_SORRY
+- Ultra-robotic voice: speed=100, pitch=50, throat=200, mouth=200
+- Startup greeting says "Hello. I am ready."
+- Full pipeline: Wake word → Record → Embed → Search → LLM → TTS → Logo
+
+### 2024-11-29 - Audio Encoder + Config Loading
+- **BREAKING**: Replaced YAMNet-256 with custom CNN audio encoder
+  - STM32 YAMNet-256 was a classifier (10 classes), not an embedder
+  - New approach: Train small CNN with contrastive learning
+  - Renamed `yamnet_embed.cpp/h` → `audio_embed.cpp/h`
+  - Model path: `/models/audio_encoder.tflite`
+- Added `train_audio_encoder.ipynb` notebook for training on vast.ai
+- **Added runtime config loading from SD card**:
+  - `config.json` now loaded at startup
+  - Runtime-configurable: embed_threshold, llm_temperature, llm_max_tokens, record_duration_ms
+- Copied LLM models from 05_llm_finetuned to sd_data/models/
+- Full code review and verification of state machine flow
+
 ---
 
 ## Notes
@@ -280,28 +383,29 @@ network/
 ### SD Card Layout
 ```
 SD:/
-├── config.json           # WiFi + thresholds
+├── config.json              # WiFi + runtime thresholds (now loaded!)
 ├── media/
-│   └── logo.mjpeg        # Boot animation
+│   └── logo.mjpeg           # Boot animation
 ├── models/
-│   ├── wake_word.tflite
-│   ├── wake_word.json
-│   ├── yamnet.tflite
-│   ├── projection.tflite
-│   ├── llm_model.bin
-│   └── tokenizer.bin
+│   ├── wake_word.tflite     # ✅ Ready (130KB)
+│   ├── wake_word.json       # ✅ Ready
+│   ├── audio_encoder.tflite # ⏳ From training (~100-300KB)
+│   ├── llm_model.bin        # ✅ Ready (6.0MB)
+│   └── tokenizer.bin        # ✅ Ready (13KB)
 ├── data/
-│   ├── embeddings.bin    # 300 × 256-dim
-│   └── intents.txt       # 300 intent strings
-└── stash/                # Unrecognized audio
+│   ├── embeddings.bin       # ⏳ From training (300 × 256-dim)
+│   └── intents.txt          # ⏳ From training (300 intent strings)
+└── stash/                   # Unrecognized audio (Phase 8)
 ```
 
 ### Memory Budget (PSRAM ~8MB)
 - Video buffer: ~2MB (logo.mjpeg)
 - ML Pool: 6MB (shared, one model at a time)
-  - Wake word: ~700KB
-  - YAMNet: ~1MB
+  - Wake word: ~550KB (tensor arena)
+  - Audio encoder: ~300KB model + ~300KB arena
   - LLM: ~6MB
+- Query embedding buffer: 1KB (256 × float32)
+- Embedding database: ~307KB (300 × 256-dim)
 
 ### Key Design Decisions
 - **TTS**: SAM (1980s robotic voice)

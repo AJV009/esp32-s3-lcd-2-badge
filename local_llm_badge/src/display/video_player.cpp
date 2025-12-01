@@ -328,6 +328,46 @@ void VideoPlayer::end() {
     _initialized = false;
 }
 
+void VideoPlayer::unloadVideo() {
+    // Free video buffer and decoder to make room for LLM (~1.2MB)
+    // Display remains initialized for text overlay
+    size_t freedSize = _videoSize;
+
+    if (_decoder) {
+        delete (MjpegClass*)_decoder;
+        _decoder = nullptr;
+    }
+    if (_stream) {
+        delete _stream;
+        _stream = nullptr;
+    }
+    if (_decodeBuf) {
+        free(_decodeBuf);
+        _decodeBuf = nullptr;
+    }
+    if (_videoBuf) {
+        free(_videoBuf);
+        _videoBuf = nullptr;
+        _videoSize = 0;
+    }
+    Serial.printf("VideoPlayer: Unloaded video (~%.1fKB freed)\n", freedSize / 1024.0f);
+}
+
+bool VideoPlayer::reloadVideo() {
+    // Reload video from SD card
+    if (_videoBuf) {
+        return true;  // Already loaded
+    }
+
+    if (!_loadVideo(VIDEO_PATH)) {
+        Serial.println("VideoPlayer: Failed to reload video");
+        return false;
+    }
+
+    Serial.printf("VideoPlayer: Reloaded video (%.1fKB)\n", _videoSize / 1024.0f);
+    return true;
+}
+
 void VideoPlayer::play() {
     if (!_powered || _paused || _textVisible || !_initialized) {
         static unsigned long lastDebug = 0;

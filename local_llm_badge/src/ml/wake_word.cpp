@@ -6,6 +6,7 @@
 #include "../../config.h"
 #include "../audio/mic_stream.h"  // For FEATURE_* constants
 
+#include <new>  // For placement new
 #include <ArduinoJson.h>
 #include <SD.h>
 
@@ -181,6 +182,11 @@ bool WakeWordDetector::_initInterpreter() {
         return false;
     }
 
+    // CRITICAL: Clear the arena to reset MicroAllocator state from any previous model
+    // This prevents "Model allocation started before finishing" errors
+    memset(_tensorArena, 0, TENSOR_ARENA_SIZE);
+    memset(_varArena, 0, VAR_ARENA_SIZE);
+
     _varAllocator = tflite::MicroAllocator::Create(_varArena, VAR_ARENA_SIZE);
     if (!_varAllocator) {
         Serial.println("WakeWord: Var allocator failed");
@@ -193,10 +199,11 @@ bool WakeWordDetector::_initInterpreter() {
         return false;
     }
 
-    // Static interpreter to avoid memory fragmentation
-    static tflite::MicroInterpreter static_interpreter(
+    // Use placement new to properly reconstruct the interpreter each time
+    // This ensures the constructor runs with fresh model/arena/resource vars
+    static uint8_t interpreterBuffer[sizeof(tflite::MicroInterpreter)] __attribute__((aligned(16)));
+    _interpreter = new (interpreterBuffer) tflite::MicroInterpreter(
         model, resolver, _tensorArena, TENSOR_ARENA_SIZE, _resourceVars);
-    _interpreter = &static_interpreter;
 
     if (_interpreter->AllocateTensors() != kTfLiteOk) {
         Serial.println("WakeWord: AllocateTensors failed");

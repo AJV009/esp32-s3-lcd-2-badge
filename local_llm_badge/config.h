@@ -30,6 +30,19 @@
 #define BTN_BOOT        0
 
 //==============================================================================
+// Mode Switches (GPIO 11-14 are free camera pins)
+//==============================================================================
+// BTN1: Voice disable switch (bridging 13 & 11)
+// When bridged: Logo loops forever, voice detection disabled
+#define BTN1_OUT        13  // Output pin (always LOW)
+#define BTN1_IN         11  // Input pin (PULLUP - reads LOW when bridged)
+
+// BTN2: Deep sleep switch (bridging 12 & 14)
+// When bridged: Enter deep sleep mode
+#define BTN2_OUT        12  // Output pin (always LOW)
+#define BTN2_IN         14  // Input pin (PULLUP - reads LOW when bridged)
+
+//==============================================================================
 // Microphones (INMP441 x2 - I2S0 RX)
 //==============================================================================
 #define MIC_BCK         2
@@ -63,7 +76,10 @@
 //==============================================================================
 // ML Memory Pool
 //==============================================================================
-#define ML_POOL_SIZE            (6 * 1024 * 1024)  // 6MB for largest model (LLM)
+// Pool is used for TFLite tensor arenas only (wake word ~550KB, audio encoder ~300KB)
+// LLM does its own PSRAM allocation when loading the model file
+// Keep this small to leave room for embeddings (2MB resident) and LLM model (6MB when active)
+#define ML_POOL_SIZE            (1 * 1024 * 1024)  // 1MB for tensor arenas
 
 //==============================================================================
 // Timing Configuration
@@ -77,7 +93,7 @@
 // Thresholds (defaults, can be overridden by SD card config)
 //==============================================================================
 #define DEFAULT_WAKE_THRESHOLD  0.5f
-#define DEFAULT_EMBED_THRESHOLD 0.7f
+#define DEFAULT_EMBED_THRESHOLD 0.3f  // Lowered for testing (was 0.7f)
 #define DEFAULT_LLM_TEMPERATURE 0.8f
 #define DEFAULT_LLM_TOPP        0.9f
 
@@ -88,8 +104,7 @@
 #define VIDEO_PATH              "/media/logo.mjpeg"
 #define WAKE_MODEL_PATH         "/models/wake_word.tflite"
 #define WAKE_CONFIG_PATH        "/models/wake_word.json"
-#define YAMNET_MODEL_PATH       "/models/yamnet.tflite"
-#define PROJECTION_MODEL_PATH   "/models/projection.tflite"
+#define AUDIO_ENCODER_PATH      "/models/audio_encoder.tflite"
 #define LLM_MODEL_PATH          "/models/llm_model.bin"
 #define TOKENIZER_PATH          "/models/tokenizer.bin"
 #define EMBEDDINGS_PATH         "/data/embeddings.bin"

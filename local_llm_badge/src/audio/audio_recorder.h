@@ -46,6 +46,10 @@ public:
     // Check if buffer is valid
     bool hasRecording() const { return _sampleCount > 0; }
 
+    // Save recording to SD card as WAV file (for debugging)
+    // Returns true if saved successfully
+    bool saveToSD(const char* filepath);
+
 private:
     int16_t* _buffer;
     size_t _targetSamples;
@@ -58,4 +62,5 @@ private:
 
     // Internal helpers
     bool _captureChunk();
+    void _warmUpMic();  // Discard first 2s of audio (mic stabilization)
 };
