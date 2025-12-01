@@ -3030,3 +3030,5441 @@ Summary:
 
  ⎿  Compacted (ctrl+o to see full summary)**
 
+_**User**_
+
+Alright so we developed a somewhat working version of the badge finally.
+All the code is here @local_llm_badge 
+And the plan we sort of followed is here @workbench/docs/OAISYS_BADGE_PLAN.md 
+
+I need you to first go through every file, flow and optimizations and all kinds of things we did in this local_llm_badge
+Most of the things were built from the prototypes in @workbench/working_protos
+Also the trainings models and stuff were done in @workbench/tests you can find folders with ipynb files here.
+You can also refer to different conversations in @.specstory/history (its a very long conversations history and md files, so read them carefully and do not exhaouse your whole context window just reading those md files)
+
+Finally I need you to create a multi part blogs series inside @workbench/blog_scratch_content 
+Before going into generating all the blog content, I want you to first gives the multi part blog plan, as in what are you intented to cover in what, and all the referencing files and stuff you can just to relative path mentions in this same repo from root perspective.
+Once I approve of this plan you can finally do the blogs.
+ultrathink through this, take time to do all the evaluations and stuff
+
+
+---
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<think><details><summary>Thought Process</summary>
+The user wants me to:
+1. Go through every file, flow, and optimizations in local_llm_badge
+2. Understand the prototypes in workbench/working_protos
+3. Look at training notebooks in workbench/tests
+4. Optionally reference conversation history in .specstory/history
+5. Create a multi-part blog series plan in workbench/blog_scratch_content
+6. Present the plan for approval before writing the actual blogs
+
+This is a substantial task. Let me break it down:
+
+1. First, I need to thoroughly explore local_llm_badge - read all source files
+2. Then understand the working prototypes
+3. Look at the training notebooks
+4. Understand the overall architecture and flow
+5. Create a blog series plan
+
+Let me start by exploring the local_llm_badge directory structure comprehensively. I'll use the Task tool with the Explore agent to get a thorough understanding of the codebase.
+
+Actually, since this is a complex multi-step task requiring careful exploration and planning, let me think about the best approach:
+
+1. I should explore local_llm_badge thoroughly
+2. I should look at the working prototypes to understand how each component evolved
+3. I should check the training notebooks
+4. I should maybe skim some of the conversation history for context
+
+Let me start by exploring the main firmware directory structure.
+</details></think>
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+I'll thoroughly analyze the codebase to create a comprehensive blog series plan. Let me start by exploring the local_llm_badge firmware structure, then the prototypes, training notebooks, and relevant history.
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<tool-use data-tool-type="generic" data-tool-name="TodoWrite"><details>
+**Agent task list:**
+- [⚡] 🌡️ Explore local_llm_badge firmware structure and all source files
+- [ ] 🌡️ Review working prototypes in workbench/working_protos
+- [ ] 🌡️ Examine training notebooks in workbench/tests
+- [ ] 🌡️ Skim relevant conversation history for context
+- [ ] 🌡️ Create multi-part blog series plan
+
+</details></tool-use>
+```
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+```
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<think><details><summary>Thought Process</summary>
+Let me start exploring the local_llm_badge directory structure thoroughly.
+</details></think>
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<tool-use data-tool-type="bash" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+ Find all source files in local_llm_badge
+
+`find /home/alphons/project/OAISYS25/badge/local_llm_badge -type f \( -name "*.cpp" -o -name "*.h" -o -name "*.ino" -o -name "*.json" \) | head -50`
+```
+/home/alphons/project/OAISYS25/badge/local_llm_badge/sd_data/models/wake_word.json
+/home/alphons/project/OAISYS25/badge/local_llm_badge/sd_data/config.json
+/home/alphons/project/OAISYS25/badge/local_llm_badge/src/display/video_player.h
+/home/alphons/project/OAISYS25/badge/local_llm_badge/src/display/video_player.cpp
+/home/alphons/project/OAISYS25/badge/local_llm_badge/src/sensors/orientation.h
+/home/alphons/project/OAISYS25/badge/local_llm_badge/src/sensors/orientation.cpp
+/home/alphons/project/OAISYS25/badge/local_llm_badge/src/audio/audio_recorder.h
+/home/alphons/project/OAISYS25/badge/local_llm_badge/src/audio/audio_recorder.cpp
+/home/alphons/project/OAISYS25/badge/local_llm_badge/src/audio/mic_stream.h
+/home/alphons/project/OAISYS25/badge/local_llm_badge/src/audio/mic_stream.cpp
+/home/alphons/project/OAISYS25/badge/local_llm_badge/src/ml/embed_search.h
+/home/alphons/project/OAISYS25/badge/local_llm_badge/src/ml/llm_core.h
+/home/alphons/project/OAISYS25/badge/local_llm_badge/src/ml/tokenizer.h
+/home/alphons/project/OAISYS25/badge/local_llm_badge/src/ml/tokenizer.cpp
+/home/alphons/project/OAISYS25/badge/local_llm_badge/src/ml/sampler.h
+/home/alphons/project/OAISYS25/badge/local_llm_badge/src/ml/sampler.cpp
+/home/alphons/project/OAISYS25/badge/local_llm_badge/src/ml/llm_inference.h
+/home/alphons/project/OAISYS25/badge/local_llm_badge/src/ml/audio_embed.h
+/home/alphons/project/OAISYS25/badge/local_llm_badge/src/ml/embed_search.cpp
+/home/alphons/project/OAISYS25/badge/local_llm_badge/src/ml/wake_word.h
+/home/alphons/project/OAISYS25/badge/local_llm_badge/src/ml/wake_word.cpp
+/home/alphons/project/OAISYS25/badge/local_llm_badge/src/ml/audio_embed.cpp
+/home/alphons/project/OAISYS25/badge/local_llm_badge/src/ml/llm_core.cpp
+/home/alphons/project/OAISYS25/badge/local_llm_badge/src/ml/llm_inference.cpp
+/home/alphons/project/OAISYS25/badge/local_llm_badge/src/tts/robot_tts.h
+/home/alphons/project/OAISYS25/badge/local_llm_badge/src/tts/robot_tts.cpp
+/home/alphons/project/OAISYS25/badge/local_llm_badge/config.h
+/home/alphons/project/OAISYS25/badge/local_llm_badge/local_llm_badge.ino
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<tool-use data-tool-type="bash" data-tool-name="Bash"><details>
+<summary>Tool use: **Bash**</summary>
+ List src directory structure
+
+`ls -la /home/alphons/project/OAISYS25/badge/local_llm_badge/src/`
+```
+total 0
+drwxr-xr-x 1 alphons alphons  48 Dec  2 01:20 .
+drwxr-xr-x 1 alphons alphons  92 Dec  2 01:18 ..
+drwxr-xr-x 1 alphons alphons 120 Nov 30 11:19 audio
+drwx------ 1 alphons alphons  60 Nov 30 11:27 display
+drwxr-xr-x 1 alphons alphons 360 Nov 30 11:36 ml
+drwx------ 1 alphons alphons  56 Nov 28 10:16 sensors
+drwxr-xr-x 1 alphons alphons  48 Nov 30 00:05 tts
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<think><details><summary>Thought Process</summary>
+Good, I can see the directory structure. Now let me read all the key source files to understand the implementation.
+</details></think>
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./local_llm_badge/local_llm_badge.ino`
+```
+     1→/*******************************************************************************
+     2→ * OAISYS25 Badge - Main Application
+     3→ *
+     4→ * A smart conference badge with:
+     5→ * - Animated logo display with gyro rotation
+     6→ * - Wake word activation ("Hey Daisy")
+     7→ * - Voice command processing via embeddings + LLM
+     8→ * - Robotic TTS output
+     9→ * - Deep sleep with shake-to-wake
+    10→ *
+    11→ * Phase 1: Video loop + text overlay + gyro rotation
+    12→ * Phase 2: Wake word detection + recording
+    13→ * Phase 3: Embedding extraction + similarity search
+    14→ * Phase 4: LLM inference + streaming text display
+    15→ * Phase 5: Robotic TTS output
+    16→ ******************************************************************************/
+    17→
+    18→#include "config.h"
+    19→#include "src/display/video_player.h"
+    20→#include "src/sensors/orientation.h"
+    21→#include "src/audio/mic_stream.h"
+    22→#include "src/audio/audio_recorder.h"
+    23→#include "src/ml/wake_word.h"
+    24→#include "src/ml/audio_embed.h"
+    25→#include "src/ml/embed_search.h"
+    26→#include "src/ml/llm_inference.h"
+    27→#include "src/tts/robot_tts.h"
+    28→
+    29→#include <SD.h>
+    30→#include <SPI.h>
+    31→#include <ArduinoJson.h>
+    32→#include <esp_heap_caps.h>  // For aligned PSRAM allocation
+    33→#include <esp_sleep.h>      // For deep sleep
+    34→
+    35→//==============================================================================
+    36→// Runtime Configuration (loaded from SD card)
+    37→//==============================================================================
+    38→struct RuntimeConfig {
+    39→    float wakeWordThreshold = DEFAULT_WAKE_THRESHOLD;
+    40→    float embedThreshold = DEFAULT_EMBED_THRESHOLD;
+    41→    float llmTemperature = DEFAULT_LLM_TEMPERATURE;
+    42→    float llmTopP = DEFAULT_LLM_TOPP;
+    43→    int llmMaxTokens = 128;
+    44→    unsigned long idleSleepMs = IDLE_SLEEP_MS;
+    45→    int recordDurationMs = RECORD_DURATION_MS;
+    46→} runtimeConfig;
+    47→
+    48→//==============================================================================
+    49→// Global Objects
+    50→//==============================================================================
+    51→
+    52→VideoPlayer video;
+    53→OrientationManager orientation;
+    54→
+    55→// Phase 2: Audio and wake word
+    56→MicStream micStream;
+    57→AudioRecorder recorder;
+    58→WakeWordDetector wakeWord;
+    59→
+    60→// Phase 3: Embedding + similarity search
+    61→AudioEmbedder audioEmbed;
+    62→EmbeddingSearch embedSearch;
+    63→float* queryEmbedding = nullptr;  // 256-dim embedding buffer
+    64→SearchResult lastSearchResult;
+    65→
+    66→// Phase 4: LLM inference
+    67→LLMInference llmInference;
+    68→String llmResponse;  // Accumulated response for display
+    69→bool llmGenerating = false;
+    70→
+    71→// Phase 5: TTS
+    72→RobotTTS tts;
+    73→bool ttsSpeaking = false;
+    74→
+    75→// Memory pool for ML models (6MB in PSRAM)
+    76→uint8_t* mlPool = nullptr;
+    77→
+    78→// Current application state
+    79→BadgeState currentState = STATE_BOOT;
+    80→unsigned long lastActivityTime = 0;
+    81→
+    82→// Wake word active flag (disabled during certain states)
+    83→bool wakeWordActive = false;
+    84→
+    85→// Mode switches
+    86→bool voiceDisabled = false;  // BTN1: when true, logo loops forever
+    87→
+    88→//==============================================================================
+    89→// Memory Pool Management
+    90→//==============================================================================
+    91→
+    92→bool initMemoryPool() {
+    93→    mlPool = (uint8_t*)ps_malloc(ML_POOL_SIZE);
+    94→    if (!mlPool) {
+    95→        Serial.println("ERROR: ML pool allocation failed");
+    96→        return false;
+    97→    }
+    98→    Serial.printf("ML Pool: %dKB allocated\n", ML_POOL_SIZE / 1024);
+    99→    return true;
+   100→}
+   101→
+   102→//==============================================================================
+   103→// Mode Switch Helpers
+   104→//==============================================================================
+   105→
+   106→void initSwitches() {
+   107→    // Configure output pins (always LOW)
+   108→    pinMode(BTN1_OUT, OUTPUT);
+   109→    digitalWrite(BTN1_OUT, LOW);
+   110→    pinMode(BTN2_OUT, OUTPUT);
+   111→    digitalWrite(BTN2_OUT, LOW);
+   112→
+   113→    // Configure input pins with internal pull-up
+   114→    pinMode(BTN1_IN, INPUT_PULLUP);
+   115→    pinMode(BTN2_IN, INPUT_PULLUP);
+   116→}
+   117→
+   118→bool isBTN1Bridged() {
+   119→    // Returns true when switch is bridged (input pulled LOW by output)
+   120→    return digitalRead(BTN1_IN) == LOW;
+   121→}
+   122→
+   123→bool isBTN2Bridged() {
+   124→    // Returns true when switch is bridged (input pulled LOW by output)
+   125→    return digitalRead(BTN2_IN) == LOW;
+   126→}
+   127→
+   128→void enterDeepSleep() {
+   129→    Serial.println("Entering deep sleep mode...");
+   130→
+   131→    // Turn off display backlight
+   132→    digitalWrite(LCD_BL, LOW);
+   133→
+   134→    // Configure BTN2_IN as wake-up source (when switch is opened, pin goes HIGH)
+   135→    // Wake on HIGH (switch opened)
+   136→    esp_sleep_enable_ext0_wakeup((gpio_num_t)BTN2_IN, HIGH);
+   137→
+   138→    // Enter deep sleep
+   139→    Serial.println("Sleeping...");
+   140→    delay(100);  // Let serial flush
+   141→    esp_deep_sleep_start();
+   142→}
+   143→
+   144→//==============================================================================
+   145→// Configuration Loading
+   146→//==============================================================================
+   147→
+   148→bool loadConfig() {
+   149→    File f = SD.open(CONFIG_PATH);
+   150→    if (!f) {
+   151→        Serial.println("Config: Using defaults (no config.json)");
+   152→        return false;
+   153→    }
+   154→
+   155→    StaticJsonDocument<512> doc;
+   156→    DeserializationError error = deserializeJson(doc, f);
+   157→    f.close();
+   158→
+   159→    if (error) {
+   160→        Serial.printf("Config: Parse error - %s\n", error.c_str());
+   161→        return false;
+   162→    }
+   163→
+   164→    // Load values with defaults as fallback
+   165→    runtimeConfig.wakeWordThreshold = doc["wake_word_threshold"] | DEFAULT_WAKE_THRESHOLD;
+   166→    runtimeConfig.embedThreshold = doc["embed_threshold"] | DEFAULT_EMBED_THRESHOLD;
+   167→    runtimeConfig.llmTemperature = doc["llm_temperature"] | DEFAULT_LLM_TEMPERATURE;
+   168→    runtimeConfig.llmTopP = doc["llm_topp"] | DEFAULT_LLM_TOPP;
+   169→    runtimeConfig.llmMaxTokens = doc["llm_max_tokens"] | 128;
+   170→    runtimeConfig.idleSleepMs = doc["idle_sleep_ms"] | IDLE_SLEEP_MS;
+   171→    runtimeConfig.recordDurationMs = doc["record_duration_ms"] | RECORD_DURATION_MS;
+   172→
+   173→    Serial.println("Config: Loaded from SD card");
+   174→    Serial.printf("  embed_threshold: %.2f\n", runtimeConfig.embedThreshold);
+   175→    Serial.printf("  llm_temperature: %.2f\n", runtimeConfig.llmTemperature);
+   176→    Serial.printf("  llm_max_tokens: %d\n", runtimeConfig.llmMaxTokens);
+   177→
+   178→    return true;
+   179→}
+   180→
+   181→//==============================================================================
+   182→// LLM Token Callback (Phase 4)
+   183→//==============================================================================
+   184→
+   185→void onLLMToken(const char* token, void* userData) {
+   186→    // Append token to response buffer and display
+   187→    llmResponse += token;
+   188→    video.appendText(token);
+   189→    Serial.print(token);  // Also print to serial for debugging
+   190→}
+   191→
+   192→//==============================================================================
+   193→// State Machine Helpers
+   194→//==============================================================================
+   195→
+   196→void setState(BadgeState newState) {
+   197→    if (currentState == newState) return;
+   198→
+   199→    Serial.printf("State: %d -> %d\n", currentState, newState);
+   200→
+   201→    // Exit current state
+   202→    switch (currentState) {
+   203→        case STATE_LOGO_LOOP:
+   204→            // Stop wake word detection and mic stream
+   205→            if (wakeWordActive) {
+   206→                wakeWord.end();
+   207→                micStream.end();
+   208→                wakeWordActive = false;
+   209→            }
+   210→            break;
+   211→        case STATE_DISPLAY_RESPONSE:
+   212→            video.hideText();
+   213→            break;
+   214→        case STATE_RECORDING:
+   215→            recorder.stopRecording();
+   216→            break;
+   217→        default:
+   218→            break;
+   219→    }
+   220→
+   221→    currentState = newState;
+   222→    lastActivityTime = millis();
+   223→
+   224→    // Enter new state
+   225→    switch (newState) {
+   226→        case STATE_LOGO_LOOP:
+   227→            video.resume();
+   228→            // Start wake word detection (unless voice disabled by BTN1)
+   229→            if (!voiceDisabled && mlPool) {
+   230→                if (micStream.begin()) {
+   231→                    if (wakeWord.begin(mlPool, ML_POOL_SIZE, WAKE_MODEL_PATH, WAKE_CONFIG_PATH)) {
+   232→                        wakeWordActive = true;
+   233→                        Serial.printf("Listening for \"%s\"...\n", wakeWord.getWakeWord());
+   234→                        // Refresh display after SD card access (wake word model loading)
+   235→                        video.refreshDisplay();
+   236→                    } else {
+   237→                        Serial.println("Wake word init failed");
+   238→                        micStream.end();
+   239→                    }
+   240→                } else {
+   241→                    Serial.println("Mic stream init failed");
+   242→                }
+   243→            } else if (voiceDisabled) {
+   244→                Serial.println("Voice disabled - logo loop only");
+   245→            }
+   246→            break;
+   247→        case STATE_RECORDING:
+   248→            // Pause video during recording
+   249→            video.pause();
+   250→            recorder.startRecording(runtimeConfig.recordDurationMs / 1000.0f);
+   251→            break;
+   252→        case STATE_DISPLAY_RESPONSE:
+   253→            // Keep logo playing - response already spoken via TTS
+   254→            video.resume();
+   255→            video.hideText();
+   256→            break;
+   257→        case STATE_EMBEDDING:
+   258→            // Keep video paused during processing (no text - looks cleaner)
+   259→            video.pause();
+   260→            video.hideText();
+   261→            printPSRAM("before audio encoder");
+   262→            // Load audio encoder model
+   263→            if (!audioEmbed.begin(mlPool, ML_POOL_SIZE, AUDIO_ENCODER_PATH)) {
+   264→                Serial.println("Audio encoder init failed - returning to logo");
+   265→                setState(STATE_TTS_SORRY);
+   266→            } else {
+   267→                printPSRAM("after audio encoder");
+   268→            }
+   269→            break;
+   270→        case STATE_SIMILARITY:
+   271→            // Audio encoder unloaded, search against embeddings
+   272→            audioEmbed.end();
+   273→            // Keep video paused (no text)
+   274→            break;
+   275→        case STATE_TTS_SORRY:
+   276→            // Keep logo playing - just speak the apology, no text needed
+   277→            video.resume();
+   278→            video.hideText();
+   279→            ttsSpeaking = true;
+   280→            break;
+   281→        case STATE_TTS_OUTPUT:
+   282→            // Pause video to show LLM response text
+   283→            video.pause();
+   284→            video.refreshDisplay();
+   285→            video.fillScreen(0x0000);  // BLACK background for text
+   286→            if (llmResponse.length() > 0) {
+   287→                video.showText(llmResponse.c_str());
+   288→            }
+   289→            ttsSpeaking = true;
+   290→            break;
+   291→        case STATE_LLM_INFERENCE:
+   292→            // Pause video to show streaming LLM text
+   293→            video.pause();
+   294→            video.refreshDisplay();
+   295→            video.fillScreen(0x0000);  // BLACK background for text
+   296→            video.clearText();
+   297→            video.showText("");  // Initialize empty text box
+   298→            llmResponse = "";
+   299→            llmGenerating = true;
+   300→
+   301→            // CRITICAL: Free everything possible to make room for LLM model (~7MB needed)
+   302→            // The search result is already saved in lastSearchResult.intent
+   303→            Serial.println("Freeing memory for LLM...");
+   304→
+   305→            // Free embeddings (~2MB)
+   306→            embedSearch.end();
+   307→            printPSRAM("after embed unload");
+   308→
+   309→            // Free ML pool (~1MB) - LLM doesn't use it
+   310→            if (mlPool) {
+   311→                free(mlPool);
+   312→                mlPool = nullptr;
+   313→                Serial.println("Freed ML pool");
+   314→            }
+   315→
+   316→            // Free video buffer (~1.2MB) - we only need display for text
+   317→            video.unloadVideo();
+   318→            printPSRAM("after video unload");
+   319→
+   320→            // Load LLM model
+   321→            Serial.println("Loading LLM model...");
+   322→            if (!llmInference.begin(nullptr, 0, LLM_MODEL_PATH, TOKENIZER_PATH)) {
+   323→                Serial.println("LLM init failed - showing intent only");
+   324→                video.showText(lastSearchResult.intent);
+   325→                llmGenerating = false;
+   326→                // Reload video buffer
+   327→                video.reloadVideo();
+   328→                // Reload embeddings since LLM failed
+   329→                embedSearch.begin(EMBEDDINGS_PATH, INTENTS_PATH);
+   330→                // Reallocate ML pool
+   331→                if (!mlPool) {
+   332→                    mlPool = (uint8_t*)ps_malloc(ML_POOL_SIZE);
+   333→                }
+   334→                setState(STATE_DISPLAY_RESPONSE);
+   335→            } else {
+   336→                // Apply runtime config
+   337→                llmInference.setTemperature(runtimeConfig.llmTemperature);
+   338→                llmInference.setTopP(runtimeConfig.llmTopP);
+   339→                llmInference.setMaxTokens(runtimeConfig.llmMaxTokens);
+   340→            }
+   341→            break;
+   342→        default:
+   343→            break;
+   344→    }
+   345→}
+   346→
+   347→void resetActivityTimer() {
+   348→    lastActivityTime = millis();
+   349→}
+   350→
+   351→//==============================================================================
+   352→// State Handlers
+   353→//==============================================================================
+   354→
+   355→void handleLogoLoop() {
+   356→    // Update orientation
+   357→    orientation.update();
+   358→    if (orientation.hasChanged()) {
+   359→        video.setRotation(orientation.getRotation());
+   360→    }
+   361→
+   362→    // Play video frame
+   363→    video.play();
+   364→
+   365→    // Check wake word if active
+   366→    if (wakeWordActive) {
+   367→        if (micStream.update()) {
+   368→            // New features available, run wake word detection
+   369→            if (wakeWord.detect(micStream.getFeatures())) {
+   370→                Serial.println(">>> WAKE WORD DETECTED! <<<");
+   371→                setState(STATE_RECORDING);
+   372→            }
+   373→        }
+   374→    }
+   375→}
+   376→
+   377→// Counter for recording filenames
+   378→static int recordingCounter = 0;
+   379→
+   380→void handleRecording() {
+   381→    // Update recording (video paused)
+   382→    if (recorder.update()) {
+   383→        // Recording complete
+   384→        Serial.printf("Recording done: %d samples (%.2fs)\n",
+   385→                      recorder.getSampleCount(), recorder.getDurationSec());
+   386→
+   387→        // Save recording to SD card for debugging
+   388→        char filepath[64];
+   389→        snprintf(filepath, sizeof(filepath), "/recordings/rec_%04d.wav", recordingCounter++);
+   390→
+   391→        // Create recordings directory if needed
+   392→        if (!SD.exists("/recordings")) {
+   393→            SD.mkdir("/recordings");
+   394→        }
+   395→        recorder.saveToSD(filepath);
+   396→
+   397→        // Phase 3: Extract embedding from recording
+   398→        setState(STATE_EMBEDDING);
+   399→    }
+   400→}
+   401→
+   402→void handleEmbedding() {
+   403→    // Run audio embedding extraction (blocking operation)
+   404→    if (audioEmbed.embed(recorder.getBuffer(), recorder.getSampleCount(), queryEmbedding)) {
+   405→        Serial.println("Embedding extracted successfully");
+   406→        setState(STATE_SIMILARITY);
+   407→    } else {
+   408→        Serial.println("Embedding extraction failed");
+   409→        setState(STATE_TTS_SORRY);
+   410→    }
+   411→}
+   412→
+   413→void handleSimilarity() {
+   414→    // Search for closest embedding
+   415→    lastSearchResult = embedSearch.search(queryEmbedding);
+   416→
+   417→    Serial.printf("Best match: %s (score: %.3f)\n",
+   418→                  lastSearchResult.intent, lastSearchResult.score);
+   419→
+   420→    if (lastSearchResult.score >= runtimeConfig.embedThreshold) {
+   421→        // Good match - run LLM inference
+   422→        Serial.println("High confidence match!");
+   423→        setState(STATE_LLM_INFERENCE);
+   424→    } else {
+   425→        // Low confidence - stash and apologize
+   426→        Serial.println("Low confidence - stashing");
+   427→        // TODO Phase 8: stash audio and embedding
+   428→        setState(STATE_TTS_SORRY);
+   429→    }
+   430→}
+   431→
+   432→void handleLLMInference() {
+   433→    if (!llmGenerating) {
+   434→        // Generation done - shouldn't normally get here as we transition immediately
+   435→        setState(STATE_TTS_OUTPUT);
+   436→        return;
+   437→    }
+   438→
+   439→    // Run LLM generation (blocking, but streams tokens via callback)
+   440→    Serial.printf("\nLLM generating response for: %s\n", lastSearchResult.intent);
+   441→    int tokensGenerated = llmInference.generate(lastSearchResult.intent, onLLMToken, nullptr);
+   442→    Serial.printf("\nLLM done: %d tokens\n", tokensGenerated);
+   443→
+   444→    llmGenerating = false;
+   445→
+   446→    // Unload LLM to free memory
+   447→    llmInference.end();
+   448→    printPSRAM("after LLM unload");
+   449→
+   450→    // Reload video buffer
+   451→    Serial.println("Reloading video...");
+   452→    if (!video.reloadVideo()) {
+   453→        Serial.println("WARNING: Failed to reload video!");
+   454→    }
+   455→    printPSRAM("after video reload");
+   456→
+   457→    // Reload embeddings now that LLM is unloaded
+   458→    Serial.println("Reloading embeddings...");
+   459→    if (!embedSearch.begin(EMBEDDINGS_PATH, INTENTS_PATH)) {
+   460→        Serial.println("WARNING: Failed to reload embeddings!");
+   461→    }
+   462→    printPSRAM("after embed reload");
+   463→
+   464→    // Reallocate ML pool for wake word / audio embed
+   465→    if (!mlPool) {
+   466→        mlPool = (uint8_t*)ps_malloc(ML_POOL_SIZE);
+   467→        if (mlPool) {
+   468→            Serial.println("ML pool reallocated");
+   469→        } else {
+   470→            Serial.println("WARNING: ML pool reallocation failed!");
+   471→        }
+   472→    }
+   473→    printPSRAM("after pool realloc");
+   474→
+   475→    // If no tokens generated, use the intent as fallback
+   476→    if (tokensGenerated == 0 && llmResponse.length() == 0) {
+   477→        llmResponse = lastSearchResult.intent;
+   478→    }
+   479→
+   480→    // Transition to TTS to speak the response
+   481→    setState(STATE_TTS_OUTPUT);
+   482→}
+   483→
+   484→void handleDisplayResponse() {
+   485→    // Auto-return to logo loop after 3 seconds
+   486→    if (millis() - lastActivityTime > 3000) {
+   487→        setState(STATE_LOGO_LOOP);
+   488→    }
+   489→}
+   490→
+   491→void handleTtsSorry() {
+   492→    if (ttsSpeaking) {
+   493→        // Speak apology (blocking)
+   494→        tts.speak("Sorry, I could not understand that.");
+   495→        ttsSpeaking = false;
+   496→        lastActivityTime = millis();
+   497→    }
+   498→
+   499→    // Wait a bit after speaking, then return to logo
+   500→    if (millis() - lastActivityTime > 1000) {
+   501→        setState(STATE_LOGO_LOOP);
+   502→    }
+   503→}
+   504→
+   505→void handleTtsOutput() {
+   506→    if (ttsSpeaking) {
+   507→        // Speak the LLM response (blocking)
+   508→        if (llmResponse.length() > 0) {
+   509→            tts.speak(llmResponse.c_str());
+   510→        }
+   511→        ttsSpeaking = false;
+   512→        lastActivityTime = millis();
+   513→    }
+   514→
+   515→    // Wait a bit after speaking, then return to logo
+   516→    if (millis() - lastActivityTime > 1000) {
+   517→        setState(STATE_LOGO_LOOP);
+   518→    }
+   519→}
+   520→
+   521→//==============================================================================
+   522→// Main Loop State Machine
+   523→//==============================================================================
+   524→
+   525→void loop() {
+   526→    // Check mode switches first
+   527→    // BTN2: Deep sleep when bridged
+   528→    if (isBTN2Bridged()) {
+   529→        enterDeepSleep();
+   530→        // Won't reach here - ESP will reset on wake
+   531→    }
+   532→
+   533→    // BTN1: Voice disable - check and update flag
+   534→    bool btn1State = isBTN1Bridged();
+   535→    if (btn1State != voiceDisabled) {
+   536→        voiceDisabled = btn1State;
+   537→        if (voiceDisabled) {
+   538→            Serial.println("BTN1: Voice DISABLED");
+   539→            // Stop wake word if currently active
+   540→            if (wakeWordActive) {
+   541→                wakeWord.end();
+   542→                micStream.end();
+   543→                wakeWordActive = false;
+   544→            }
+   545→        } else {
+   546→            Serial.println("BTN1: Voice ENABLED");
+   547→            // Will start wake word on next LOGO_LOOP transition
+   548→        }
+   549→    }
+   550→
+   551→    // State-specific handling
+   552→    switch (currentState) {
+   553→        case STATE_BOOT:
+   554→            // Initialization complete, transition to logo loop
+   555→            setState(STATE_LOGO_LOOP);
+   556→            break;
+   557→
+   558→        case STATE_LOGO_LOOP:
+   559→            handleLogoLoop();
+   560→            break;
+   561→
+   562→        case STATE_RECORDING:
+   563→            handleRecording();
+   564→            break;
+   565→
+   566→        case STATE_DISPLAY_RESPONSE:
+   567→            handleDisplayResponse();
+   568→            break;
+   569→
+   570→        case STATE_EMBEDDING:
+   571→            handleEmbedding();
+   572→            break;
+   573→
+   574→        case STATE_SIMILARITY:
+   575→            handleSimilarity();
+   576→            break;
+   577→
+   578→        case STATE_TTS_SORRY:
+   579→            handleTtsSorry();
+   580→            break;
+   581→
+   582→        case STATE_LLM_INFERENCE:
+   583→            handleLLMInference();
+   584→            break;
+   585→
+   586→        case STATE_TTS_OUTPUT:
+   587→            handleTtsOutput();
+   588→            break;
+   589→
+   590→        // Future states (Phase 6+)
+   591→        case STATE_STASH_DATA:
+   592→        case STATE_DEEP_SLEEP:
+   593→            // Not implemented yet - return to logo
+   594→            setState(STATE_LOGO_LOOP);
+   595→            break;
+   596→    }
+   597→}
+   598→
+   599→//==============================================================================
+   600→// Debug Helper
+   601→//==============================================================================
+   602→
+   603→void printPSRAM(const char* label) {
+   604→    Serial.printf("PSRAM [%s]: %dKB free / %dKB total\n",
+   605→                  label,
+   606→                  ESP.getFreePsram() / 1024,
+   607→                  ESP.getPsramSize() / 1024);
+   608→}
+   609→
+   610→//==============================================================================
+   611→// Setup
+   612→//==============================================================================
+   613→
+   614→void setup() {
+   615→    Serial.begin(115200);
+   616→    delay(500);
+   617→    Serial.println("\n=== OAISYS25 Badge Starting ===");
+   618→    printPSRAM("boot");
+   619→
+   620→    // Initialize mode switches first (before any other init)
+   621→    initSwitches();
+   622→
+   623→    // Check if BTN2 is bridged - go to deep sleep immediately
+   624→    if (isBTN2Bridged()) {
+   625→        Serial.println("BTN2 bridged - entering deep sleep");
+   626→        enterDeepSleep();
+   627→    }
+   628→
+   629→    // Check BTN1 for voice disable mode
+   630→    voiceDisabled = isBTN1Bridged();
+   631→    if (voiceDisabled) {
+   632→        Serial.println("BTN1 bridged - voice detection DISABLED");
+   633→    }
+   634→
+   635→    // Initialize orientation sensor (non-fatal if fails)
+   636→    if (!orientation.begin()) {
+   637→        Serial.println("IMU init failed - rotation disabled");
+   638→    } else {
+   639→        Serial.println("IMU: OK");
+   640→    }
+   641→
+   642→    // Initialize video player FIRST (this also inits display and SD card)
+   643→    // Must be before ML pool to avoid PSRAM fragmentation
+   644→    Serial.println("Loading video...");
+   645→    if (!video.begin()) {
+   646→        Serial.println("ERROR: Video init failed!");
+   647→        // Blink LED to indicate error
+   648→        pinMode(LCD_BL, OUTPUT);
+   649→        while (1) {
+   650→            digitalWrite(LCD_BL, !digitalRead(LCD_BL));
+   651→            delay(500);
+   652→        }
+   653→    }
+   654→    Serial.println("Video: OK");
+   655→    printPSRAM("after video");
+   656→
+   657→    // Load runtime configuration from SD card
+   658→    loadConfig();
+   659→
+   660→    // Initialize audio recorder (allocates PSRAM buffer)
+   661→    if (!recorder.begin()) {
+   662→        Serial.println("WARNING: Audio recorder init failed!");
+   663→    } else {
+   664→        Serial.println("Recorder: OK");
+   665→    }
+   666→    printPSRAM("after recorder");
+   667→
+   668→    // Phase 3: Allocate query embedding buffer (16-byte aligned for ESP-DSP SIMD)
+   669→    queryEmbedding = (float*)heap_caps_aligned_alloc(16,
+   670→        AUDIO_EMBEDDING_DIM * sizeof(float), MALLOC_CAP_SPIRAM);
+   671→    if (!queryEmbedding) {
+   672→        Serial.println("WARNING: Query embedding buffer alloc failed!");
+   673→    } else {
+   674→        Serial.println("Query buffer: OK (aligned)");
+   675→    }
+   676→
+   677→    // Phase 3: Load embedding search database (stays in memory)
+   678→    // IMPORTANT: Load embeddings BEFORE ML pool - they stay resident permanently
+   679→    if (!embedSearch.begin(EMBEDDINGS_PATH, INTENTS_PATH)) {
+   680→        Serial.println("WARNING: Embedding search init failed!");
+   681→        Serial.println("  Make sure SD card has /data/embeddings.bin and /data/intents.txt");
+   682→    } else {
+   683→        Serial.printf("EmbedSearch: %d intents loaded\n", embedSearch.getCount());
+   684→    }
+   685→    printPSRAM("after embeddings");
+   686→
+   687→    // Allocate ML memory pool (after embeddings to ensure they get contiguous memory)
+   688→    // Remaining PSRAM is used for ML models that load/unload dynamically
+   689→    if (!initMemoryPool()) {
+   690→        Serial.println("WARNING: ML features disabled (no pool)");
+   691→    }
+   692→    printPSRAM("after ML pool");
+   693→
+   694→    // Phase 5: Initialize TTS (non-fatal if fails)
+   695→    if (!tts.begin()) {
+   696→        Serial.println("WARNING: TTS init failed - speech disabled");
+   697→    } else {
+   698→        Serial.println("TTS: OK (SAM robotic voice)");
+   699→        // Say hello on startup
+   700→        tts.speak("Hello. I am ready.");
+   701→    }
+   702→
+   703→    // Ready to go
+   704→    lastActivityTime = millis();
+   705→    currentState = STATE_BOOT;
+   706→
+   707→    Serial.println("\n=== Badge Ready (Phase 5) ===");
+   708→    printPSRAM("final");
+   709→    Serial.println("Say 'Hey Daisy' to start recording");
+   710→    Serial.println("Recording -> Embedding -> Similarity -> LLM -> TTS");
+   711→}
+   712→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>
+
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./local_llm_badge/config.h`
+```
+     1→/*******************************************************************************
+     2→ * OAISYS25 Badge - Hardware Configuration
+     3→ * Central pin definitions and constants for all modules
+     4→ ******************************************************************************/
+     5→
+     6→#pragma once
+     7→
+     8→//==============================================================================
+     9→// Display (ST7789 240x320)
+    10→//==============================================================================
+    11→#define LCD_CS          45
+    12→#define LCD_DC          42
+    13→#define LCD_BL          1
+    14→#define LCD_SCK         39
+    15→#define LCD_MOSI        38
+    16→#define LCD_MISO        40
+    17→#define LCD_WIDTH       240
+    18→#define LCD_HEIGHT      320
+    19→
+    20→//==============================================================================
+    21→// IMU (QMI8658)
+    22→//==============================================================================
+    23→#define IMU_ADDRESS     0x6B
+    24→#define I2C_SDA         48
+    25→#define I2C_SCL         47
+    26→
+    27→//==============================================================================
+    28→// Button
+    29→//==============================================================================
+    30→#define BTN_BOOT        0
+    31→
+    32→//==============================================================================
+    33→// Mode Switches (GPIO 11-14 are free camera pins)
+    34→//==============================================================================
+    35→// BTN1: Voice disable switch (bridging 13 & 11)
+    36→// When bridged: Logo loops forever, voice detection disabled
+    37→#define BTN1_OUT        13  // Output pin (always LOW)
+    38→#define BTN1_IN         11  // Input pin (PULLUP - reads LOW when bridged)
+    39→
+    40→// BTN2: Deep sleep switch (bridging 12 & 14)
+    41→// When bridged: Enter deep sleep mode
+    42→#define BTN2_OUT        12  // Output pin (always LOW)
+    43→#define BTN2_IN         14  // Input pin (PULLUP - reads LOW when bridged)
+    44→
+    45→//==============================================================================
+    46→// Microphones (INMP441 x2 - I2S0 RX)
+    47→//==============================================================================
+    48→#define MIC_BCK         2
+    49→#define MIC_WS          4
+    50→#define MIC_DIN         18
+    51→#define MIC_I2S_PORT    I2S_NUM_0
+    52→
+    53→//==============================================================================
+    54→// Speaker (MAX98357A - I2S1 TX)
+    55→//==============================================================================
+    56→#define SPK_BCLK        6
+    57→#define SPK_LRC         7
+    58→#define SPK_DOUT        8
+    59→#define SPK_I2S_PORT    I2S_NUM_1
+    60→
+    61→//==============================================================================
+    62→// SD Card (shared SPI with LCD)
+    63→//==============================================================================
+    64→#define SD_CS           41
+    65→#define SD_SCK          LCD_SCK
+    66→#define SD_MOSI         LCD_MOSI
+    67→#define SD_MISO         LCD_MISO
+    68→
+    69→//==============================================================================
+    70→// Audio Configuration
+    71→//==============================================================================
+    72→#define AUDIO_SAMPLE_RATE       16000
+    73→#define AUDIO_BITS_PER_SAMPLE   16
+    74→#define RECORD_DURATION_MS      5000  // 5 seconds recording
+    75→
+    76→//==============================================================================
+    77→// ML Memory Pool
+    78→//==============================================================================
+    79→// Pool is used for TFLite tensor arenas only (wake word ~550KB, audio encoder ~300KB)
+    80→// LLM does its own PSRAM allocation when loading the model file
+    81→// Keep this small to leave room for embeddings (2MB resident) and LLM model (6MB when active)
+    82→#define ML_POOL_SIZE            (1 * 1024 * 1024)  // 1MB for tensor arenas
+    83→
+    84→//==============================================================================
+    85→// Timing Configuration
+    86→//==============================================================================
+    87→#define IDLE_SLEEP_MS           300000  // 5 minutes before deep sleep
+    88→#define WIFI_SCAN_INTERVAL_MS   30000   // Check WiFi every 30 seconds
+    89→#define ORIENTATION_POLL_MS     50      // IMU poll at 20Hz
+    90→#define ORIENTATION_DEBOUNCE_MS 1000    // 1 second stability for rotation
+    91→
+    92→//==============================================================================
+    93→// Thresholds (defaults, can be overridden by SD card config)
+    94→//==============================================================================
+    95→#define DEFAULT_WAKE_THRESHOLD  0.5f
+    96→#define DEFAULT_EMBED_THRESHOLD 0.3f  // Lowered for testing (was 0.7f)
+    97→#define DEFAULT_LLM_TEMPERATURE 0.8f
+    98→#define DEFAULT_LLM_TOPP        0.9f
+    99→
+   100→//==============================================================================
+   101→// File Paths (SD card)
+   102→//==============================================================================
+   103→#define CONFIG_PATH             "/config.json"
+   104→#define VIDEO_PATH              "/media/logo.mjpeg"
+   105→#define WAKE_MODEL_PATH         "/models/wake_word.tflite"
+   106→#define WAKE_CONFIG_PATH        "/models/wake_word.json"
+   107→#define AUDIO_ENCODER_PATH      "/models/audio_encoder.tflite"
+   108→#define LLM_MODEL_PATH          "/models/llm_model.bin"
+   109→#define TOKENIZER_PATH          "/models/tokenizer.bin"
+   110→#define EMBEDDINGS_PATH         "/data/embeddings.bin"
+   111→#define INTENTS_PATH            "/data/intents.txt"
+   112→#define STASH_DIR               "/stash"
+   113→
+   114→//==============================================================================
+   115→// State Machine States
+   116→//==============================================================================
+   117→enum BadgeState {
+   118→    STATE_BOOT,
+   119→    STATE_LOGO_LOOP,
+   120→    STATE_DEEP_SLEEP,
+   121→    STATE_RECORDING,
+   122→    STATE_EMBEDDING,
+   123→    STATE_SIMILARITY,
+   124→    STATE_LLM_INFERENCE,
+   125→    STATE_DISPLAY_RESPONSE,
+   126→    STATE_TTS_OUTPUT,
+   127→    STATE_STASH_DATA,
+   128→    STATE_TTS_SORRY
+   129→};
+   130→
+   131→//==============================================================================
+   132→// Text Overlay Colors (Matrix green theme)
+   133→//==============================================================================
+   134→#define TEXT_COLOR              0x07E0  // Green (RGB565)
+   135→#define TEXT_BG_COLOR           0x0000  // Black
+   136→#define TEXT_BORDER_COLOR       0x07E0  // Green border
+   137→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>
+
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<think><details><summary>Thought Process</summary>
+Excellent! I've read the main sketch and config file. Now let me read all the modules in the src directory systematically.
+</details></think>
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./local_llm_badge/src/display/video_player.h`
+```
+     1→/*******************************************************************************
+     2→ * OAISYS Badge - Video Player Module
+     3→ * MJPEG playback with gyro rotation and text overlay support
+     4→ ******************************************************************************/
+     5→
+     6→#pragma once
+     7→
+     8→#include <Arduino.h>
+     9→#include <Stream.h>
+    10→#include <JPEGDEC.h>
+    11→
+    12→// Forward declare to avoid circular includes
+    13→class Arduino_GFX;
+    14→
+    15→//==============================================================================
+    16→// Memory Stream - Wraps PSRAM buffer as a Stream for MJPEG decoder
+    17→//==============================================================================
+    18→class MemoryStream : public Stream {
+    19→public:
+    20→    MemoryStream(uint8_t* buffer, size_t size);
+    21→
+    22→    int available() override;
+    23→    int read() override;
+    24→    int peek() override;
+    25→    size_t readBytes(char* buffer, size_t length) override;
+    26→    void reset();
+    27→
+    28→    // Required Stream methods (write not supported)
+    29→    size_t write(uint8_t) override { return 0; }
+    30→    void flush() override {}
+    31→
+    32→private:
+    33→    uint8_t* _buffer;
+    34→    size_t _size;
+    35→    size_t _position;
+    36→};
+    37→
+    38→//==============================================================================
+    39→// Video Player - Handles MJPEG playback and display
+    40→//==============================================================================
+    41→class VideoPlayer {
+    42→public:
+    43→    VideoPlayer();
+    44→    ~VideoPlayer();
+    45→
+    46→    // Lifecycle
+    47→    bool begin(const char* videoPath = nullptr);  // nullptr = use FFat /output.mjpeg
+    48→    void end();
+    49→
+    50→    // Playback control
+    51→    void play();           // Decode and display one frame
+    52→    void pause();
+    53→    void resume();
+    54→    void togglePause();
+    55→    bool isPaused() const { return _paused; }
+    56→
+    57→    // Power control
+    58→    void powerOff();       // Blank screen + backlight off
+    59→    void powerOn();        // Restore display + backlight
+    60→    void togglePower();
+    61→    bool isPowered() const { return _powered; }
+    62→
+    63→    // Memory management - free video buffer to make room for LLM
+    64→    void unloadVideo();    // Free video buffer (~1.2MB)
+    65→    bool reloadVideo();    // Reload video from SD card
+    66→
+    67→    // Orientation
+    68→    void setRotation(uint8_t rotation);
+    69→    uint8_t getRotation() const { return _rotation; }
+    70→
+    71→    // Text overlay (pauses video, shows text box)
+    72→    void showText(const char* text);
+    73→    void appendText(const char* chunk);  // For streaming LLM output
+    74→    void clearText();
+    75→    void hideText();                      // Resume video playback
+    76→    bool isTextVisible() const { return _textVisible; }
+    77→
+    78→    // Get display for direct access if needed
+    79→    Arduino_GFX* getDisplay() { return _display; }
+    80→
+    81→    // Fill screen with solid color (RGB565)
+    82→    void fillScreen(uint16_t color);
+    83→
+    84→    // Refresh display after SPI bus conflicts (e.g., after SD card access)
+    85→    void refreshDisplay();
+    86→
+    87→private:
+    88→    // Display
+    89→    Arduino_GFX* _display;
+    90→    uint8_t _rotation;
+    91→
+    92→    // Video buffer (PSRAM)
+    93→    uint8_t* _videoBuf;
+    94→    size_t _videoSize;
+    95→    MemoryStream* _stream;
+    96→
+    97→    // Decoder
+    98→    uint8_t* _decodeBuf;
+    99→    void* _decoder;  // MjpegClass* (forward declared to keep header clean)
+   100→
+   101→    // State
+   102→    bool _paused;
+   103→    bool _powered;
+   104→    bool _initialized;
+   105→
+   106→    // Text overlay
+   107→    bool _textVisible;
+   108→    String _currentText;
+   109→
+   110→    // JPEG draw callback (needs static for C callback)
+   111→    static VideoPlayer* _instance;
+   112→    static int _drawCallback(JPEGDRAW* pDraw);
+   113→
+   114→    // Internal helpers
+   115→    void _drawTextBox();
+   116→    void _initDisplay();
+   117→    bool _loadVideo(const char* path);
+   118→};
+   119→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>
+
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./local_llm_badge/src/display/video_player.cpp`
+```
+     1→/*******************************************************************************
+     2→ * OAISYS Badge - Video Player Implementation
+     3→ ******************************************************************************/
+     4→
+     5→#include "video_player.h"
+     6→#include "../../config.h"
+     7→
+     8→#include <SD.h>
+     9→#include <SPI.h>
+    10→#include <Arduino_GFX_Library.h>
+    11→#include <JPEGDEC.h>
+    12→
+    13→// Include MjpegClass inline to avoid separate header management
+    14→#define READ_BUFFER_SIZE 1024
+    15→
+    16→class MjpegClass {
+    17→public:
+    18→    bool setup(Stream *input, uint8_t *mjpeg_buf, JPEG_DRAW_CALLBACK *pfnDraw,
+    19→               bool useBigEndian, int x, int y, int widthLimit, int heightLimit) {
+    20→        _input = input;
+    21→        _mjpeg_buf = mjpeg_buf;
+    22→        _pfnDraw = pfnDraw;
+    23→        _useBigEndian = useBigEndian;
+    24→        _x = x;
+    25→        _y = y;
+    26→        _widthLimit = widthLimit;
+    27→        _heightLimit = heightLimit;
+    28→        _inputindex = 0;
+    29→
+    30→        if (!_read_buf) {
+    31→            _read_buf = (uint8_t *)malloc(READ_BUFFER_SIZE);
+    32→        }
+    33→        return _read_buf != nullptr;
+    34→    }
+    35→
+    36→    bool readMjpegBuf() {
+    37→        if (_inputindex == 0) {
+    38→            _buf_read = _input->readBytes(_read_buf, READ_BUFFER_SIZE);
+    39→            _inputindex += _buf_read;
+    40→        }
+    41→        _mjpeg_buf_offset = 0;
+    42→        int i = 0;
+    43→        bool found_FFD8 = false;
+    44→
+    45→        while ((_buf_read > 0) && (!found_FFD8)) {
+    46→            i = 0;
+    47→            while ((i < _buf_read) && (!found_FFD8)) {
+    48→                if ((_read_buf[i] == 0xFF) && (_read_buf[i + 1] == 0xD8)) {
+    49→                    found_FFD8 = true;
+    50→                }
+    51→                ++i;
+    52→            }
+    53→            if (found_FFD8) {
+    54→                --i;
+    55→            } else {
+    56→                _buf_read = _input->readBytes(_read_buf, READ_BUFFER_SIZE);
+    57→            }
+    58→        }
+    59→
+    60→        uint8_t *_p = _read_buf + i;
+    61→        _buf_read -= i;
+    62→        bool found_FFD9 = false;
+    63→
+    64→        if (_buf_read > 0) {
+    65→            i = 3;
+    66→            while ((_buf_read > 0) && (!found_FFD9)) {
+    67→                if ((_mjpeg_buf_offset > 0) && (_mjpeg_buf[_mjpeg_buf_offset - 1] == 0xFF) && (_p[0] == 0xD9)) {
+    68→                    found_FFD9 = true;
+    69→                } else {
+    70→                    while ((i < _buf_read) && (!found_FFD9)) {
+    71→                        if ((_p[i] == 0xFF) && (_p[i + 1] == 0xD9)) {
+    72→                            found_FFD9 = true;
+    73→                            ++i;
+    74→                        }
+    75→                        ++i;
+    76→                    }
+    77→                }
+    78→
+    79→                memcpy(_mjpeg_buf + _mjpeg_buf_offset, _p, i);
+    80→                _mjpeg_buf_offset += i;
+    81→                size_t o = _buf_read - i;
+    82→
+    83→                if (o > 0) {
+    84→                    memcpy(_read_buf, _p + i, o);
+    85→                    _buf_read = _input->readBytes(_read_buf + o, READ_BUFFER_SIZE - o);
+    86→                    _p = _read_buf;
+    87→                    _inputindex += _buf_read;
+    88→                    _buf_read += o;
+    89→                } else {
+    90→                    _buf_read = _input->readBytes(_read_buf, READ_BUFFER_SIZE);
+    91→                    _p = _read_buf;
+    92→                    _inputindex += _buf_read;
+    93→                }
+    94→                i = 0;
+    95→            }
+    96→            return found_FFD9;
+    97→        }
+    98→        return false;
+    99→    }
+   100→
+   101→    bool drawJpg() {
+   102→        _remain = _mjpeg_buf_offset;
+   103→
+   104→        if (_jpeg.openRAM(_mjpeg_buf, _remain, _pfnDraw) != 1) return false;
+   105→
+   106→        if (_scale == -1) {
+   107→            int iMaxMCUs;
+   108→            int w = _jpeg.getWidth();
+   109→            int h = _jpeg.getHeight();
+   110→            float ratio = (float)h / _heightLimit;
+   111→
+   112→            if (ratio <= 1) {
+   113→                _scale = 0;
+   114→                iMaxMCUs = _widthLimit / 16;
+   115→            } else if (ratio <= 2) {
+   116→                _scale = JPEG_SCALE_HALF;
+   117→                iMaxMCUs = _widthLimit / 8;
+   118→                w /= 2;
+   119→                h /= 2;
+   120→            } else if (ratio <= 4) {
+   121→                _scale = JPEG_SCALE_QUARTER;
+   122→                iMaxMCUs = _widthLimit / 4;
+   123→                w /= 4;
+   124→                h /= 4;
+   125→            } else {
+   126→                _scale = JPEG_SCALE_EIGHTH;
+   127→                iMaxMCUs = _widthLimit / 2;
+   128→                w /= 8;
+   129→                h /= 8;
+   130→            }
+   131→
+   132→            _jpeg.setMaxOutputSize(iMaxMCUs);
+   133→            _x = (w > _widthLimit) ? 0 : ((_widthLimit - w) / 2);
+   134→            _y = (_heightLimit - h) / 2;
+   135→        }
+   136→
+   137→        if (_useBigEndian) {
+   138→            _jpeg.setPixelType(RGB565_BIG_ENDIAN);
+   139→        }
+   140→
+   141→        if (_jpeg.decode(_x, _y, _scale) != 1) {
+   142→            _jpeg.close();
+   143→            return false;
+   144→        }
+   145→
+   146→        _jpeg.close();
+   147→        return true;
+   148→    }
+   149→
+   150→    void reset() {
+   151→        _inputindex = 0;
+   152→        _buf_read = 0;
+   153→        _mjpeg_buf_offset = 0;
+   154→    }
+   155→
+   156→private:
+   157→    Stream *_input;
+   158→    uint8_t *_mjpeg_buf;
+   159→    JPEG_DRAW_CALLBACK *_pfnDraw;
+   160→    bool _useBigEndian;
+   161→    int _x, _y, _widthLimit, _heightLimit;
+   162→    uint8_t *_read_buf = nullptr;
+   163→    int32_t _mjpeg_buf_offset = 0;
+   164→    JPEGDEC _jpeg;
+   165→    int _scale = -1;
+   166→    int32_t _inputindex = 0;
+   167→    int32_t _buf_read;
+   168→    int32_t _remain = 0;
+   169→};
+   170→
+   171→//==============================================================================
+   172→// MemoryStream Implementation
+   173→//==============================================================================
+   174→
+   175→MemoryStream::MemoryStream(uint8_t* buffer, size_t size)
+   176→    : _buffer(buffer), _size(size), _position(0) {}
+   177→
+   178→int MemoryStream::available() {
+   179→    return _size - _position;
+   180→}
+   181→
+   182→int MemoryStream::read() {
+   183→    return (_position < _size) ? _buffer[_position++] : -1;
+   184→}
+   185→
+   186→int MemoryStream::peek() {
+   187→    return (_position < _size) ? _buffer[_position] : -1;
+   188→}
+   189→
+   190→size_t MemoryStream::readBytes(char* buffer, size_t length) {
+   191→    size_t n = min(length, _size - _position);
+   192→    memcpy(buffer, _buffer + _position, n);
+   193→    _position += n;
+   194→    return n;
+   195→}
+   196→
+   197→void MemoryStream::reset() {
+   198→    _position = 0;
+   199→}
+   200→
+   201→//==============================================================================
+   202→// VideoPlayer Implementation
+   203→//==============================================================================
+   204→
+   205→VideoPlayer* VideoPlayer::_instance = nullptr;
+   206→
+   207→VideoPlayer::VideoPlayer()
+   208→    : _display(nullptr)
+   209→    , _rotation(1)
+   210→    , _videoBuf(nullptr)
+   211→    , _videoSize(0)
+   212→    , _stream(nullptr)
+   213→    , _decodeBuf(nullptr)
+   214→    , _decoder(nullptr)
+   215→    , _paused(false)
+   216→    , _powered(true)
+   217→    , _initialized(false)
+   218→    , _textVisible(false)
+   219→{
+   220→    _instance = this;
+   221→}
+   222→
+   223→VideoPlayer::~VideoPlayer() {
+   224→    end();
+   225→}
+   226→
+   227→int VideoPlayer::_drawCallback(JPEGDRAW* pDraw) {
+   228→    if (_instance && _instance->_display) {
+   229→        _instance->_display->draw16bitBeRGBBitmap(pDraw->x, pDraw->y, pDraw->pPixels, pDraw->iWidth, pDraw->iHeight);
+   230→    }
+   231→    return 1;
+   232→}
+   233→
+   234→void VideoPlayer::_initDisplay() {
+   235→    // Use FSPI bus explicitly (same as factory demo) to avoid conflicts with SD card
+   236→    Arduino_DataBus* bus = new Arduino_ESP32SPI(LCD_DC, LCD_CS, LCD_SCK, LCD_MOSI, LCD_MISO, FSPI, true);
+   237→    _display = new Arduino_ST7789(bus, -1, _rotation, true, LCD_WIDTH, LCD_HEIGHT);
+   238→
+   239→    if (!_display->begin()) {
+   240→        return;
+   241→    }
+   242→
+   243→    pinMode(LCD_BL, OUTPUT);
+   244→    digitalWrite(LCD_BL, HIGH);
+   245→    _display->fillScreen(BLACK);
+   246→}
+   247→
+   248→bool VideoPlayer::_loadVideo(const char* path) {
+   249→    File f;
+   250→
+   251→    // Initialize SPI bus (FSPI) and SD card - same bus as display
+   252→    static SPIClass sdSpi(FSPI);
+   253→    sdSpi.begin(SD_SCK, SD_MISO, SD_MOSI, SD_CS);
+   254→    if (!SD.begin(SD_CS, sdSpi)) {
+   255→        Serial.println("SD card init failed!");
+   256→        return false;
+   257→    }
+   258→
+   259→    // Use provided path or default VIDEO_PATH
+   260→    const char* videoFile = path ? path : VIDEO_PATH;
+   261→    f = SD.open(videoFile, FILE_READ);
+   262→
+   263→    if (!f) {
+   264→        return false;
+   265→    }
+   266→
+   267→    _videoSize = f.size();
+   268→    _videoBuf = (uint8_t*)ps_malloc(_videoSize);
+   269→    if (!_videoBuf) {
+   270→        f.close();
+   271→        return false;
+   272→    }
+   273→
+   274→    if (f.read(_videoBuf, _videoSize) != _videoSize) {
+   275→        free(_videoBuf);
+   276→        _videoBuf = nullptr;
+   277→        f.close();
+   278→        return false;
+   279→    }
+   280→    f.close();
+   281→
+   282→    // Create stream and decoder
+   283→    _stream = new MemoryStream(_videoBuf, _videoSize);
+   284→    _decodeBuf = (uint8_t*)malloc(LCD_WIDTH * LCD_HEIGHT / 2);
+   285→    if (!_decodeBuf) {
+   286→        return false;
+   287→    }
+   288→
+   289→    _decoder = new MjpegClass();
+   290→    MjpegClass* mjpeg = (MjpegClass*)_decoder;
+   291→
+   292→    // Note: With rotation=1, effective display is 320x240 (landscape)
+   293→    // MjpegClass uses these for scaling and centering calculations
+   294→    return mjpeg->setup(_stream, _decodeBuf, _drawCallback, true, 0, 0, LCD_HEIGHT, LCD_WIDTH);
+   295→}
+   296→
+   297→bool VideoPlayer::begin(const char* videoPath) {
+   298→    if (_initialized) return true;
+   299→
+   300→    _initDisplay();
+   301→    if (!_display) return false;
+   302→
+   303→    if (!_loadVideo(videoPath)) {
+   304→        return false;
+   305→    }
+   306→
+   307→    _initialized = true;
+   308→    return true;
+   309→}
+   310→
+   311→void VideoPlayer::end() {
+   312→    if (_decoder) {
+   313→        delete (MjpegClass*)_decoder;
+   314→        _decoder = nullptr;
+   315→    }
+   316→    if (_stream) {
+   317→        delete _stream;
+   318→        _stream = nullptr;
+   319→    }
+   320→    if (_decodeBuf) {
+   321→        free(_decodeBuf);
+   322→        _decodeBuf = nullptr;
+   323→    }
+   324→    if (_videoBuf) {
+   325→        free(_videoBuf);
+   326→        _videoBuf = nullptr;
+   327→    }
+   328→    _initialized = false;
+   329→}
+   330→
+   331→void VideoPlayer::unloadVideo() {
+   332→    // Free video buffer and decoder to make room for LLM (~1.2MB)
+   333→    // Display remains initialized for text overlay
+   334→    size_t freedSize = _videoSize;
+   335→
+   336→    if (_decoder) {
+   337→        delete (MjpegClass*)_decoder;
+   338→        _decoder = nullptr;
+   339→    }
+   340→    if (_stream) {
+   341→        delete _stream;
+   342→        _stream = nullptr;
+   343→    }
+   344→    if (_decodeBuf) {
+   345→        free(_decodeBuf);
+   346→        _decodeBuf = nullptr;
+   347→    }
+   348→    if (_videoBuf) {
+   349→        free(_videoBuf);
+   350→        _videoBuf = nullptr;
+   351→        _videoSize = 0;
+   352→    }
+   353→    Serial.printf("VideoPlayer: Unloaded video (~%.1fKB freed)\n", freedSize / 1024.0f);
+   354→}
+   355→
+   356→bool VideoPlayer::reloadVideo() {
+   357→    // Reload video from SD card
+   358→    if (_videoBuf) {
+   359→        return true;  // Already loaded
+   360→    }
+   361→
+   362→    if (!_loadVideo(VIDEO_PATH)) {
+   363→        Serial.println("VideoPlayer: Failed to reload video");
+   364→        return false;
+   365→    }
+   366→
+   367→    Serial.printf("VideoPlayer: Reloaded video (%.1fKB)\n", _videoSize / 1024.0f);
+   368→    return true;
+   369→}
+   370→
+   371→void VideoPlayer::play() {
+   372→    if (!_powered || _paused || _textVisible || !_initialized) {
+   373→        static unsigned long lastDebug = 0;
+   374→        if (millis() - lastDebug > 2000) {
+   375→            lastDebug = millis();
+   376→            Serial.printf("play() skip: pwr=%d pause=%d txt=%d init=%d\n",
+   377→                          _powered, _paused, _textVisible, _initialized);
+   378→        }
+   379→        return;
+   380→    }
+   381→
+   382→    MjpegClass* mjpeg = (MjpegClass*)_decoder;
+   383→    if (mjpeg->readMjpegBuf()) {
+   384→        mjpeg->drawJpg();
+   385→    } else {
+   386→        // Loop video
+   387→        _stream->reset();
+   388→        mjpeg->reset();
+   389→    }
+   390→}
+   391→
+   392→void VideoPlayer::pause() {
+   393→    _paused = true;
+   394→}
+   395→
+   396→void VideoPlayer::resume() {
+   397→    Serial.printf("resume() called: was pwr=%d pause=%d\n", _powered, _paused);
+   398→    _paused = false;
+   399→    _powered = true;  // Ensure powered on when resuming
+   400→}
+   401→
+   402→void VideoPlayer::togglePause() {
+   403→    _paused = !_paused;
+   404→}
+   405→
+   406→void VideoPlayer::powerOff() {
+   407→    Serial.println("!!! powerOff() called !!!");
+   408→    if (!_powered) return;
+   409→    _powered = false;
+   410→    _paused = true;
+   411→    if (_display) {
+   412→        _display->fillScreen(BLACK);
+   413→    }
+   414→    digitalWrite(LCD_BL, LOW);
+   415→}
+   416→
+   417→void VideoPlayer::powerOn() {
+   418→    if (_powered) return;
+   419→    _powered = true;
+   420→    _paused = false;
+   421→    digitalWrite(LCD_BL, HIGH);
+   422→}
+   423→
+   424→void VideoPlayer::togglePower() {
+   425→    if (_powered) {
+   426→        powerOff();
+   427→    } else {
+   428→        powerOn();
+   429→    }
+   430→}
+   431→
+   432→void VideoPlayer::setRotation(uint8_t rotation) {
+   433→    _rotation = rotation;
+   434→    if (_display) {
+   435→        _display->setRotation(rotation);
+   436→    }
+   437→}
+   438→
+   439→void VideoPlayer::_drawTextBox() {
+   440→    if (!_display || _currentText.length() == 0) return;
+   441→
+   442→    // Get actual display dimensions (accounts for rotation)
+   443→    int dispWidth = _display->width();
+   444→    int dispHeight = _display->height();
+   445→
+   446→    // Text box dimensions
+   447→    const int boxHeight = 80;
+   448→    const int boxMargin = 5;
+   449→    const int textPadding = 8;
+   450→    const int boxY = dispHeight - boxHeight - boxMargin;
+   451→
+   452→    // Draw semi-transparent background
+   453→    _display->fillRect(boxMargin, boxY, dispWidth - 2 * boxMargin, boxHeight, TEXT_BG_COLOR);
+   454→
+   455→    // Draw border
+   456→    _display->drawRect(boxMargin, boxY, dispWidth - 2 * boxMargin, boxHeight, TEXT_BORDER_COLOR);
+   457→    _display->drawRect(boxMargin + 1, boxY + 1, dispWidth - 2 * boxMargin - 2, boxHeight - 2, TEXT_BORDER_COLOR);
+   458→
+   459→    // Draw text
+   460→    _display->setTextColor(TEXT_COLOR);
+   461→    _display->setTextSize(2);
+   462→    _display->setTextWrap(true);
+   463→
+   464→    // Calculate text position
+   465→    int textX = boxMargin + textPadding;
+   466→    int textY = boxY + textPadding;
+   467→
+   468→    _display->setCursor(textX, textY);
+   469→
+   470→    // Word wrap manually for better control
+   471→    String remaining = _currentText;
+   472→    int lineWidth = dispWidth - 2 * boxMargin - 2 * textPadding;
+   473→    int charWidth = 12;  // Approximate width per char at size 2
+   474→    int charsPerLine = lineWidth / charWidth;
+   475→    int lineHeight = 20;
+   476→    int maxLines = (boxHeight - 2 * textPadding) / lineHeight;
+   477→
+   478→    int line = 0;
+   479→    while (remaining.length() > 0 && line < maxLines) {
+   480→        String lineToPrint;
+   481→        if (remaining.length() <= charsPerLine) {
+   482→            lineToPrint = remaining;
+   483→            remaining = "";
+   484→        } else {
+   485→            // Find last space before limit
+   486→            int breakPoint = charsPerLine;
+   487→            while (breakPoint > 0 && remaining[breakPoint] != ' ') {
+   488→                breakPoint--;
+   489→            }
+   490→            if (breakPoint == 0) breakPoint = charsPerLine;
+   491→
+   492→            lineToPrint = remaining.substring(0, breakPoint);
+   493→            remaining = remaining.substring(breakPoint);
+   494→            remaining.trim();
+   495→        }
+   496→
+   497→        _display->setCursor(textX, textY + line * lineHeight);
+   498→        _display->print(lineToPrint);
+   499→        line++;
+   500→    }
+   501→}
+   502→
+   503→void VideoPlayer::showText(const char* text) {
+   504→    _currentText = text;
+   505→    _textVisible = true;
+   506→    _paused = true;
+   507→
+   508→    // Clear area and draw text box
+   509→    if (_display) {
+   510→        _display->fillScreen(BLACK);
+   511→        _drawTextBox();
+   512→    }
+   513→}
+   514→
+   515→void VideoPlayer::appendText(const char* chunk) {
+   516→    _currentText += chunk;
+   517→
+   518→    // Redraw text box with updated text
+   519→    if (_textVisible && _display) {
+   520→        _drawTextBox();
+   521→    }
+   522→}
+   523→
+   524→void VideoPlayer::clearText() {
+   525→    _currentText = "";
+   526→    if (_textVisible && _display) {
+   527→        _drawTextBox();
+   528→    }
+   529→}
+   530→
+   531→void VideoPlayer::hideText() {
+   532→    _textVisible = false;
+   533→    _currentText = "";
+   534→    _paused = false;
+   535→    // Video will resume on next play() call
+   536→}
+   537→
+   538→void VideoPlayer::fillScreen(uint16_t color) {
+   539→    if (_display) {
+   540→        _display->fillScreen(color);
+   541→    }
+   542→}
+   543→
+   544→void VideoPlayer::refreshDisplay() {
+   545→    Serial.println("refreshDisplay() called");
+   546→    if (_display) {
+   547→        // Don't call begin() again - it hangs on second call
+   548→        // Just ensure backlight is on and try a simple draw operation
+   549→        digitalWrite(LCD_BL, HIGH);
+   550→        // Force a write operation to re-sync SPI state
+   551→        _display->startWrite();
+   552→        _display->endWrite();
+   553→        Serial.println("Display refresh done");
+   554→    }
+   555→}
+   556→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>
+
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./local_llm_badge/src/sensors/orientation.h`
+```
+     1→/*******************************************************************************
+     2→ * OAISYS Badge - Orientation Manager
+     3→ * Debounced rotation detection using IMU accelerometer
+     4→ ******************************************************************************/
+     5→
+     6→#pragma once
+     7→
+     8→#include <Arduino.h>
+     9→
+    10→class OrientationManager {
+    11→public:
+    12→    OrientationManager();
+    13→
+    14→    // Initialize IMU, returns false if IMU not available
+    15→    bool begin();
+    16→
+    17→    // Call in loop() - polls IMU at configured interval
+    18→    void update();
+    19→
+    20→    // Get current stable rotation (1 = USB right, 3 = USB left)
+    21→    uint8_t getRotation() const { return _currentRotation; }
+    22→
+    23→    // Check if rotation just changed (one-shot, auto-clears)
+    24→    bool hasChanged();
+    25→
+    26→    // Check if IMU is available
+    27→    bool isAvailable() const { return _imuAvailable; }
+    28→
+    29→private:
+    30→    static const float THRESHOLD;           // Hysteresis threshold (g)
+    31→    static const unsigned long DEBOUNCE_MS; // Stability time required
+    32→    static const unsigned long POLL_MS;     // Poll interval
+    33→
+    34→    uint8_t _currentRotation;     // Stable rotation
+    35→    uint8_t _pendingRotation;     // Candidate during debounce (0 = none)
+    36→    unsigned long _debounceStart;
+    37→    unsigned long _lastPoll;
+    38→    bool _rotationChanged;        // One-shot flag
+    39→    bool _imuAvailable;
+    40→};
+    41→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>
+
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./local_llm_badge/src/sensors/orientation.cpp`
+```
+     1→/*******************************************************************************
+     2→ * OAISYS Badge - Orientation Manager Implementation
+     3→ ******************************************************************************/
+     4→
+     5→#include "orientation.h"
+     6→#include "../../config.h"
+     7→
+     8→#include <Wire.h>
+     9→#include <FastIMU.h>
+    10→
+    11→// Static constants
+    12→const float OrientationManager::THRESHOLD = 0.5f;
+    13→const unsigned long OrientationManager::DEBOUNCE_MS = ORIENTATION_DEBOUNCE_MS;
+    14→const unsigned long OrientationManager::POLL_MS = ORIENTATION_POLL_MS;
+    15→
+    16→// IMU instance and data
+    17→static QMI8658 imu;
+    18→static calData calibration = {0};
+    19→static AccelData accelData;
+    20→
+    21→OrientationManager::OrientationManager()
+    22→    : _currentRotation(1)
+    23→    , _pendingRotation(0)
+    24→    , _debounceStart(0)
+    25→    , _lastPoll(0)
+    26→    , _rotationChanged(false)
+    27→    , _imuAvailable(false)
+    28→{
+    29→}
+    30→
+    31→bool OrientationManager::begin() {
+    32→    Wire.begin(I2C_SDA, I2C_SCL);
+    33→
+    34→    int err = imu.init(calibration, IMU_ADDRESS);
+    35→    _imuAvailable = (err == 0);
+    36→
+    37→    return _imuAvailable;
+    38→}
+    39→
+    40→void OrientationManager::update() {
+    41→    if (!_imuAvailable) return;
+    42→
+    43→    unsigned long now = millis();
+    44→    if (now - _lastPoll < POLL_MS) return;
+    45→    _lastPoll = now;
+    46→
+    47→    // Read accelerometer
+    48→    imu.update();
+    49→    imu.getAccel(&accelData);
+    50→    float accelY = accelData.accelY;
+    51→
+    52→    // Determine desired rotation based on accelY
+    53→    uint8_t desiredRotation = 0;
+    54→    if (accelY > THRESHOLD) {
+    55→        desiredRotation = 1;  // USB on right (normal)
+    56→    } else if (accelY < -THRESHOLD) {
+    57→        desiredRotation = 3;  // USB on left (180 flip)
+    58→    } else {
+    59→        desiredRotation = _currentRotation;  // Hysteresis zone - keep current
+    60→    }
+    61→
+    62→    // State machine logic
+    63→    if (desiredRotation == _currentRotation) {
+    64→        // Orientation matches current stable state
+    65→        _pendingRotation = 0;  // Cancel any pending transition
+    66→    } else if (_pendingRotation == 0) {
+    67→        // Start new transition
+    68→        _pendingRotation = desiredRotation;
+    69→        _debounceStart = now;
+    70→    } else if (_pendingRotation == desiredRotation) {
+    71→        // Transition in progress, check if debounce time elapsed
+    72→        if (now - _debounceStart >= DEBOUNCE_MS) {
+    73→            // Commit rotation change
+    74→            _currentRotation = _pendingRotation;
+    75→            _pendingRotation = 0;
+    76→            _rotationChanged = true;
+    77→        }
+    78→    } else {
+    79→        // Desired rotation changed during debounce - restart
+    80→        _pendingRotation = desiredRotation;
+    81→        _debounceStart = now;
+    82→    }
+    83→}
+    84→
+    85→bool OrientationManager::hasChanged() {
+    86→    if (_rotationChanged) {
+    87→        _rotationChanged = false;
+    88→        return true;
+    89→    }
+    90→    return false;
+    91→}
+    92→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>
+
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<think><details><summary>Thought Process</summary>
+Good progress. Let me continue reading all the remaining source files in the local_llm_badge directory.
+</details></think>
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./local_llm_badge/src/audio/mic_stream.h`
+```
+     1→/*******************************************************************************
+     2→ * OAISYS Badge - Microphone Stream Module
+     3→ * Continuous I2S audio capture with microfrontend feature extraction
+     4→ ******************************************************************************/
+     5→
+     6→#pragma once
+     7→
+     8→#include <Arduino.h>
+     9→
+    10→// Forward declaration for microfrontend state
+    11→struct FrontendState;
+    12→
+    13→//==============================================================================
+    14→// Feature extraction constants (matches microWakeWord training)
+    15→//==============================================================================
+    16→#define FEATURE_WINDOW_MS   30
+    17→#define FEATURE_STRIDE_MS   10
+    18→#define FEATURE_BINS        40
+    19→#define FEATURE_FRAMES      3
+    20→
+    21→//==============================================================================
+    22→// MicStream - Handles I2S capture and audio feature extraction
+    23→//==============================================================================
+    24→class MicStream {
+    25→public:
+    26→    MicStream();
+    27→    ~MicStream();
+    28→
+    29→    // Lifecycle
+    30→    bool begin();
+    31→    void end();
+    32→
+    33→    // Call in loop - captures audio and extracts features
+    34→    // Returns true when a new feature frame is ready
+    35→    bool update();
+    36→
+    37→    // Get the current feature buffer (FEATURE_FRAMES * FEATURE_BINS uint16_t values)
+    38→    // Only valid after update() returns true
+    39→    const uint16_t* getFeatures() const { return _featureBuffer; }
+    40→
+    41→    // Get raw audio samples for recording (call after update())
+    42→    // Returns number of new samples available
+    43→    int getNewSamples(int16_t* buffer, size_t maxSamples);
+    44→
+    45→    // Check if stream is running
+    46→    bool isRunning() const { return _running; }
+    47→
+    48→    // Debug: Get current audio amplitude
+    49→    int32_t getAmplitude() const { return _amplitude; }
+    50→
+    51→private:
+    52→    // Audio buffer
+    53→    static constexpr int AUDIO_BUFFER_SIZE = 1024;
+    54→    int16_t* _audioBuffer;
+    55→    int _audioBufferPos;
+    56→
+    57→    // Feature buffer (3 frames × 40 bins)
+    58→    uint16_t _featureBuffer[FEATURE_FRAMES * FEATURE_BINS];
+    59→    int _featureFrameCount;
+    60→
+    61→    // I2S read buffer
+    62→    int32_t* _i2sBuffer;
+    63→
+    64→    // Microfrontend state
+    65→    FrontendState* _frontendState;
+    66→
+    67→    // State
+    68→    bool _running;
+    69→    int32_t _amplitude;
+    70→
+    71→    // Internal helpers
+    72→    bool _initI2S();
+    73→    bool _initFrontend();
+    74→    bool _captureAudio();
+    75→    void _warmUpMic();  // Discard first 2s of audio (mic stabilization)
+    76→};
+    77→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>
+
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./local_llm_badge/src/audio/mic_stream.cpp`
+```
+     1→/*******************************************************************************
+     2→ * OAISYS Badge - Microphone Stream Implementation
+     3→ ******************************************************************************/
+     4→
+     5→#include "mic_stream.h"
+     6→#include "../../config.h"
+     7→
+     8→#include <driver/i2s.h>
+     9→
+    10→// Include EdgeNeuron first to trigger Arduino library path resolution
+    11→#include <EdgeNeuron.h>
+    12→
+    13→// Microfrontend includes (from EdgeNeuron library)
+    14→#include "tensorflow/lite/experimental/microfrontend/lib/frontend.h"
+    15→#include "tensorflow/lite/experimental/microfrontend/lib/frontend_util.h"
+    16→
+    17→// Audio constants
+    18→#define SAMPLE_RATE         16000
+    19→#define FEATURE_STRIDE_SAMPLES (SAMPLE_RATE * FEATURE_STRIDE_MS / 1000)  // 160 samples
+    20→
+    21→MicStream::MicStream()
+    22→    : _audioBuffer(nullptr)
+    23→    , _audioBufferPos(0)
+    24→    , _featureFrameCount(0)
+    25→    , _i2sBuffer(nullptr)
+    26→    , _frontendState(nullptr)
+    27→    , _running(false)
+    28→    , _amplitude(0)
+    29→{
+    30→    memset(_featureBuffer, 0, sizeof(_featureBuffer));
+    31→}
+    32→
+    33→MicStream::~MicStream() {
+    34→    end();
+    35→}
+    36→
+    37→bool MicStream::begin() {
+    38→    if (_running) return true;
+    39→
+    40→    // Allocate buffers
+    41→    _audioBuffer = (int16_t*)malloc(AUDIO_BUFFER_SIZE * sizeof(int16_t));
+    42→    _i2sBuffer = (int32_t*)malloc(512 * sizeof(int32_t));
+    43→    _frontendState = (FrontendState*)malloc(sizeof(FrontendState));
+    44→
+    45→    if (!_audioBuffer || !_i2sBuffer || !_frontendState) {
+    46→        end();
+    47→        return false;
+    48→    }
+    49→
+    50→    _audioBufferPos = 0;
+    51→    _featureFrameCount = 0;
+    52→
+    53→    if (!_initI2S()) {
+    54→        end();
+    55→        return false;
+    56→    }
+    57→
+    58→    if (!_initFrontend()) {
+    59→        end();
+    60→        return false;
+    61→    }
+    62→
+    63→    _running = true;
+    64→    return true;
+    65→}
+    66→
+    67→void MicStream::end() {
+    68→    if (_running) {
+    69→        i2s_driver_uninstall(I2S_NUM_0);
+    70→    }
+    71→
+    72→    if (_audioBuffer) {
+    73→        free(_audioBuffer);
+    74→        _audioBuffer = nullptr;
+    75→    }
+    76→    if (_i2sBuffer) {
+    77→        free(_i2sBuffer);
+    78→        _i2sBuffer = nullptr;
+    79→    }
+    80→    if (_frontendState) {
+    81→        FrontendFreeStateContents(_frontendState);
+    82→        free(_frontendState);
+    83→        _frontendState = nullptr;
+    84→    }
+    85→
+    86→    _running = false;
+    87→}
+    88→
+    89→bool MicStream::_initI2S() {
+    90→    i2s_config_t i2s_config = {
+    91→        .mode = (i2s_mode_t)(I2S_MODE_MASTER | I2S_MODE_RX),
+    92→        .sample_rate = SAMPLE_RATE,
+    93→        .bits_per_sample = I2S_BITS_PER_SAMPLE_32BIT,
+    94→        .channel_format = I2S_CHANNEL_FMT_ONLY_LEFT,
+    95→        .communication_format = I2S_COMM_FORMAT_STAND_I2S,
+    96→        .intr_alloc_flags = ESP_INTR_FLAG_LEVEL1,
+    97→        .dma_buf_count = 4,
+    98→        .dma_buf_len = 256,
+    99→        .use_apll = false,
+   100→        .tx_desc_auto_clear = false,
+   101→        .fixed_mclk = 0
+   102→    };
+   103→
+   104→    i2s_pin_config_t pins = {
+   105→        .bck_io_num = MIC_BCK,
+   106→        .ws_io_num = MIC_WS,
+   107→        .data_out_num = I2S_PIN_NO_CHANGE,
+   108→        .data_in_num = MIC_DIN
+   109→    };
+   110→
+   111→    if (i2s_driver_install(I2S_NUM_0, &i2s_config, 0, NULL) != ESP_OK) {
+   112→        return false;
+   113→    }
+   114→
+   115→    if (i2s_set_pin(I2S_NUM_0, &pins) != ESP_OK) {
+   116→        i2s_driver_uninstall(I2S_NUM_0);
+   117→        return false;
+   118→    }
+   119→
+   120→    // Brief mic warm-up (500ms) to let INMP441 stabilize
+   121→    // Full 2s warm-up happens after wake word detection, before recording
+   122→    Serial.println("MicStream: Quick mic warm-up (500ms)...");
+   123→    const int QUICK_WARMUP_SAMPLES = SAMPLE_RATE / 2;  // 500ms at 16kHz
+   124→    int samplesDiscarded = 0;
+   125→    size_t bytes_read;
+   126→    while (samplesDiscarded < QUICK_WARMUP_SAMPLES) {
+   127→        if (i2s_read(I2S_NUM_0, _i2sBuffer, 512 * 4, &bytes_read, 10) == ESP_OK) {
+   128→            samplesDiscarded += bytes_read / 4;
+   129→        }
+   130→    }
+   131→    Serial.println("MicStream: Warm-up done");
+   132→
+   133→    return true;
+   134→}
+   135→
+   136→void MicStream::_warmUpMic() {
+   137→    const int WARMUP_SAMPLES = SAMPLE_RATE * 2;  // 2 seconds at 16kHz
+   138→    int samplesDiscarded = 0;
+   139→    size_t bytes_read;
+   140→
+   141→    unsigned long startTime = millis();
+   142→
+   143→    while (samplesDiscarded < WARMUP_SAMPLES) {
+   144→        if (i2s_read(I2S_NUM_0, _i2sBuffer, 512 * 4, &bytes_read, 10) == ESP_OK) {
+   145→            samplesDiscarded += bytes_read / 4;
+   146→        }
+   147→    }
+   148→
+   149→    Serial.printf("MicStream: Warm-up done (%d ms)\n", (int)(millis() - startTime));
+   150→}
+   151→
+   152→bool MicStream::_initFrontend() {
+   153→    FrontendConfig frontend_config;
+   154→    frontend_config.window.size_ms = FEATURE_WINDOW_MS;
+   155→    frontend_config.window.step_size_ms = FEATURE_STRIDE_MS;
+   156→    frontend_config.filterbank.num_channels = FEATURE_BINS;
+   157→    frontend_config.filterbank.lower_band_limit = 125.0f;
+   158→    frontend_config.filterbank.upper_band_limit = 7500.0f;
+   159→    frontend_config.noise_reduction.smoothing_bits = 10;
+   160→    frontend_config.noise_reduction.even_smoothing = 0.025f;
+   161→    frontend_config.noise_reduction.odd_smoothing = 0.06f;
+   162→    frontend_config.noise_reduction.min_signal_remaining = 0.05f;
+   163→    frontend_config.pcan_gain_control.enable_pcan = 1;
+   164→    frontend_config.pcan_gain_control.strength = 0.95f;
+   165→    frontend_config.pcan_gain_control.offset = 80.0f;
+   166→    frontend_config.pcan_gain_control.gain_bits = 21;
+   167→    frontend_config.log_scale.enable_log = 1;
+   168→    frontend_config.log_scale.scale_shift = 6;
+   169→
+   170→    return FrontendPopulateState(&frontend_config, _frontendState, SAMPLE_RATE);
+   171→}
+   172→
+   173→bool MicStream::_captureAudio() {
+   174→    int space_available = AUDIO_BUFFER_SIZE - _audioBufferPos;
+   175→    if (space_available < 256) {
+   176→        return true;  // Buffer full, will process
+   177→    }
+   178→
+   179→    int samples_to_read = min(256, space_available);
+   180→    size_t bytes_read;
+   181→    if (i2s_read(I2S_NUM_0, _i2sBuffer, samples_to_read * 4, &bytes_read, 10) != ESP_OK) {
+   182→        return false;
+   183→    }
+   184→
+   185→    int samples = bytes_read / 4;
+   186→    int32_t max_sample = 0;
+   187→
+   188→    for (int i = 0; i < samples; i++) {
+   189→        // INMP441 sends 24-bit in 32-bit frame, shift down
+   190→        int32_t sample = _i2sBuffer[i] >> 14;
+   191→        _audioBuffer[_audioBufferPos++] = constrain(sample, -32768, 32767);
+   192→        if (abs(sample) > max_sample) max_sample = abs(sample);
+   193→    }
+   194→
+   195→    _amplitude = max_sample;
+   196→    return true;
+   197→}
+   198→
+   199→bool MicStream::update() {
+   200→    if (!_running) return false;
+   201→
+   202→    if (!_captureAudio()) {
+   203→        return false;
+   204→    }
+   205→
+   206→    bool newFrame = false;
+   207→
+   208→    // Process audio through frontend when we have enough samples
+   209→    while (_audioBufferPos >= FEATURE_STRIDE_SAMPLES) {
+   210→        size_t num_samples_read;
+   211→        FrontendOutput frontend_output = FrontendProcessSamples(
+   212→            _frontendState, _audioBuffer, _audioBufferPos, &num_samples_read);
+   213→
+   214→        if (num_samples_read == 0) {
+   215→            break;
+   216→        }
+   217→
+   218→        // Shift remaining samples to start of buffer
+   219→        if (num_samples_read < (size_t)_audioBufferPos) {
+   220→            memmove(_audioBuffer, _audioBuffer + num_samples_read,
+   221→                    (_audioBufferPos - num_samples_read) * sizeof(int16_t));
+   222→        }
+   223→        _audioBufferPos -= num_samples_read;
+   224→
+   225→        // If we got features, add to feature buffer
+   226→        if (frontend_output.size == FEATURE_BINS) {
+   227→            // Shift feature frames if buffer is full
+   228→            if (_featureFrameCount >= FEATURE_FRAMES) {
+   229→                memmove(_featureBuffer, _featureBuffer + FEATURE_BINS,
+   230→                        (FEATURE_FRAMES - 1) * FEATURE_BINS * sizeof(uint16_t));
+   231→                _featureFrameCount = FEATURE_FRAMES - 1;
+   232→            }
+   233→
+   234→            // Add new frame
+   235→            memcpy(_featureBuffer + _featureFrameCount * FEATURE_BINS,
+   236→                   frontend_output.values, FEATURE_BINS * sizeof(uint16_t));
+   237→            _featureFrameCount++;
+   238→
+   239→            // Signal that we have a complete feature set
+   240→            if (_featureFrameCount >= FEATURE_FRAMES) {
+   241→                newFrame = true;
+   242→            }
+   243→        }
+   244→    }
+   245→
+   246→    return newFrame;
+   247→}
+   248→
+   249→int MicStream::getNewSamples(int16_t* buffer, size_t maxSamples) {
+   250→    // This provides raw audio for recording purposes
+   251→    // For now, return what's in buffer (caller should copy before next update)
+   252→    int count = min((size_t)_audioBufferPos, maxSamples);
+   253→    if (count > 0 && buffer) {
+   254→        memcpy(buffer, _audioBuffer, count * sizeof(int16_t));
+   255→    }
+   256→    return count;
+   257→}
+   258→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>
+
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./local_llm_badge/src/audio/audio_recorder.h`
+```
+     1→/*******************************************************************************
+     2→ * OAISYS Badge - Audio Recorder Module
+     3→ * Fixed duration recording for speech input after wake word
+     4→ ******************************************************************************/
+     5→
+     6→#pragma once
+     7→
+     8→#include <Arduino.h>
+     9→
+    10→//==============================================================================
+    11→// Recording constants
+    12→//==============================================================================
+    13→#define RECORDING_SAMPLE_RATE   16000
+    14→#define RECORDING_MAX_SECONDS   5
+    15→#define RECORDING_BUFFER_SIZE   (RECORDING_SAMPLE_RATE * RECORDING_MAX_SECONDS)
+    16→
+    17→//==============================================================================
+    18→// AudioRecorder - Handles timed audio recording to PSRAM buffer
+    19→//==============================================================================
+    20→class AudioRecorder {
+    21→public:
+    22→    AudioRecorder();
+    23→    ~AudioRecorder();
+    24→
+    25→    // Lifecycle
+    26→    bool begin();  // Allocates PSRAM buffer
+    27→    void end();    // Frees buffer
+    28→
+    29→    // Recording control
+    30→    void startRecording(float durationSec = 3.0f);
+    31→    void stopRecording();
+    32→    bool isRecording() const { return _recording; }
+    33→
+    34→    // Call in loop while recording - captures audio
+    35→    // Returns true when recording completes
+    36→    bool update();
+    37→
+    38→    // Get recorded audio
+    39→    const int16_t* getBuffer() const { return _buffer; }
+    40→    size_t getSampleCount() const { return _sampleCount; }
+    41→    float getDurationSec() const { return _sampleCount / (float)RECORDING_SAMPLE_RATE; }
+    42→
+    43→    // Get recording progress (0.0 - 1.0)
+    44→    float getProgress() const;
+    45→
+    46→    // Check if buffer is valid
+    47→    bool hasRecording() const { return _sampleCount > 0; }
+    48→
+    49→    // Save recording to SD card as WAV file (for debugging)
+    50→    // Returns true if saved successfully
+    51→    bool saveToSD(const char* filepath);
+    52→
+    53→private:
+    54→    int16_t* _buffer;
+    55→    size_t _targetSamples;
+    56→    size_t _sampleCount;
+    57→    bool _recording;
+    58→    bool _initialized;
+    59→
+    60→    // I2S buffer for capture
+    61→    int32_t* _i2sBuffer;
+    62→
+    63→    // Internal helpers
+    64→    bool _captureChunk();
+    65→    void _warmUpMic();  // Discard first 2s of audio (mic stabilization)
+    66→};
+    67→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>
+
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./local_llm_badge/src/audio/audio_recorder.cpp`
+```
+     1→/*******************************************************************************
+     2→ * OAISYS Badge - Audio Recorder Implementation
+     3→ ******************************************************************************/
+     4→
+     5→#include "audio_recorder.h"
+     6→#include "../../config.h"
+     7→
+     8→#include <driver/i2s.h>
+     9→#include <SD.h>
+    10→
+    11→AudioRecorder::AudioRecorder()
+    12→    : _buffer(nullptr)
+    13→    , _targetSamples(0)
+    14→    , _sampleCount(0)
+    15→    , _recording(false)
+    16→    , _initialized(false)
+    17→    , _i2sBuffer(nullptr)
+    18→{
+    19→}
+    20→
+    21→AudioRecorder::~AudioRecorder() {
+    22→    end();
+    23→}
+    24→
+    25→bool AudioRecorder::begin() {
+    26→    if (_initialized) return true;
+    27→
+    28→    // Allocate recording buffer in PSRAM
+    29→    _buffer = (int16_t*)ps_malloc(RECORDING_BUFFER_SIZE * sizeof(int16_t));
+    30→    if (!_buffer) {
+    31→        Serial.println("AudioRecorder: Buffer alloc failed");
+    32→        return false;
+    33→    }
+    34→
+    35→    // Allocate I2S read buffer
+    36→    _i2sBuffer = (int32_t*)malloc(512 * sizeof(int32_t));
+    37→    if (!_i2sBuffer) {
+    38→        free(_buffer);
+    39→        _buffer = nullptr;
+    40→        return false;
+    41→    }
+    42→
+    43→    // Note: I2S is initialized by MicStream, we share the same I2S port
+    44→    // This recorder should be used AFTER MicStream.end() is called
+    45→
+    46→    _initialized = true;
+    47→    _sampleCount = 0;
+    48→    return true;
+    49→}
+    50→
+    51→void AudioRecorder::end() {
+    52→    stopRecording();
+    53→
+    54→    if (_buffer) {
+    55→        free(_buffer);
+    56→        _buffer = nullptr;
+    57→    }
+    58→    if (_i2sBuffer) {
+    59→        free(_i2sBuffer);
+    60→        _i2sBuffer = nullptr;
+    61→    }
+    62→
+    63→    _initialized = false;
+    64→}
+    65→
+    66→void AudioRecorder::startRecording(float durationSec) {
+    67→    if (!_initialized || _recording) return;
+    68→
+    69→    // Clamp duration
+    70→    if (durationSec > RECORDING_MAX_SECONDS) {
+    71→        durationSec = RECORDING_MAX_SECONDS;
+    72→    }
+    73→
+    74→    _targetSamples = (size_t)(durationSec * RECORDING_SAMPLE_RATE);
+    75→    _sampleCount = 0;
+    76→    _recording = true;
+    77→
+    78→    // Initialize I2S for recording
+    79→    i2s_config_t i2s_config = {
+    80→        .mode = (i2s_mode_t)(I2S_MODE_MASTER | I2S_MODE_RX),
+    81→        .sample_rate = RECORDING_SAMPLE_RATE,
+    82→        .bits_per_sample = I2S_BITS_PER_SAMPLE_32BIT,
+    83→        .channel_format = I2S_CHANNEL_FMT_ONLY_LEFT,
+    84→        .communication_format = I2S_COMM_FORMAT_STAND_I2S,
+    85→        .intr_alloc_flags = ESP_INTR_FLAG_LEVEL1,
+    86→        .dma_buf_count = 4,
+    87→        .dma_buf_len = 256,
+    88→        .use_apll = false,
+    89→        .tx_desc_auto_clear = false,
+    90→        .fixed_mclk = 0
+    91→    };
+    92→
+    93→    i2s_pin_config_t pins = {
+    94→        .bck_io_num = MIC_BCK,
+    95→        .ws_io_num = MIC_WS,
+    96→        .data_out_num = I2S_PIN_NO_CHANGE,
+    97→        .data_in_num = MIC_DIN
+    98→    };
+    99→
+   100→    if (i2s_driver_install(I2S_NUM_0, &i2s_config, 0, NULL) != ESP_OK) {
+   101→        _recording = false;
+   102→        return;
+   103→    }
+   104→    i2s_set_pin(I2S_NUM_0, &pins);
+   105→
+   106→    // INMP441 microphone needs warm-up time after I2S init
+   107→    // Discard first 2 seconds of audio (junk/noise from mic stabilization)
+   108→    Serial.println("AudioRecorder: Mic warm-up (discarding 2s)...");
+   109→    _warmUpMic();
+   110→
+   111→    Serial.printf("AudioRecorder: Started %.1fs recording\n", durationSec);
+   112→}
+   113→
+   114→void AudioRecorder::stopRecording() {
+   115→    if (_recording) {
+   116→        i2s_driver_uninstall(I2S_NUM_0);
+   117→        _recording = false;
+   118→        Serial.printf("AudioRecorder: Stopped, %d samples (%.2fs)\n",
+   119→                      _sampleCount, getDurationSec());
+   120→    }
+   121→}
+   122→
+   123→bool AudioRecorder::_captureChunk() {
+   124→    size_t remaining = _targetSamples - _sampleCount;
+   125→    if (remaining == 0) return true;  // Done
+   126→
+   127→    int samples_to_read = min((size_t)256, remaining);
+   128→    size_t bytes_read;
+   129→
+   130→    if (i2s_read(I2S_NUM_0, _i2sBuffer, samples_to_read * 4, &bytes_read, 10) != ESP_OK) {
+   131→        return false;
+   132→    }
+   133→
+   134→    int samples = bytes_read / 4;
+   135→
+   136→    for (int i = 0; i < samples && _sampleCount < _targetSamples; i++) {
+   137→        // INMP441 sends 24-bit in 32-bit frame
+   138→        int32_t sample = _i2sBuffer[i] >> 14;
+   139→        _buffer[_sampleCount++] = constrain(sample, -32768, 32767);
+   140→    }
+   141→
+   142→    return true;
+   143→}
+   144→
+   145→void AudioRecorder::_warmUpMic() {
+   146→    // INMP441 needs ~100-200ms minimum to stabilize, but for best results
+   147→    // we discard 2 full seconds of audio data
+   148→    // At 16kHz, that's 32000 samples = 128KB of data to discard
+   149→
+   150→    const int WARMUP_SAMPLES = RECORDING_SAMPLE_RATE * 2;  // 2 seconds
+   151→    int samplesDiscarded = 0;
+   152→    size_t bytes_read;
+   153→
+   154→    unsigned long startTime = millis();
+   155→
+   156→    while (samplesDiscarded < WARMUP_SAMPLES) {
+   157→        // Read and discard
+   158→        if (i2s_read(I2S_NUM_0, _i2sBuffer, 512 * 4, &bytes_read, 10) == ESP_OK) {
+   159→            samplesDiscarded += bytes_read / 4;
+   160→        }
+   161→    }
+   162→
+   163→    Serial.printf("AudioRecorder: Warm-up done (%d ms, %d samples discarded)\n",
+   164→                  (int)(millis() - startTime), samplesDiscarded);
+   165→}
+   166→
+   167→bool AudioRecorder::update() {
+   168→    if (!_recording) return false;
+   169→
+   170→    _captureChunk();
+   171→
+   172→    // Check if recording complete
+   173→    if (_sampleCount >= _targetSamples) {
+   174→        stopRecording();
+   175→        return true;  // Recording complete
+   176→    }
+   177→
+   178→    return false;  // Still recording
+   179→}
+   180→
+   181→float AudioRecorder::getProgress() const {
+   182→    if (_targetSamples == 0) return 0.0f;
+   183→    return (float)_sampleCount / _targetSamples;
+   184→}
+   185→
+   186→bool AudioRecorder::saveToSD(const char* filepath) {
+   187→    if (!_buffer || _sampleCount == 0) {
+   188→        Serial.println("AudioRecorder: No recording to save");
+   189→        return false;
+   190→    }
+   191→
+   192→    File file = SD.open(filepath, FILE_WRITE);
+   193→    if (!file) {
+   194→        Serial.printf("AudioRecorder: Failed to create %s\n", filepath);
+   195→        return false;
+   196→    }
+   197→
+   198→    // Write WAV header
+   199→    uint32_t dataSize = _sampleCount * sizeof(int16_t);
+   200→    uint32_t fileSize = 36 + dataSize;
+   201→
+   202→    // RIFF header
+   203→    file.write((const uint8_t*)"RIFF", 4);
+   204→    file.write((uint8_t*)&fileSize, 4);
+   205→    file.write((const uint8_t*)"WAVE", 4);
+   206→
+   207→    // fmt chunk
+   208→    file.write((const uint8_t*)"fmt ", 4);
+   209→    uint32_t fmtSize = 16;
+   210→    file.write((uint8_t*)&fmtSize, 4);
+   211→    uint16_t audioFormat = 1;  // PCM
+   212→    file.write((uint8_t*)&audioFormat, 2);
+   213→    uint16_t numChannels = 1;  // Mono
+   214→    file.write((uint8_t*)&numChannels, 2);
+   215→    uint32_t sampleRate = RECORDING_SAMPLE_RATE;
+   216→    file.write((uint8_t*)&sampleRate, 4);
+   217→    uint32_t byteRate = sampleRate * numChannels * sizeof(int16_t);
+   218→    file.write((uint8_t*)&byteRate, 4);
+   219→    uint16_t blockAlign = numChannels * sizeof(int16_t);
+   220→    file.write((uint8_t*)&blockAlign, 2);
+   221→    uint16_t bitsPerSample = 16;
+   222→    file.write((uint8_t*)&bitsPerSample, 2);
+   223→
+   224→    // data chunk
+   225→    file.write((const uint8_t*)"data", 4);
+   226→    file.write((uint8_t*)&dataSize, 4);
+   227→    file.write((uint8_t*)_buffer, dataSize);
+   228→
+   229→    file.close();
+   230→
+   231→    Serial.printf("AudioRecorder: Saved %s (%d samples, %.2fs)\n",
+   232→                  filepath, _sampleCount, getDurationSec());
+   233→    return true;
+   234→}
+   235→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>
+
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<think><details><summary>Thought Process</summary>
+Good progress. Now let me read all the ML modules, which are the core of the badge functionality.
+</details></think>
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./local_llm_badge/src/ml/wake_word.h`
+```
+     1→/*******************************************************************************
+     2→ * OAISYS Badge - Wake Word Detection Module
+     3→ * TFLite inference with sliding window probability detection
+     4→ ******************************************************************************/
+     5→
+     6→#pragma once
+     7→
+     8→#include <Arduino.h>
+     9→
+    10→// Forward declarations
+    11→namespace tflite {
+    12→    class MicroInterpreter;
+    13→    class MicroAllocator;
+    14→    class MicroResourceVariables;
+    15→}
+    16→struct TfLiteTensor;
+    17→
+    18→//==============================================================================
+    19→// Wake Word Configuration (loaded from JSON)
+    20→//==============================================================================
+    21→struct WakeWordConfig {
+    22→    char wake_word[32];
+    23→    float probability_cutoff;
+    24→    int sliding_window_size;
+    25→    int min_high_frames;
+    26→    float min_frame_prob;
+    27→    int cooldown_ms;
+    28→};
+    29→
+    30→//==============================================================================
+    31→// WakeWordDetector - Handles wake word model inference and detection
+    32→//==============================================================================
+    33→class WakeWordDetector {
+    34→public:
+    35→    WakeWordDetector();
+    36→    ~WakeWordDetector();
+    37→
+    38→    // Lifecycle - uses provided memory pool
+    39→    bool begin(uint8_t* pool, size_t poolSize,
+    40→               const char* modelPath, const char* configPath);
+    41→    void end();
+    42→
+    43→    // Run inference on feature buffer
+    44→    // features: FEATURE_FRAMES * FEATURE_BINS uint16_t values
+    45→    // Returns true if wake word detected
+    46→    bool detect(const uint16_t* features);
+    47→
+    48→    // Get last inference probability
+    49→    float getLastProbability() const { return _lastProbability; }
+    50→
+    51→    // Get average probability from sliding window
+    52→    float getAverageProbability() const;
+    53→
+    54→    // Get wake word name
+    55→    const char* getWakeWord() const { return _config.wake_word; }
+    56→
+    57→    // Check if loaded
+    58→    bool isLoaded() const { return _loaded; }
+    59→
+    60→    // Memory requirement for pool
+    61→    static size_t requiredMemory() { return TENSOR_ARENA_SIZE + VAR_ARENA_SIZE; }
+    62→
+    63→private:
+    64→    // Memory sizes (with 2KB padding for alignment headroom)
+    65→    static constexpr size_t TENSOR_ARENA_SIZE = 502000;
+    66→    static constexpr size_t VAR_ARENA_SIZE = 52000;
+    67→    static constexpr int MAX_RESOURCE_VARS = 100;
+    68→    static constexpr int MAX_SLIDING_WINDOW = 20;
+    69→
+    70→    // Configuration
+    71→    WakeWordConfig _config;
+    72→
+    73→    // Model data
+    74→    uint8_t* _modelData;
+    75→    uint32_t _modelSize;
+    76→
+    77→    // TFLite components
+    78→    uint8_t* _tensorArena;
+    79→    uint8_t* _varArena;
+    80→    tflite::MicroAllocator* _varAllocator;
+    81→    tflite::MicroResourceVariables* _resourceVars;
+    82→    tflite::MicroInterpreter* _interpreter;
+    83→    TfLiteTensor* _inputTensor;
+    84→    TfLiteTensor* _outputTensor;
+    85→
+    86→    // Detection state
+    87→    float _probabilityWindow[MAX_SLIDING_WINDOW];
+    88→    int _windowPos;
+    89→    bool _windowFilled;
+    90→    unsigned long _lastDetectionMs;
+    91→    float _lastProbability;
+    92→
+    93→    // State
+    94→    bool _loaded;
+    95→
+    96→    // Internal helpers
+    97→    bool _loadConfig(const char* path);
+    98→    bool _loadModel(const char* path);
+    99→    bool _initInterpreter();
+   100→    float _runInference(const uint16_t* features);
+   101→    void _resetWindow();
+   102→};
+   103→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>
+
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./local_llm_badge/src/ml/wake_word.cpp`
+```
+     1→/*******************************************************************************
+     2→ * OAISYS Badge - Wake Word Detection Implementation
+     3→ ******************************************************************************/
+     4→
+     5→#include "wake_word.h"
+     6→#include "../../config.h"
+     7→#include "../audio/mic_stream.h"  // For FEATURE_* constants
+     8→
+     9→#include <new>  // For placement new
+    10→#include <ArduinoJson.h>
+    11→#include <SD.h>
+    12→
+    13→// EdgeNeuron includes
+    14→#include <EdgeNeuron.h>
+    15→#include "tensorflow/lite/micro/micro_allocator.h"
+    16→#include "tensorflow/lite/micro/micro_resource_variable.h"
+    17→
+    18→// TFLite resolver
+    19→static tflite::AllOpsResolver resolver;
+    20→
+    21→WakeWordDetector::WakeWordDetector()
+    22→    : _modelData(nullptr)
+    23→    , _modelSize(0)
+    24→    , _tensorArena(nullptr)
+    25→    , _varArena(nullptr)
+    26→    , _varAllocator(nullptr)
+    27→    , _resourceVars(nullptr)
+    28→    , _interpreter(nullptr)
+    29→    , _inputTensor(nullptr)
+    30→    , _outputTensor(nullptr)
+    31→    , _windowPos(0)
+    32→    , _windowFilled(false)
+    33→    , _lastDetectionMs(0)
+    34→    , _lastProbability(0.0f)
+    35→    , _loaded(false)
+    36→{
+    37→    // Default config
+    38→    strcpy(_config.wake_word, "Hey Daisy");
+    39→    _config.probability_cutoff = 0.5f;
+    40→    _config.sliding_window_size = 10;
+    41→    _config.min_high_frames = 6;
+    42→    _config.min_frame_prob = 0.5f;
+    43→    _config.cooldown_ms = 1500;
+    44→
+    45→    memset(_probabilityWindow, 0, sizeof(_probabilityWindow));
+    46→}
+    47→
+    48→WakeWordDetector::~WakeWordDetector() {
+    49→    end();
+    50→}
+    51→
+    52→bool WakeWordDetector::begin(uint8_t* pool, size_t poolSize,
+    53→                              const char* modelPath, const char* configPath) {
+    54→    if (_loaded) return true;
+    55→
+    56→    // Check pool size
+    57→    if (poolSize < TENSOR_ARENA_SIZE + VAR_ARENA_SIZE) {
+    58→        Serial.println("WakeWord: Pool too small");
+    59→        return false;
+    60→    }
+    61→
+    62→    // Assign pool regions
+    63→    _tensorArena = pool;
+    64→    _varArena = pool + TENSOR_ARENA_SIZE;
+    65→
+    66→    // Load config (optional - uses defaults if fails)
+    67→    if (configPath) {
+    68→        _loadConfig(configPath);
+    69→    }
+    70→
+    71→    // Load model from SD
+    72→    if (!_loadModel(modelPath)) {
+    73→        Serial.println("WakeWord: Model load failed");
+    74→        return false;
+    75→    }
+    76→
+    77→    // Initialize TFLite interpreter
+    78→    if (!_initInterpreter()) {
+    79→        Serial.println("WakeWord: Interpreter init failed");
+    80→        if (_modelData) {
+    81→            free(_modelData);
+    82→            _modelData = nullptr;
+    83→        }
+    84→        return false;
+    85→    }
+    86→
+    87→    _resetWindow();
+    88→    _loaded = true;
+    89→    // Start with extended cooldown (3 sec) to let mic stabilize and avoid false triggers
+    90→    _lastDetectionMs = millis() + 1500;  // Extra 1.5s beyond normal cooldown
+    91→
+    92→    Serial.printf("WakeWord: Loaded \"%s\" (%.1fKB model)\n",
+    93→                  _config.wake_word, _modelSize / 1024.0f);
+    94→    return true;
+    95→}
+    96→
+    97→void WakeWordDetector::end() {
+    98→    // Interpreter is static, just reset pointers
+    99→    _interpreter = nullptr;
+   100→    _inputTensor = nullptr;
+   101→    _outputTensor = nullptr;
+   102→    _varAllocator = nullptr;
+   103→    _resourceVars = nullptr;
+   104→
+   105→    if (_modelData) {
+   106→        free(_modelData);
+   107→        _modelData = nullptr;
+   108→    }
+   109→
+   110→    _tensorArena = nullptr;
+   111→    _varArena = nullptr;
+   112→    _loaded = false;
+   113→}
+   114→
+   115→bool WakeWordDetector::_loadConfig(const char* path) {
+   116→    File f = SD.open(path);
+   117→    if (!f) {
+   118→        return false;
+   119→    }
+   120→
+   121→    StaticJsonDocument<512> doc;
+   122→    DeserializationError error = deserializeJson(doc, f);
+   123→    f.close();
+   124→
+   125→    if (error) {
+   126→        return false;
+   127→    }
+   128→
+   129→    // Load wake word name
+   130→    const char* wake_word = doc["wake_word"] | "Hey Daisy";
+   131→    strncpy(_config.wake_word, wake_word, sizeof(_config.wake_word) - 1);
+   132→    _config.wake_word[sizeof(_config.wake_word) - 1] = '\0';
+   133→
+   134→    // Load detection parameters from "micro" object
+   135→    JsonObject micro = doc["micro"];
+   136→    if (micro) {
+   137→        _config.probability_cutoff = micro["probability_cutoff"] | 0.5f;
+   138→        _config.sliding_window_size = micro["sliding_window_average_size"] | 10;
+   139→        _config.min_high_frames = micro["min_high_frames"] | 6;
+   140→        _config.min_frame_prob = micro["min_frame_prob"] | 0.5f;
+   141→        _config.cooldown_ms = micro["cooldown_ms"] | 1500;
+   142→    }
+   143→
+   144→    // Clamp sliding window size
+   145→    if (_config.sliding_window_size > MAX_SLIDING_WINDOW) {
+   146→        _config.sliding_window_size = MAX_SLIDING_WINDOW;
+   147→    }
+   148→
+   149→    return true;
+   150→}
+   151→
+   152→bool WakeWordDetector::_loadModel(const char* path) {
+   153→    File f = SD.open(path);
+   154→    if (!f) {
+   155→        Serial.printf("WakeWord: Cannot open %s\n", path);
+   156→        return false;
+   157→    }
+   158→
+   159→    _modelSize = f.size();
+   160→    _modelData = (uint8_t*)ps_malloc(_modelSize);
+   161→    if (!_modelData) {
+   162→        Serial.println("WakeWord: Model alloc failed");
+   163→        f.close();
+   164→        return false;
+   165→    }
+   166→
+   167→    if (f.read(_modelData, _modelSize) != _modelSize) {
+   168→        free(_modelData);
+   169→        _modelData = nullptr;
+   170→        f.close();
+   171→        return false;
+   172→    }
+   173→    f.close();
+   174→    return true;
+   175→}
+   176→
+   177→bool WakeWordDetector::_initInterpreter() {
+   178→    const tflite::Model* model = tflite::GetModel(_modelData);
+   179→    if (model->version() != TFLITE_SCHEMA_VERSION) {
+   180→        Serial.printf("WakeWord: Model version mismatch: %d vs %d\n",
+   181→                      model->version(), TFLITE_SCHEMA_VERSION);
+   182→        return false;
+   183→    }
+   184→
+   185→    // CRITICAL: Clear the arena to reset MicroAllocator state from any previous model
+   186→    // This prevents "Model allocation started before finishing" errors
+   187→    memset(_tensorArena, 0, TENSOR_ARENA_SIZE);
+   188→    memset(_varArena, 0, VAR_ARENA_SIZE);
+   189→
+   190→    _varAllocator = tflite::MicroAllocator::Create(_varArena, VAR_ARENA_SIZE);
+   191→    if (!_varAllocator) {
+   192→        Serial.println("WakeWord: Var allocator failed");
+   193→        return false;
+   194→    }
+   195→
+   196→    _resourceVars = tflite::MicroResourceVariables::Create(_varAllocator, MAX_RESOURCE_VARS);
+   197→    if (!_resourceVars) {
+   198→        Serial.println("WakeWord: Resource vars failed");
+   199→        return false;
+   200→    }
+   201→
+   202→    // Use placement new to properly reconstruct the interpreter each time
+   203→    // This ensures the constructor runs with fresh model/arena/resource vars
+   204→    static uint8_t interpreterBuffer[sizeof(tflite::MicroInterpreter)] __attribute__((aligned(16)));
+   205→    _interpreter = new (interpreterBuffer) tflite::MicroInterpreter(
+   206→        model, resolver, _tensorArena, TENSOR_ARENA_SIZE, _resourceVars);
+   207→
+   208→    if (_interpreter->AllocateTensors() != kTfLiteOk) {
+   209→        Serial.println("WakeWord: AllocateTensors failed");
+   210→        return false;
+   211→    }
+   212→
+   213→    _inputTensor = _interpreter->input(0);
+   214→    _outputTensor = _interpreter->output(0);
+   215→
+   216→    if (!_inputTensor || !_outputTensor) {
+   217→        Serial.println("WakeWord: Failed to get tensors");
+   218→        return false;
+   219→    }
+   220→
+   221→    return true;
+   222→}
+   223→
+   224→float WakeWordDetector::_runInference(const uint16_t* features) {
+   225→    int total_features = FEATURE_FRAMES * FEATURE_BINS;
+   226→
+   227→    // Quantize features to input tensor format
+   228→    if (_inputTensor->type == kTfLiteInt8) {
+   229→        int8_t* input_data = _inputTensor->data.int8;
+   230→        for (int i = 0; i < total_features; i++) {
+   231→            int32_t scaled = ((int32_t)features[i] * 256 + 333) / 666 - 128;
+   232→            input_data[i] = constrain(scaled, -128, 127);
+   233→        }
+   234→    } else {
+   235→        // Float input
+   236→        float* input_data = _inputTensor->data.f;
+   237→        for (int i = 0; i < total_features; i++) {
+   238→            input_data[i] = features[i] / 25.6f;
+   239→        }
+   240→    }
+   241→
+   242→    // Run inference
+   243→    if (_interpreter->Invoke() != kTfLiteOk) {
+   244→        return 0.0f;
+   245→    }
+   246→
+   247→    // Dequantize output
+   248→    float probability;
+   249→    if (_outputTensor->type == kTfLiteUInt8) {
+   250→        uint8_t output_value = _outputTensor->data.uint8[0];
+   251→        probability = (output_value - _outputTensor->params.zero_point) *
+   252→                      _outputTensor->params.scale;
+   253→    } else if (_outputTensor->type == kTfLiteInt8) {
+   254→        int8_t output_value = _outputTensor->data.int8[0];
+   255→        probability = (output_value - _outputTensor->params.zero_point) *
+   256→                      _outputTensor->params.scale;
+   257→    } else {
+   258→        probability = _outputTensor->data.f[0];
+   259→    }
+   260→
+   261→    return probability;
+   262→}
+   263→
+   264→bool WakeWordDetector::detect(const uint16_t* features) {
+   265→    if (!_loaded) return false;
+   266→
+   267→    // Run inference
+   268→    float prob = _runInference(features);
+   269→    _lastProbability = prob;
+   270→
+   271→    // Update sliding window
+   272→    _probabilityWindow[_windowPos] = prob;
+   273→    _windowPos = (_windowPos + 1) % _config.sliding_window_size;
+   274→
+   275→    if (_windowPos == 0) {
+   276→        _windowFilled = true;
+   277→    }
+   278→
+   279→    // Need full window before detection
+   280→    if (!_windowFilled) {
+   281→        return false;
+   282→    }
+   283→
+   284→    // Check cooldown
+   285→    if (millis() - _lastDetectionMs < (unsigned long)_config.cooldown_ms) {
+   286→        return false;
+   287→    }
+   288→
+   289→    // Calculate average and count high frames
+   290→    float avg = 0.0f;
+   291→    int high_frames = 0;
+   292→    for (int i = 0; i < _config.sliding_window_size; i++) {
+   293→        avg += _probabilityWindow[i];
+   294→        if (_probabilityWindow[i] >= _config.min_frame_prob) {
+   295→            high_frames++;
+   296→        }
+   297→    }
+   298→    avg /= _config.sliding_window_size;
+   299→
+   300→    // Detection criteria
+   301→    if (avg >= _config.probability_cutoff && high_frames >= _config.min_high_frames) {
+   302→        _lastDetectionMs = millis();
+   303→        _resetWindow();
+   304→        return true;
+   305→    }
+   306→
+   307→    return false;
+   308→}
+   309→
+   310→float WakeWordDetector::getAverageProbability() const {
+   311→    if (!_windowFilled) return 0.0f;
+   312→
+   313→    float sum = 0.0f;
+   314→    for (int i = 0; i < _config.sliding_window_size; i++) {
+   315→        sum += _probabilityWindow[i];
+   316→    }
+   317→    return sum / _config.sliding_window_size;
+   318→}
+   319→
+   320→void WakeWordDetector::_resetWindow() {
+   321→    for (int i = 0; i < MAX_SLIDING_WINDOW; i++) {
+   322→        _probabilityWindow[i] = 0.0f;
+   323→    }
+   324→    _windowPos = 0;
+   325→    _windowFilled = false;
+   326→}
+   327→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>
+
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./local_llm_badge/src/ml/audio_embed.h`
+```
+     1→/*******************************************************************************
+     2→ * OAISYS Badge - Audio Embedding Module
+     3→ *
+     4→ * Generates 256-dimensional embeddings from recorded audio using:
+     5→ * 1. Mel-spectrogram generation (64 bins x 96 frames)
+     6→ * 2. Small CNN TFLite inference (~100-300KB model)
+     7→ *
+     8→ * Model architecture (trained with contrastive learning):
+     9→ *   Input: (64, 96, 1) mel-spectrogram
+    10→ *   Conv2D 32 -> MaxPool -> Conv2D 64 -> MaxPool ->
+    11→ *   Conv2D 128 -> MaxPool -> Conv2D 128 -> GlobalAvgPool -> Dense 256
+    12→ *   Output: 256-dim L2-normalized embedding
+    13→ ******************************************************************************/
+    14→
+    15→#pragma once
+    16→
+    17→#include <Arduino.h>
+    18→
+    19→// Forward declarations
+    20→namespace tflite {
+    21→    class MicroInterpreter;
+    22→}
+    23→struct TfLiteTensor;
+    24→
+    25→//==============================================================================
+    26→// Audio Encoder Specifications
+    27→//==============================================================================
+    28→
+    29→// Mel-spectrogram parameters (must match training)
+    30→#define AUDIO_MEL_BINS 64
+    31→#define AUDIO_MEL_FRAMES 96
+    32→#define AUDIO_FFT_SIZE 512
+    33→#define AUDIO_HOP_LENGTH 160    // 10ms @ 16kHz
+    34→#define AUDIO_SAMPLE_RATE 16000
+    35→
+    36→// Embedding dimension
+    37→#define AUDIO_EMBEDDING_DIM 256
+    38→
+    39→// TensorFlow Lite memory (small CNN needs ~100-200KB)
+    40→#define AUDIO_TENSOR_ARENA_SIZE (300 * 1024)  // 300KB arena
+    41→
+    42→//==============================================================================
+    43→// AudioEmbedder - Audio to 256-dim embedding
+    44→//==============================================================================
+    45→class AudioEmbedder {
+    46→public:
+    47→    AudioEmbedder();
+    48→    ~AudioEmbedder();
+    49→
+    50→    // Lifecycle - uses provided memory pool
+    51→    bool begin(uint8_t* pool, size_t poolSize, const char* modelPath);
+    52→    void end();
+    53→
+    54→    // Process recorded audio -> 256-dim embedding
+    55→    // audio: int16_t samples at 16kHz
+    56→    // sampleCount: number of samples (should be ~3 seconds = 48000)
+    57→    // output: float[256] embedding vector
+    58→    bool embed(const int16_t* audio, size_t sampleCount, float* output);
+    59→
+    60→    // Check if loaded
+    61→    bool isLoaded() const { return _loaded; }
+    62→
+    63→    // Memory requirement for pool
+    64→    static size_t requiredMemory() { return AUDIO_TENSOR_ARENA_SIZE + 100000; }
+    65→
+    66→private:
+    67→    // Mel-spectrogram generation
+    68→    bool _initMelSpectrogram();
+    69→    void _endMelSpectrogram();
+    70→    bool _computeMelSpectrogram(const int16_t* audio, size_t samples, float* melOutput);
+    71→    void _computeFFTFrame(const int16_t* audio, int startIdx, float* powerSpectrum);
+    72→    void _applyMelFilterbank(float* powerSpectrum, float* melOutput);
+    73→    float _hzToMel(float hz);
+    74→    float _melToHz(float mel);
+    75→
+    76→    // TFLite inference
+    77→    bool _loadModel(const char* path);
+    78→    bool _initInterpreter();
+    79→    bool _runInference(const float* melFeatures, float* embedding);
+    80→
+    81→    // Mel-spectrogram state
+    82→    float* _melFilterbank;       // MEL_BINS × (FFT_SIZE/2 + 1)
+    83→    float* _fftInput;            // FFT_SIZE
+    84→    float* _fftOutput;           // FFT_SIZE × 2 (complex)
+    85→    float* _window;              // FFT_SIZE (Hann window)
+    86→    float* _melFeatures;         // MEL_BINS × MEL_FRAMES
+    87→    bool _melInitialized;
+    88→
+    89→    // Model data
+    90→    uint8_t* _modelData;
+    91→    uint32_t _modelSize;
+    92→
+    93→    // TFLite components
+    94→    uint8_t* _tensorArena;
+    95→    tflite::MicroInterpreter* _interpreter;
+    96→    TfLiteTensor* _inputTensor;
+    97→    TfLiteTensor* _outputTensor;
+    98→
+    99→    // State
+   100→    bool _loaded;
+   101→};
+   102→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>
+
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./local_llm_badge/src/ml/audio_embed.cpp`
+```
+     1→/*******************************************************************************
+     2→ * OAISYS Badge - Audio Embedding Implementation
+     3→ *
+     4→ * Small CNN model trained with contrastive learning to align audio with text.
+     5→ ******************************************************************************/
+     6→
+     7→#include "audio_embed.h"
+     8→#include "../../config.h"
+     9→
+    10→#include <new>  // For placement new
+    11→#include <SD.h>
+    12→#include <esp_dsp.h>
+    13→#include <dsps_dotprod.h>  // For dsps_dotprod_f32_aes3 SIMD
+    14→#include <esp_heap_caps.h>  // For aligned PSRAM allocation
+    15→#include <math.h>
+    16→
+    17→// TensorFlow Lite includes (via EdgeNeuron library, same as wake_word.cpp)
+    18→#include <EdgeNeuron.h>
+    19→#include "tensorflow/lite/micro/micro_mutable_op_resolver.h"
+    20→#include "tensorflow/lite/micro/micro_interpreter.h"
+    21→#include "tensorflow/lite/schema/schema_generated.h"
+    22→
+    23→AudioEmbedder::AudioEmbedder()
+    24→    : _melFilterbank(nullptr)
+    25→    , _fftInput(nullptr)
+    26→    , _fftOutput(nullptr)
+    27→    , _window(nullptr)
+    28→    , _melFeatures(nullptr)
+    29→    , _melInitialized(false)
+    30→    , _modelData(nullptr)
+    31→    , _modelSize(0)
+    32→    , _tensorArena(nullptr)
+    33→    , _interpreter(nullptr)
+    34→    , _inputTensor(nullptr)
+    35→    , _outputTensor(nullptr)
+    36→    , _loaded(false)
+    37→{
+    38→}
+    39→
+    40→AudioEmbedder::~AudioEmbedder() {
+    41→    end();
+    42→}
+    43→
+    44→bool AudioEmbedder::begin(uint8_t* pool, size_t poolSize, const char* modelPath) {
+    45→    if (_loaded) return true;
+    46→
+    47→    // Check pool size
+    48→    if (poolSize < AUDIO_TENSOR_ARENA_SIZE) {
+    49→        Serial.println("AudioEmbed: Pool too small");
+    50→        return false;
+    51→    }
+    52→
+    53→    _tensorArena = pool;
+    54→
+    55→    // Initialize mel-spectrogram
+    56→    if (!_initMelSpectrogram()) {
+    57→        Serial.println("AudioEmbed: Mel init failed");
+    58→        return false;
+    59→    }
+    60→
+    61→    // Load model from SD
+    62→    if (!_loadModel(modelPath)) {
+    63→        Serial.println("AudioEmbed: Model load failed");
+    64→        _endMelSpectrogram();
+    65→        return false;
+    66→    }
+    67→
+    68→    // Initialize TFLite interpreter
+    69→    if (!_initInterpreter()) {
+    70→        Serial.println("AudioEmbed: Interpreter init failed");
+    71→        if (_modelData) {
+    72→            free(_modelData);
+    73→            _modelData = nullptr;
+    74→        }
+    75→        _endMelSpectrogram();
+    76→        return false;
+    77→    }
+    78→
+    79→    _loaded = true;
+    80→    Serial.printf("AudioEmbed: Loaded (%.1fKB model)\n", _modelSize / 1024.0f);
+    81→    return true;
+    82→}
+    83→
+    84→void AudioEmbedder::end() {
+    85→    _interpreter = nullptr;
+    86→    _inputTensor = nullptr;
+    87→    _outputTensor = nullptr;
+    88→    _tensorArena = nullptr;
+    89→
+    90→    if (_modelData) {
+    91→        free(_modelData);
+    92→        _modelData = nullptr;
+    93→    }
+    94→
+    95→    _endMelSpectrogram();
+    96→    _loaded = false;
+    97→}
+    98→
+    99→//==============================================================================
+   100→// Mel-Spectrogram Implementation
+   101→//==============================================================================
+   102→
+   103→bool AudioEmbedder::_initMelSpectrogram() {
+   104→    int numFreqBins = AUDIO_FFT_SIZE / 2 + 1;
+   105→
+   106→    // Allocate mel filterbank (16-byte aligned for ESP-DSP SIMD)
+   107→    size_t filterSize = AUDIO_MEL_BINS * numFreqBins * sizeof(float);
+   108→    _melFilterbank = (float*)heap_caps_aligned_alloc(16, filterSize, MALLOC_CAP_SPIRAM);
+   109→    if (!_melFilterbank) return false;
+   110→
+   111→    // Allocate working buffers
+   112→    _fftInput = (float*)ps_malloc(AUDIO_FFT_SIZE * sizeof(float));
+   113→    _fftOutput = (float*)ps_malloc(AUDIO_FFT_SIZE * 2 * sizeof(float));
+   114→    _window = (float*)ps_malloc(AUDIO_FFT_SIZE * sizeof(float));
+   115→    _melFeatures = (float*)ps_malloc(AUDIO_MEL_BINS * AUDIO_MEL_FRAMES * sizeof(float));
+   116→
+   117→    if (!_fftInput || !_fftOutput || !_window || !_melFeatures) {
+   118→        _endMelSpectrogram();
+   119→        return false;
+   120→    }
+   121→
+   122→    // Initialize ESP-DSP FFT
+   123→    esp_err_t ret = dsps_fft2r_init_fc32(NULL, AUDIO_FFT_SIZE);
+   124→    if (ret != ESP_OK) {
+   125→        _endMelSpectrogram();
+   126→        return false;
+   127→    }
+   128→
+   129→    // Create Hann window
+   130→    for (int i = 0; i < AUDIO_FFT_SIZE; i++) {
+   131→        _window[i] = 0.5f * (1.0f - cosf(2.0f * M_PI * i / (AUDIO_FFT_SIZE - 1)));
+   132→    }
+   133→
+   134→    // Initialize mel filterbank
+   135→    float minFreq = 125.0f;
+   136→    float maxFreq = 7500.0f;
+   137→    float minMel = _hzToMel(minFreq);
+   138→    float maxMel = _hzToMel(maxFreq);
+   139→
+   140→    // Create mel filter centers
+   141→    float* melCenters = (float*)malloc((AUDIO_MEL_BINS + 2) * sizeof(float));
+   142→    for (int i = 0; i < AUDIO_MEL_BINS + 2; i++) {
+   143→        float mel = minMel + (maxMel - minMel) * i / (AUDIO_MEL_BINS + 1);
+   144→        melCenters[i] = _melToHz(mel);
+   145→    }
+   146→
+   147→    // Build triangular filters
+   148→    float freqRes = (float)AUDIO_SAMPLE_RATE / AUDIO_FFT_SIZE;
+   149→
+   150→    for (int m = 0; m < AUDIO_MEL_BINS; m++) {
+   151→        float left = melCenters[m];
+   152→        float center = melCenters[m + 1];
+   153→        float right = melCenters[m + 2];
+   154→
+   155→        for (int k = 0; k < numFreqBins; k++) {
+   156→            float freq = k * freqRes;
+   157→            float weight = 0.0f;
+   158→
+   159→            if (freq >= left && freq <= center) {
+   160→                weight = (freq - left) / (center - left);
+   161→            } else if (freq > center && freq <= right) {
+   162→                weight = (right - freq) / (right - center);
+   163→            }
+   164→
+   165→            _melFilterbank[m * numFreqBins + k] = weight;
+   166→        }
+   167→    }
+   168→
+   169→    free(melCenters);
+   170→    _melInitialized = true;
+   171→    return true;
+   172→}
+   173→
+   174→void AudioEmbedder::_endMelSpectrogram() {
+   175→    if (_melFilterbank) { free(_melFilterbank); _melFilterbank = nullptr; }
+   176→    if (_fftInput) { free(_fftInput); _fftInput = nullptr; }
+   177→    if (_fftOutput) { free(_fftOutput); _fftOutput = nullptr; }
+   178→    if (_window) { free(_window); _window = nullptr; }
+   179→    if (_melFeatures) { free(_melFeatures); _melFeatures = nullptr; }
+   180→    _melInitialized = false;
+   181→}
+   182→
+   183→bool AudioEmbedder::_computeMelSpectrogram(const int16_t* audio, size_t samples, float* melOutput) {
+   184→    if (!_melInitialized) return false;
+   185→
+   186→    float globalMin = 1e10f;
+   187→    float globalMax = -1e10f;
+   188→
+   189→    // Generate frames - output format: (bins, frames) = (64, 96)
+   190→    for (int frame = 0; frame < AUDIO_MEL_FRAMES; frame++) {
+   191→        int startIdx = frame * AUDIO_HOP_LENGTH;
+   192→
+   193→        if (startIdx + AUDIO_FFT_SIZE > (int)samples) {
+   194→            // Zero-pad remaining frames
+   195→            for (int i = 0; i < AUDIO_MEL_BINS; i++) {
+   196→                melOutput[i * AUDIO_MEL_FRAMES + frame] = -80.0f;
+   197→            }
+   198→            continue;
+   199→        }
+   200→
+   201→        // Compute power spectrum
+   202→        float powerSpectrum[AUDIO_FFT_SIZE / 2 + 1];
+   203→        _computeFFTFrame(audio, startIdx, powerSpectrum);
+   204→
+   205→        // Apply mel filterbank
+   206→        float melFrame[AUDIO_MEL_BINS];
+   207→        _applyMelFilterbank(powerSpectrum, melFrame);
+   208→
+   209→        // Store in (bins, frames) format for CNN input
+   210→        for (int i = 0; i < AUDIO_MEL_BINS; i++) {
+   211→            melOutput[i * AUDIO_MEL_FRAMES + frame] = melFrame[i];
+   212→            if (melFrame[i] < globalMin) globalMin = melFrame[i];
+   213→            if (melFrame[i] > globalMax) globalMax = melFrame[i];
+   214→        }
+   215→    }
+   216→
+   217→    // Debug: Print mel-spectrogram stats BEFORE normalization
+   218→    Serial.printf("AudioEmbed: Mel-spec raw: min=%.2f, max=%.2f, range=%.2f\n",
+   219→                  globalMin, globalMax, globalMax - globalMin);
+   220→
+   221→    // Normalize to [0, 1] range (like training)
+   222→    float range = globalMax - globalMin;
+   223→    if (range > 1e-8f) {
+   224→        for (int i = 0; i < AUDIO_MEL_BINS * AUDIO_MEL_FRAMES; i++) {
+   225→            melOutput[i] = (melOutput[i] - globalMin) / range;
+   226→        }
+   227→    }
+   228→
+   229→    // Debug: Print a few values after normalization
+   230→    Serial.printf("AudioEmbed: Mel-spec normalized sample: [%.3f, %.3f, %.3f, %.3f]\n",
+   231→                  melOutput[0], melOutput[AUDIO_MEL_FRAMES],
+   232→                  melOutput[2*AUDIO_MEL_FRAMES], melOutput[3*AUDIO_MEL_FRAMES]);
+   233→
+   234→    return true;
+   235→}
+   236→
+   237→void AudioEmbedder::_computeFFTFrame(const int16_t* audio, int startIdx, float* powerSpectrum) {
+   238→    // Apply window and convert to float
+   239→    for (int i = 0; i < AUDIO_FFT_SIZE; i++) {
+   240→        _fftInput[i] = (float)audio[startIdx + i] * _window[i] / 32768.0f;
+   241→    }
+   242→
+   243→    // Prepare complex input (real part only)
+   244→    for (int i = 0; i < AUDIO_FFT_SIZE; i++) {
+   245→        _fftOutput[i * 2] = _fftInput[i];
+   246→        _fftOutput[i * 2 + 1] = 0.0f;
+   247→    }
+   248→
+   249→    // Compute FFT using ESP-DSP
+   250→    dsps_fft2r_fc32(_fftOutput, AUDIO_FFT_SIZE);
+   251→    dsps_bit_rev_fc32(_fftOutput, AUDIO_FFT_SIZE);
+   252→
+   253→    // Compute power spectrum: |X[k]|^2
+   254→    for (int k = 0; k < AUDIO_FFT_SIZE / 2 + 1; k++) {
+   255→        float real = _fftOutput[k * 2];
+   256→        float imag = _fftOutput[k * 2 + 1];
+   257→        powerSpectrum[k] = real * real + imag * imag;
+   258→    }
+   259→}
+   260→
+   261→void AudioEmbedder::_applyMelFilterbank(float* powerSpectrum, float* melOutput) {
+   262→    int numFreqBins = AUDIO_FFT_SIZE / 2 + 1;
+   263→
+   264→    for (int m = 0; m < AUDIO_MEL_BINS; m++) {
+   265→        float sum = 0.0f;
+   266→
+   267→        // ESP-DSP SIMD dot product for mel filter application
+   268→        // Each mel filter row dot-producted with power spectrum
+   269→        dsps_dotprod_f32_aes3(&_melFilterbank[m * numFreqBins],
+   270→                              powerSpectrum, &sum, numFreqBins);
+   271→
+   272→        // Log transform
+   273→        melOutput[m] = log10f(sum + 1e-10f);
+   274→    }
+   275→}
+   276→
+   277→float AudioEmbedder::_hzToMel(float hz) {
+   278→    return 2595.0f * log10f(1.0f + hz / 700.0f);
+   279→}
+   280→
+   281→float AudioEmbedder::_melToHz(float mel) {
+   282→    return 700.0f * (powf(10.0f, mel / 2595.0f) - 1.0f);
+   283→}
+   284→
+   285→//==============================================================================
+   286→// TFLite Implementation
+   287→//==============================================================================
+   288→
+   289→bool AudioEmbedder::_loadModel(const char* path) {
+   290→    File f = SD.open(path);
+   291→    if (!f) {
+   292→        Serial.printf("AudioEmbed: Cannot open %s\n", path);
+   293→        return false;
+   294→    }
+   295→
+   296→    _modelSize = f.size();
+   297→    _modelData = (uint8_t*)ps_malloc(_modelSize);
+   298→    if (!_modelData) {
+   299→        Serial.println("AudioEmbed: Model alloc failed");
+   300→        f.close();
+   301→        return false;
+   302→    }
+   303→
+   304→    if (f.read(_modelData, _modelSize) != _modelSize) {
+   305→        free(_modelData);
+   306→        _modelData = nullptr;
+   307→        f.close();
+   308→        return false;
+   309→    }
+   310→    f.close();
+   311→    return true;
+   312→}
+   313→
+   314→bool AudioEmbedder::_initInterpreter() {
+   315→    const tflite::Model* model = tflite::GetModel(_modelData);
+   316→    if (model->version() != TFLITE_SCHEMA_VERSION) {
+   317→        Serial.printf("AudioEmbed: Model version mismatch: %d vs %d\n",
+   318→                      model->version(), TFLITE_SCHEMA_VERSION);
+   319→        return false;
+   320→    }
+   321→
+   322→    // CRITICAL: Clear the arena to reset MicroAllocator state from any previous model
+   323→    // This prevents "Model allocation started before finishing" errors
+   324→    memset(_tensorArena, 0, AUDIO_TENSOR_ARENA_SIZE);
+   325→
+   326→    // Op resolver for small CNN audio encoder
+   327→    // Architecture: Conv2D -> MaxPool -> Conv2D -> MaxPool -> Conv2D -> MaxPool ->
+   328→    //               Conv2D -> GlobalAvgPool -> Dense -> L2Normalize
+   329→    // Static resolver persists - only add ops once to avoid "AddBuiltin" warnings
+   330→    static tflite::MicroMutableOpResolver<12> resolver;
+   331→    static bool opsAdded = false;
+   332→    if (!opsAdded) {
+   333→        resolver.AddConv2D();
+   334→        resolver.AddMaxPool2D();
+   335→        resolver.AddFullyConnected();
+   336→        resolver.AddReshape();
+   337→        resolver.AddMean();              // For GlobalAveragePooling2D
+   338→        resolver.AddL2Normalization();   // For L2 normalize layer
+   339→        resolver.AddQuantize();
+   340→        resolver.AddDequantize();
+   341→        resolver.AddRelu();              // Activation
+   342→        resolver.AddPad();
+   343→        resolver.AddSqueeze();
+   344→        resolver.AddExpandDims();
+   345→        opsAdded = true;
+   346→    }
+   347→
+   348→    // Use placement new to properly reconstruct the interpreter each time
+   349→    // This ensures the constructor runs with fresh model and arena state
+   350→    static uint8_t interpreterBuffer[sizeof(tflite::MicroInterpreter)] __attribute__((aligned(16)));
+   351→    _interpreter = new (interpreterBuffer) tflite::MicroInterpreter(
+   352→        model, resolver, _tensorArena, AUDIO_TENSOR_ARENA_SIZE);
+   353→
+   354→    if (_interpreter->AllocateTensors() != kTfLiteOk) {
+   355→        Serial.println("AudioEmbed: AllocateTensors failed");
+   356→        return false;
+   357→    }
+   358→
+   359→    _inputTensor = _interpreter->input(0);
+   360→    _outputTensor = _interpreter->output(0);
+   361→
+   362→    if (!_inputTensor || !_outputTensor) {
+   363→        Serial.println("AudioEmbed: Failed to get tensors");
+   364→        return false;
+   365→    }
+   366→
+   367→    // Log tensor shapes
+   368→    Serial.printf("AudioEmbed: Input [%d, %d, %d, %d]\n",
+   369→                  _inputTensor->dims->data[0],
+   370→                  _inputTensor->dims->data[1],
+   371→                  _inputTensor->dims->data[2],
+   372→                  _inputTensor->dims->data[3]);
+   373→    Serial.printf("AudioEmbed: Output [%d, %d]\n",
+   374→                  _outputTensor->dims->data[0],
+   375→                  _outputTensor->dims->data[1]);
+   376→
+   377→    return true;
+   378→}
+   379→
+   380→bool AudioEmbedder::_runInference(const float* melFeatures, float* embedding) {
+   381→    // Input shape: [1, 64, 96, 1] = [batch, bins, frames, channel]
+   382→    int inputSize = AUDIO_MEL_BINS * AUDIO_MEL_FRAMES;
+   383→
+   384→    // Fill input tensor
+   385→    if (_inputTensor->type == kTfLiteInt8) {
+   386→        int8_t* inputData = _inputTensor->data.int8;
+   387→        float scale = _inputTensor->params.scale;
+   388→        int32_t zeroPoint = _inputTensor->params.zero_point;
+   389→
+   390→        for (int i = 0; i < inputSize; i++) {
+   391→            int32_t quantized = (int32_t)(melFeatures[i] / scale + zeroPoint);
+   392→            inputData[i] = constrain(quantized, -128, 127);
+   393→        }
+   394→    } else {
+   395→        // Float input
+   396→        float* inputData = _inputTensor->data.f;
+   397→        memcpy(inputData, melFeatures, inputSize * sizeof(float));
+   398→    }
+   399→
+   400→    // Run inference
+   401→    if (_interpreter->Invoke() != kTfLiteOk) {
+   402→        Serial.println("AudioEmbed: Invoke failed");
+   403→        return false;
+   404→    }
+   405→
+   406→    // Extract embedding (256-dim)
+   407→    int outputDim = _outputTensor->dims->data[1];
+   408→
+   409→    if (_outputTensor->type == kTfLiteInt8) {
+   410→        int8_t* outputData = _outputTensor->data.int8;
+   411→        float scale = _outputTensor->params.scale;
+   412→        int32_t zeroPoint = _outputTensor->params.zero_point;
+   413→
+   414→        for (int i = 0; i < outputDim && i < AUDIO_EMBEDDING_DIM; i++) {
+   415→            embedding[i] = (outputData[i] - zeroPoint) * scale;
+   416→        }
+   417→    } else {
+   418→        float* outputData = _outputTensor->data.f;
+   419→        for (int i = 0; i < outputDim && i < AUDIO_EMBEDDING_DIM; i++) {
+   420→            embedding[i] = outputData[i];
+   421→        }
+   422→    }
+   423→
+   424→    return true;
+   425→}
+   426→
+   427→//==============================================================================
+   428→// Public API
+   429→//==============================================================================
+   430→
+   431→bool AudioEmbedder::embed(const int16_t* audio, size_t sampleCount, float* output) {
+   432→    if (!_loaded) return false;
+   433→
+   434→    unsigned long startTime = millis();
+   435→
+   436→    // Debug: Print audio input stats
+   437→    int16_t audioMin = audio[0], audioMax = audio[0];
+   438→    int64_t audioSum = 0;
+   439→    for (size_t i = 0; i < sampleCount; i++) {
+   440→        if (audio[i] < audioMin) audioMin = audio[i];
+   441→        if (audio[i] > audioMax) audioMax = audio[i];
+   442→        audioSum += abs(audio[i]);
+   443→    }
+   444→    float audioAvg = (float)audioSum / sampleCount;
+   445→    Serial.printf("AudioEmbed: Input audio: min=%d, max=%d, avg=%.1f, samples=%d\n",
+   446→                  audioMin, audioMax, audioAvg, sampleCount);
+   447→
+   448→    // Step 1: Compute mel-spectrogram
+   449→    if (!_computeMelSpectrogram(audio, sampleCount, _melFeatures)) {
+   450→        Serial.println("AudioEmbed: Mel computation failed");
+   451→        return false;
+   452→    }
+   453→
+   454→    unsigned long melTime = millis();
+   455→    Serial.printf("AudioEmbed: Mel-spec took %lu ms\n", melTime - startTime);
+   456→
+   457→    // Step 2: Run CNN inference
+   458→    if (!_runInference(_melFeatures, output)) {
+   459→        Serial.println("AudioEmbed: Inference failed");
+   460→        return false;
+   461→    }
+   462→
+   463→    unsigned long inferTime = millis();
+   464→    Serial.printf("AudioEmbed: Inference took %lu ms\n", inferTime - melTime);
+   465→    Serial.printf("AudioEmbed: Total time: %lu ms\n", inferTime - startTime);
+   466→
+   467→    // Debug: Print embedding stats and first few values
+   468→    float minVal = output[0], maxVal = output[0], sum = 0;
+   469→    for (int i = 0; i < AUDIO_EMBEDDING_DIM; i++) {
+   470→        if (output[i] < minVal) minVal = output[i];
+   471→        if (output[i] > maxVal) maxVal = output[i];
+   472→        sum += output[i] * output[i];
+   473→    }
+   474→    float norm = sqrtf(sum);
+   475→    Serial.printf("AudioEmbed: Embedding norm=%.4f, min=%.4f, max=%.4f\n", norm, minVal, maxVal);
+   476→    Serial.printf("AudioEmbed: First 8 values: [%.3f, %.3f, %.3f, %.3f, %.3f, %.3f, %.3f, %.3f]\n",
+   477→                  output[0], output[1], output[2], output[3],
+   478→                  output[4], output[5], output[6], output[7]);
+   479→
+   480→    return true;
+   481→}
+   482→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>
+
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<think><details><summary>Thought Process</summary>
+Excellent! Now let me continue reading the remaining ML modules - embed_search, LLM core, tokenizer, sampler, and llm_inference. Then I'll read the TTS module.
+</details></think>
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./local_llm_badge/src/ml/embed_search.h`
+```
+     1→/*******************************************************************************
+     2→ * OAISYS Badge - Embedding Similarity Search Module
+     3→ *
+     4→ * Performs cosine similarity search against pre-computed query embeddings
+     5→ * to find the closest matching intent for a given audio embedding.
+     6→ ******************************************************************************/
+     7→
+     8→#pragma once
+     9→
+    10→#include <Arduino.h>
+    11→
+    12→//==============================================================================
+    13→// Search Result
+    14→//==============================================================================
+    15→struct SearchResult {
+    16→    int intentIdx;          // Index in intents file (0-based)
+    17→    float score;            // Cosine similarity score (0-1)
+    18→    char intent[256];       // Intent text string
+    19→};
+    20→
+    21→//==============================================================================
+    22→// EmbeddingSearch - Cosine similarity search against pre-computed embeddings
+    23→//==============================================================================
+    24→class EmbeddingSearch {
+    25→public:
+    26→    EmbeddingSearch();
+    27→    ~EmbeddingSearch();
+    28→
+    29→    // Load embeddings and intents from SD card
+    30→    // embeddingsPath: binary file with N × 256 float32 values
+    31→    // intentsPath: text file with N lines (one intent per line)
+    32→    bool begin(const char* embeddingsPath, const char* intentsPath);
+    33→    void end();
+    34→
+    35→    // Search for closest embedding
+    36→    // embedding: float[256] query embedding
+    37→    // Returns SearchResult with best match
+    38→    SearchResult search(const float* embedding);
+    39→
+    40→    // Get number of loaded embeddings
+    41→    int getCount() const { return _count; }
+    42→
+    43→    // Check if loaded
+    44→    bool isLoaded() const { return _loaded; }
+    45→
+    46→private:
+    47→    // Cosine similarity between two 256-dim vectors
+    48→    float _cosineSimilarity(const float* a, const float* b);
+    49→
+    50→    // Load embeddings binary file
+    51→    bool _loadEmbeddings(const char* path);
+    52→
+    53→    // Load intents text file
+    54→    bool _loadIntents(const char* path);
+    55→
+    56→    // Get intent string by index
+    57→    void _getIntent(int idx, char* buffer, size_t bufSize);
+    58→
+    59→    // Data
+    60→    float* _embeddings;      // N × 256 floats (in PSRAM)
+    61→    char* _intentsData;      // Raw intents text data
+    62→    int* _intentOffsets;     // Offsets into _intentsData for each intent
+    63→    int _count;              // Number of embeddings/intents
+    64→
+    65→    bool _loaded;
+    66→};
+    67→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>
+
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./local_llm_badge/src/ml/embed_search.cpp`
+```
+     1→/*******************************************************************************
+     2→ * OAISYS Badge - Embedding Similarity Search Implementation
+     3→ *
+     4→ * Optimized with ESP-DSP SIMD for fast cosine similarity search.
+     5→ ******************************************************************************/
+     6→
+     7→#include "embed_search.h"
+     8→#include "audio_embed.h"  // For AUDIO_EMBEDDING_DIM
+     9→#include "../../config.h"
+    10→
+    11→#include <SD.h>
+    12→#include <math.h>
+    13→#include <esp_heap_caps.h>
+    14→
+    15→// ESP-DSP for SIMD dot product (same as used in llm_core.cpp)
+    16→#include <dsps_dotprod.h>
+    17→
+    18→EmbeddingSearch::EmbeddingSearch()
+    19→    : _embeddings(nullptr)
+    20→    , _intentsData(nullptr)
+    21→    , _intentOffsets(nullptr)
+    22→    , _count(0)
+    23→    , _loaded(false)
+    24→{
+    25→}
+    26→
+    27→EmbeddingSearch::~EmbeddingSearch() {
+    28→    end();
+    29→}
+    30→
+    31→bool EmbeddingSearch::begin(const char* embeddingsPath, const char* intentsPath) {
+    32→    if (_loaded) return true;
+    33→
+    34→    // Load embeddings first
+    35→    if (!_loadEmbeddings(embeddingsPath)) {
+    36→        Serial.println("EmbedSearch: Embeddings load failed");
+    37→        return false;
+    38→    }
+    39→
+    40→    // Load intents
+    41→    if (!_loadIntents(intentsPath)) {
+    42→        Serial.println("EmbedSearch: Intents load failed");
+    43→        end();
+    44→        return false;
+    45→    }
+    46→
+    47→    _loaded = true;
+    48→    Serial.printf("EmbedSearch: Loaded %d embeddings (%.1fKB)\n",
+    49→                  _count, (_count * AUDIO_EMBEDDING_DIM * sizeof(float)) / 1024.0f);
+    50→    return true;
+    51→}
+    52→
+    53→void EmbeddingSearch::end() {
+    54→    if (_embeddings) {
+    55→        free(_embeddings);
+    56→        _embeddings = nullptr;
+    57→    }
+    58→    if (_intentsData) {
+    59→        free(_intentsData);
+    60→        _intentsData = nullptr;
+    61→    }
+    62→    if (_intentOffsets) {
+    63→        free(_intentOffsets);
+    64→        _intentOffsets = nullptr;
+    65→    }
+    66→    _count = 0;
+    67→    _loaded = false;
+    68→}
+    69→
+    70→bool EmbeddingSearch::_loadEmbeddings(const char* path) {
+    71→    File f = SD.open(path);
+    72→    if (!f) {
+    73→        Serial.printf("EmbedSearch: Cannot open %s\n", path);
+    74→        return false;
+    75→    }
+    76→
+    77→    // Calculate number of embeddings
+    78→    size_t fileSize = f.size();
+    79→    _count = fileSize / (AUDIO_EMBEDDING_DIM * sizeof(float));
+    80→
+    81→    if (_count == 0) {
+    82→        Serial.println("EmbedSearch: Empty embeddings file");
+    83→        f.close();
+    84→        return false;
+    85→    }
+    86→
+    87→    Serial.printf("EmbedSearch: File size %d bytes, %d embeddings\n", fileSize, _count);
+    88→
+    89→    // Allocate in PSRAM with 16-byte alignment for ESP-DSP SIMD
+    90→    size_t embedSize = _count * AUDIO_EMBEDDING_DIM * sizeof(float);
+    91→    _embeddings = (float*)heap_caps_aligned_alloc(16, embedSize, MALLOC_CAP_SPIRAM);
+    92→    if (!_embeddings) {
+    93→        Serial.println("EmbedSearch: Embeddings alloc failed");
+    94→        f.close();
+    95→        return false;
+    96→    }
+    97→
+    98→    // Read all embeddings
+    99→    size_t bytesRead = f.read((uint8_t*)_embeddings, fileSize);
+   100→    f.close();
+   101→
+   102→    if (bytesRead != fileSize) {
+   103→        Serial.println("EmbedSearch: Embeddings read incomplete");
+   104→        free(_embeddings);
+   105→        _embeddings = nullptr;
+   106→        return false;
+   107→    }
+   108→
+   109→    return true;
+   110→}
+   111→
+   112→bool EmbeddingSearch::_loadIntents(const char* path) {
+   113→    File f = SD.open(path);
+   114→    if (!f) {
+   115→        Serial.printf("EmbedSearch: Cannot open %s\n", path);
+   116→        return false;
+   117→    }
+   118→
+   119→    // Read entire file into memory
+   120→    size_t fileSize = f.size();
+   121→    _intentsData = (char*)ps_malloc(fileSize + 1);
+   122→    if (!_intentsData) {
+   123→        Serial.println("EmbedSearch: Intents alloc failed");
+   124→        f.close();
+   125→        return false;
+   126→    }
+   127→
+   128→    f.read((uint8_t*)_intentsData, fileSize);
+   129→    _intentsData[fileSize] = '\0';
+   130→    f.close();
+   131→
+   132→    // Count lines and build offset table
+   133→    int lineCount = 0;
+   134→    for (size_t i = 0; i < fileSize; i++) {
+   135→        if (_intentsData[i] == '\n') lineCount++;
+   136→    }
+   137→    // Add 1 if file doesn't end with newline
+   138→    if (fileSize > 0 && _intentsData[fileSize - 1] != '\n') lineCount++;
+   139→
+   140→    // Verify line count matches embedding count
+   141→    if (lineCount < _count) {
+   142→        Serial.printf("EmbedSearch: Intent count mismatch: %d lines vs %d embeddings\n",
+   143→                      lineCount, _count);
+   144→        // Use minimum
+   145→        _count = lineCount;
+   146→    }
+   147→
+   148→    // Build offset table
+   149→    _intentOffsets = (int*)ps_malloc(_count * sizeof(int));
+   150→    if (!_intentOffsets) {
+   151→        Serial.println("EmbedSearch: Offsets alloc failed");
+   152→        free(_intentsData);
+   153→        _intentsData = nullptr;
+   154→        return false;
+   155→    }
+   156→
+   157→    int line = 0;
+   158→    _intentOffsets[0] = 0;
+   159→
+   160→    for (size_t i = 0; i < fileSize && line < _count; i++) {
+   161→        if (_intentsData[i] == '\n') {
+   162→            _intentsData[i] = '\0';  // Replace newline with null terminator
+   163→            line++;
+   164→            if (line < _count) {
+   165→                _intentOffsets[line] = i + 1;
+   166→            }
+   167→        }
+   168→    }
+   169→
+   170→    Serial.printf("EmbedSearch: Loaded %d intents\n", _count);
+   171→    return true;
+   172→}
+   173→
+   174→void EmbeddingSearch::_getIntent(int idx, char* buffer, size_t bufSize) {
+   175→    if (idx < 0 || idx >= _count || !_intentsData || !_intentOffsets) {
+   176→        buffer[0] = '\0';
+   177→        return;
+   178→    }
+   179→
+   180→    const char* intentStr = _intentsData + _intentOffsets[idx];
+   181→    strncpy(buffer, intentStr, bufSize - 1);
+   182→    buffer[bufSize - 1] = '\0';
+   183→}
+   184→
+   185→float EmbeddingSearch::_cosineSimilarity(const float* a, const float* b) {
+   186→    float dot = 0.0f;
+   187→    float normA = 0.0f;
+   188→    float normB = 0.0f;
+   189→
+   190→    // ESP-DSP SIMD dot products - 5-10x faster than manual loops
+   191→    // dsps_dotprod_f32_aes3 uses PIE SIMD instructions on ESP32-S3
+   192→    dsps_dotprod_f32_aes3(a, b, &dot, AUDIO_EMBEDDING_DIM);
+   193→    dsps_dotprod_f32_aes3(a, a, &normA, AUDIO_EMBEDDING_DIM);
+   194→    dsps_dotprod_f32_aes3(b, b, &normB, AUDIO_EMBEDDING_DIM);
+   195→
+   196→    float denom = sqrtf(normA) * sqrtf(normB);
+   197→    return (denom > 1e-8f) ? dot / denom : 0.0f;
+   198→}
+   199→
+   200→SearchResult EmbeddingSearch::search(const float* embedding) {
+   201→    SearchResult result;
+   202→    result.intentIdx = -1;
+   203→    result.score = -1.0f;
+   204→    result.intent[0] = '\0';
+   205→
+   206→    if (!_loaded || !embedding) {
+   207→        Serial.println("EmbedSearch: Not loaded or null embedding!");
+   208→        return result;
+   209→    }
+   210→
+   211→    unsigned long startTime = millis();
+   212→
+   213→    // Track top 5 for debugging
+   214→    const int TOP_K = 5;
+   215→    float topScores[TOP_K] = {-1, -1, -1, -1, -1};
+   216→    int topIndices[TOP_K] = {-1, -1, -1, -1, -1};
+   217→
+   218→    // Linear search through all embeddings
+   219→    for (int i = 0; i < _count; i++) {
+   220→        float score = _cosineSimilarity(embedding, &_embeddings[i * AUDIO_EMBEDDING_DIM]);
+   221→
+   222→        // Insert into top-K if better than worst
+   223→        if (score > topScores[TOP_K - 1]) {
+   224→            // Find insertion point
+   225→            int insertAt = TOP_K - 1;
+   226→            while (insertAt > 0 && score > topScores[insertAt - 1]) {
+   227→                topScores[insertAt] = topScores[insertAt - 1];
+   228→                topIndices[insertAt] = topIndices[insertAt - 1];
+   229→                insertAt--;
+   230→            }
+   231→            topScores[insertAt] = score;
+   232→            topIndices[insertAt] = i;
+   233→        }
+   234→    }
+   235→
+   236→    unsigned long searchTime = millis() - startTime;
+   237→    Serial.printf("EmbedSearch: Searched %d embeddings in %lu ms\n", _count, searchTime);
+   238→
+   239→    // Debug: Print top 5 matches
+   240→    Serial.println("=== TOP 5 MATCHES ===");
+   241→    char intentBuf[128];
+   242→    for (int i = 0; i < TOP_K && topIndices[i] >= 0; i++) {
+   243→        _getIntent(topIndices[i], intentBuf, sizeof(intentBuf));
+   244→        // Truncate long intents for display
+   245→        if (strlen(intentBuf) > 50) {
+   246→            intentBuf[47] = '.';
+   247→            intentBuf[48] = '.';
+   248→            intentBuf[49] = '.';
+   249→            intentBuf[50] = '\0';
+   250→        }
+   251→        Serial.printf("  #%d: %.4f - \"%s\"\n", i + 1, topScores[i], intentBuf);
+   252→    }
+   253→    Serial.println("=====================");
+   254→
+   255→    if (topIndices[0] >= 0) {
+   256→        result.intentIdx = topIndices[0];
+   257→        result.score = topScores[0];
+   258→        _getIntent(topIndices[0], result.intent, sizeof(result.intent));
+   259→    }
+   260→
+   261→    return result;
+   262→}
+   263→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>
+
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./local_llm_badge/src/ml/llm_inference.h`
+```
+     1→/*******************************************************************************
+     2→ * OAISYS Badge - LLM Inference Wrapper
+     3→ *
+     4→ * Thin wrapper around the optimized llm_core/tokenizer/sampler from 05_llm_finetuned.
+     5→ * Provides simplified interface for badge state machine integration.
+     6→ ******************************************************************************/
+     7→
+     8→#pragma once
+     9→
+    10→#include <Arduino.h>
+    11→#include "llm_core.h"
+    12→#include "tokenizer.h"
+    13→#include "sampler.h"
+    14→
+    15→//==============================================================================
+    16→// Token callback for streaming output
+    17→//==============================================================================
+    18→typedef void (*TokenCallback)(const char* token, void* userData);
+    19→
+    20→//==============================================================================
+    21→// LLM Inference Wrapper
+    22→//==============================================================================
+    23→class LLMInference {
+    24→public:
+    25→    LLMInference();
+    26→    ~LLMInference();
+    27→
+    28→    // Initialize with memory pool (pool not directly used - kept for API consistency)
+    29→    // modelPath: Path to Q8_0 model file on SD card
+    30→    // tokenizerPath: Path to tokenizer.bin on SD card
+    31→    bool begin(uint8_t* pool, size_t poolSize,
+    32→               const char* modelPath, const char* tokenizerPath);
+    33→    void end();
+    34→
+    35→    // Check if model is loaded
+    36→    bool isLoaded() const { return _loaded; }
+    37→
+    38→    // Configure generation parameters
+    39→    void setTemperature(float temp);
+    40→    void setTopP(float topp);
+    41→    void setMaxTokens(int max) { _maxTokens = max; }
+    42→
+    43→    // Generate response from prompt
+    44→    // prompt: User's question/intent (will be wrapped with Q&A tokens)
+    45→    // callback: Called for each generated token
+    46→    // userData: Passed to callback
+    47→    // Returns: Number of tokens generated
+    48→    int generate(const char* prompt, TokenCallback callback, void* userData = nullptr);
+    49→
+    50→    // Get model info
+    51→    int getVocabSize() const;
+    52→    int getDimension() const;
+    53→    int getNumLayers() const;
+    54→    int getSeqLen() const;
+    55→
+    56→    // Memory requirements
+    57→    static size_t requiredPoolSize() { return 6 * 1024 * 1024; }
+    58→
+    59→private:
+    60→    Transformer _transformer;
+    61→    Tokenizer _tokenizer;
+    62→    Sampler _sampler;
+    63→
+    64→    int _maxTokens;
+    65→    bool _loaded;
+    66→
+    67→    // Wrap prompt with Q&A special tokens
+    68→    String _wrapPrompt(const char* userInput);
+    69→
+    70→    // Check if token piece contains end marker
+    71→    bool _isEndToken(const char* piece);
+    72→};
+    73→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>
+
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./local_llm_badge/src/ml/llm_inference.cpp`
+```
+     1→/*******************************************************************************
+     2→ * OAISYS Badge - LLM Inference Wrapper Implementation
+     3→ *
+     4→ * Thin wrapper that delegates to the optimized llm_core/tokenizer/sampler.
+     5→ * The core inference code is unchanged from 05_llm_finetuned.
+     6→ ******************************************************************************/
+     7→
+     8→#include "llm_inference.h"
+     9→#include "../../config.h"
+    10→
+    11→LLMInference::LLMInference()
+    12→    : _maxTokens(128)
+    13→    , _loaded(false)
+    14→{
+    15→    memset(&_transformer, 0, sizeof(Transformer));
+    16→    memset(&_tokenizer, 0, sizeof(Tokenizer));
+    17→    memset(&_sampler, 0, sizeof(Sampler));
+    18→}
+    19→
+    20→LLMInference::~LLMInference() {
+    21→    end();
+    22→}
+    23→
+    24→bool LLMInference::begin(uint8_t* pool, size_t poolSize,
+    25→                          const char* modelPath, const char* tokenizerPath) {
+    26→    if (_loaded) return true;
+    27→
+    28→    Serial.printf("LLM: Loading model %s\n", modelPath);
+    29→
+    30→    // Build transformer (uses its own PSRAM allocation)
+    31→    // max_seq_len = 64 to reduce KV cache memory (saves ~448KB vs 128)
+    32→    if (!build_transformer_q8(&_transformer, modelPath, 64)) {
+    33→        Serial.println("LLM: Model load failed");
+    34→        return false;
+    35→    }
+    36→
+    37→    Serial.printf("LLM: Loading tokenizer %s\n", tokenizerPath);
+    38→
+    39→    // Build tokenizer
+    40→    if (!build_tokenizer(&_tokenizer, tokenizerPath, _transformer.config.vocab_size)) {
+    41→        Serial.println("LLM: Tokenizer load failed");
+    42→        free_transformer(&_transformer);
+    43→        return false;
+    44→    }
+    45→
+    46→    // Build sampler
+    47→    unsigned long long seed = millis();
+    48→    build_sampler(&_sampler, _transformer.config.vocab_size,
+    49→                  DEFAULT_LLM_TEMPERATURE, DEFAULT_LLM_TOPP, seed);
+    50→
+    51→    _loaded = true;
+    52→    Serial.printf("LLM: Ready (dim=%d, layers=%d, vocab=%d)\n",
+    53→                  _transformer.config.dim,
+    54→                  _transformer.config.n_layers,
+    55→                  _transformer.config.vocab_size);
+    56→    return true;
+    57→}
+    58→
+    59→void LLMInference::end() {
+    60→    if (!_loaded) return;
+    61→
+    62→    free_sampler(&_sampler);
+    63→    free_tokenizer(&_tokenizer);
+    64→    free_transformer(&_transformer);
+    65→
+    66→    _loaded = false;
+    67→    Serial.println("LLM: Unloaded");
+    68→}
+    69→
+    70→void LLMInference::setTemperature(float temp) {
+    71→    _sampler.temperature = temp;
+    72→}
+    73→
+    74→void LLMInference::setTopP(float topp) {
+    75→    _sampler.topp = topp;
+    76→}
+    77→
+    78→String LLMInference::_wrapPrompt(const char* userInput) {
+    79→    return String("<|user|>") + userInput + "<|assistant|>";
+    80→}
+    81→
+    82→bool LLMInference::_isEndToken(const char* piece) {
+    83→    return piece && strstr(piece, "<|end|>") != nullptr;
+    84→}
+    85→
+    86→int LLMInference::generate(const char* prompt, TokenCallback callback, void* userData) {
+    87→    if (!_loaded) return 0;
+    88→
+    89→    // Wrap prompt with Q&A tokens
+    90→    String wrapped = _wrapPrompt(prompt);
+    91→
+    92→    // Allocate token buffer
+    93→    int maxPromptTokens = wrapped.length() + 10;
+    94→    int* promptTokens = (int*)malloc(maxPromptTokens * sizeof(int));
+    95→    if (!promptTokens) {
+    96→        Serial.println("LLM: Token buffer alloc failed");
+    97→        return 0;
+    98→    }
+    99→
+   100→    // Encode prompt
+   101→    int numPromptTokens = 0;
+   102→    encode(&_tokenizer, (char*)wrapped.c_str(), 0, 0, promptTokens, &numPromptTokens);
+   103→
+   104→    if (numPromptTokens < 1) {
+   105→        Serial.println("LLM: Encoding failed");
+   106→        free(promptTokens);
+   107→        return 0;
+   108→    }
+   109→
+   110→    Serial.printf("LLM: Encoded %d prompt tokens\n", numPromptTokens);
+   111→
+   112→    // Generation loop
+   113→    int token = promptTokens[0];
+   114→    int pos = 0;
+   115→    int generated = 0;
+   116→    unsigned long startTime = 0;
+   117→
+   118→    int totalSteps = numPromptTokens + _maxTokens;
+   119→
+   120→    while (pos < totalSteps) {
+   121→        // Forward pass
+   122→        float* logits = forward(&_transformer, token, pos);
+   123→        if (!logits) {
+   124→            Serial.println("LLM: Forward pass failed");
+   125→            break;
+   126→        }
+   127→
+   128→        // Get next token
+   129→        int next;
+   130→        if (pos < numPromptTokens - 1) {
+   131→            // Still processing prompt
+   132→            next = promptTokens[pos + 1];
+   133→        } else {
+   134→            // Sample from logits
+   135→            next = sample(&_sampler, logits);
+   136→            generated++;
+   137→
+   138→            // Start timer after prompt processing
+   139→            if (startTime == 0) {
+   140→                startTime = millis();
+   141→            }
+   142→
+   143→            // Decode and output token
+   144→            char* piece = decode(&_tokenizer, token, next);
+   145→            if (piece && piece[0] != '\0') {
+   146→                // Check for end token
+   147→                if (_isEndToken(piece)) {
+   148→                    break;
+   149→                }
+   150→
+   151→                // Filter control characters
+   152→                bool printable = true;
+   153→                if (piece[1] == '\0') {
+   154→                    unsigned char byte_val = piece[0];
+   155→                    printable = isprint(byte_val) || isspace(byte_val);
+   156→                }
+   157→
+   158→                if (printable && callback) {
+   159→                    callback(piece, userData);
+   160→                }
+   161→            }
+   162→        }
+   163→
+   164→        token = next;
+   165→        pos++;
+   166→
+   167→        // Check for max tokens
+   168→        if (generated >= _maxTokens) break;
+   169→    }
+   170→
+   171→    // Print performance stats
+   172→    if (generated > 0 && startTime > 0) {
+   173→        unsigned long elapsed = millis() - startTime;
+   174→        float tokensPerSec = (float)generated / (elapsed / 1000.0f);
+   175→        Serial.printf("LLM: Generated %d tokens (%.1f tok/s)\n", generated, tokensPerSec);
+   176→    }
+   177→
+   178→    free(promptTokens);
+   179→    return generated;
+   180→}
+   181→
+   182→int LLMInference::getVocabSize() const {
+   183→    return _loaded ? _transformer.config.vocab_size : 0;
+   184→}
+   185→
+   186→int LLMInference::getDimension() const {
+   187→    return _loaded ? _transformer.config.dim : 0;
+   188→}
+   189→
+   190→int LLMInference::getNumLayers() const {
+   191→    return _loaded ? _transformer.config.n_layers : 0;
+   192→}
+   193→
+   194→int LLMInference::getSeqLen() const {
+   195→    return _loaded ? _transformer.config.seq_len : 0;
+   196→}
+   197→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>
+
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<think><details><summary>Thought Process</summary>
+Excellent progress. Now let me read the remaining core files - llm_core, tokenizer, sampler, and the TTS module. Then I'll explore the prototypes and training notebooks.
+</details></think>
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./local_llm_badge/src/ml/llm_core.h`
+```
+     1→// llm_core.h - Int8 Quantized LLM Inference for ESP32-S3
+     2→// Based on llama2.c/runq.c - Single-core, adaptive to any model size
+     3→// Supports 1M-6M models with 512/768/1024 vocab sizes
+     4→// Optimized with ESP-DSP PIE SIMD instructions
+     5→
+     6→#ifndef LLM_CORE_H
+     7→#define LLM_CORE_H
+     8→
+     9→#include <Arduino.h>
+    10→#include <SD.h>
+    11→
+    12→// ESP-DSP library (pre-built in Arduino ESP32 core)
+    13→#include "dsps_dotprod.h"   // dsps_dotprod_f32_aes3() - Float SIMD dot product
+    14→#include "dsps_mulc.h"      // dsps_mulc_f32_ae32() - Scalar multiply
+    15→#include "dsps_add.h"       // dsps_add_f32_ae32() - Vector add
+    16→#include "dsps_mul.h"       // dsps_mul_f32_ae32() - Element-wise multiply
+    17→
+    18→// Type alias for compatibility with tokenizer/sampler (originally SIMD, now plain float)
+    19→typedef float v4sf;
+    20→
+    21→// Global group size for quantization (read from model file header)
+    22→extern int GS;
+    23→
+    24→// Quantized tensor (int8 weights + per-group float scales)
+    25→typedef struct {
+    26→    int8_t* q;    // Quantized int8 values
+    27→    float* s;     // Scale factors (one per group_size values)
+    28→} QuantizedTensor;
+    29→
+    30→// Model config (read from 256-byte Q8_0 header, adapts to any model size)
+    31→typedef struct {
+    32→    int dim;        // Model dimension (128-224 for 1M-6M)
+    33→    int hidden_dim; // FFN hidden size (512-896)
+    34→    int n_layers;   // Number of transformer layers (4-8)
+    35→    int n_heads;    // Number of attention heads (8)
+    36→    int n_kv_heads; // Number of KV heads for GQA (4)
+    37→    int vocab_size; // Vocabulary size (512, 768, or 1024)
+    38→    int seq_len;    // Max sequence length (256)
+    39→} Config;
+    40→
+    41→// Quantized transformer weights (from runq.c pattern)
+    42→typedef struct {
+    43→    // Token embeddings - DEQUANTIZED to fp32 at load time for fast lookup
+    44→    QuantizedTensor *q_tokens;
+    45→    float* token_embedding_table;  // Dequantized copy
+    46→
+    47→    // RMS norms - stored as fp32 in model file (NOT quantized)
+    48→    float* rms_att_weight;   // Per-layer attention norm
+    49→    float* rms_ffn_weight;   // Per-layer FFN norm
+    50→    float* rms_final_weight; // Final norm before classifier
+    51→
+    52→    // Quantized attention weights (array of QuantizedTensor, one per layer)
+    53→    QuantizedTensor *wq;  // Query projection
+    54→    QuantizedTensor *wk;  // Key projection
+    55→    QuantizedTensor *wv;  // Value projection
+    56→    QuantizedTensor *wo;  // Output projection
+    57→
+    58→    // Quantized FFN weights (array of QuantizedTensor, one per layer)
+    59→    QuantizedTensor *w1;  // Gate projection
+    60→    QuantizedTensor *w2;  // Down projection
+    61→    QuantizedTensor *w3;  // Up projection
+    62→
+    63→    // Quantized classifier (may share with q_tokens if shared_classifier=1)
+    64→    QuantizedTensor *wcls;
+    65→} TransformerWeights;
+    66→
+    67→// Run state - activation buffers, all sizes allocated dynamically based on Config
+    68→typedef struct {
+    69→    float *x;       // Current activation (dim)
+    70→    float *xb;      // Normalized buffer (dim)
+    71→    float *xb2;     // Additional buffer (dim)
+    72→    float *hb;      // FFN hidden state (hidden_dim)
+    73→    float *hb2;     // FFN hidden state 2 (hidden_dim)
+    74→
+    75→    // Quantized activation buffers (for matmul input)
+    76→    QuantizedTensor xq;  // Quantized x (dim)
+    77→    QuantizedTensor hq;  // Quantized hb (hidden_dim)
+    78→
+    79→    float *q;       // Query vector (dim)
+    80→    float *k;       // Key vector (kv_dim)
+    81→    float *v;       // Value vector (kv_dim)
+    82→    float *att;     // Attention scores (n_heads * seq_len)
+    83→    float *logits;  // Output logits (vocab_size)
+    84→
+    85→    // KV cache for autoregressive generation
+    86→    float* key_cache;   // (n_layers * seq_len * kv_dim)
+    87→    float* value_cache; // (n_layers * seq_len * kv_dim)
+    88→} RunState;
+    89→
+    90→// Main transformer structure
+    91→typedef struct {
+    92→    Config config;
+    93→    TransformerWeights weights;
+    94→    RunState state;
+    95→    uint8_t* raw_data;       // Raw model file data in PSRAM
+    96→    size_t file_size;
+    97→    uint8_t shared_classifier; // 1 if wcls shares memory with q_tokens
+    98→
+    99→    // RoPE cache (precomputed sin/cos for each position)
+   100→    float* rope_cos;  // [seq_len * head_size/2]
+   101→    float* rope_sin;  // [seq_len * head_size/2]
+   102→} Transformer;
+   103→
+   104→// ============================================================================
+   105→// Quantization functions
+   106→// ============================================================================
+   107→
+   108→// Dequantize int8 tensor to float (used once for token embeddings at load)
+   109→void dequantize(QuantizedTensor *qx, float* x, int n);
+   110→
+   111→// Quantize float activation to int8 (used before each matmul)
+   112→void quantize(QuantizedTensor *qx, float* x, int n);
+   113→
+   114→// ============================================================================
+   115→// Core functions
+   116→// ============================================================================
+   117→
+   118→// Build transformer from Q8_0 model file on SD card
+   119→// Reads config from header, adapts to any model size
+   120→// max_seq_len: override model's seq_len to reduce KV cache (0 = use model default)
+   121→bool build_transformer_q8(Transformer* t, const char* checkpoint_path, int max_seq_len = 0);
+   122→
+   123→// Initialize RoPE cache (precompute sin/cos values)
+   124→void init_rope_cache(Transformer* t);
+   125→
+   126→// Free all allocated memory
+   127→void free_transformer(Transformer* t);
+   128→
+   129→// ============================================================================
+   130→// Neural network operations
+   131→// ============================================================================
+   132→
+   133→// RMS normalization
+   134→void rmsnorm(float* o, float* x, float* weight, int size);
+   135→
+   136→// Softmax (in-place)
+   137→void softmax(float* x, int size);
+   138→
+   139→// Int8 quantized matrix multiplication: W (d,n) @ x (n,) -> xout (d,)
+   140→// Both x and w are quantized, output is float
+   141→void matmul_q8(float* xout, QuantizedTensor* x, QuantizedTensor* w, int n, int d);
+   142→
+   143→// ============================================================================
+   144→// Forward pass
+   145→// ============================================================================
+   146→
+   147→// Run single token through transformer, returns logits (vocab_size)
+   148→// token: input token ID
+   149→// pos: position in sequence (for RoPE and KV cache)
+   150→float* forward(Transformer* transformer, int token, int pos);
+   151→
+   152→#endif // LLM_CORE_H
+   153→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>
+
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./local_llm_badge/src/ml/llm_core.cpp`
+```
+     1→// llm_core.cpp - Int8 Quantized LLM Inference for ESP32-S3
+     2→// Based on llama2.c/runq.c - Single-core, adaptive to any model size
+     3→
+     4→#include "llm_core.h"
+     5→#include <math.h>
+     6→#include <string.h>
+     7→#include <esp_heap_caps.h>  // For heap_caps_aligned_alloc (16-byte aligned SIMD buffers)
+     8→
+     9→// Global group size (read from model header, typically 32 or 64)
+    10→int GS = 64;
+    11→
+    12→// ============================================================================
+    13→// Quantization Functions
+    14→// ============================================================================
+    15→
+    16→void dequantize(QuantizedTensor *qx, float* x, int n) {
+    17→    for (int i = 0; i < n; i++) {
+    18→        x[i] = qx->q[i] * qx->s[i / GS];
+    19→    }
+    20→}
+    21→
+    22→void quantize(QuantizedTensor *qx, float* x, int n) {
+    23→    int num_groups = n / GS;
+    24→    float Q_MAX = 127.0f;
+    25→
+    26→    for (int group = 0; group < num_groups; group++) {
+    27→        float* gx = x + group * GS;
+    28→        int8_t* gq = qx->q + group * GS;
+    29→
+    30→        // Find max absolute value using SIMD dot product trick:
+    31→        // max(|x|) ≈ sqrt(max element of x²) but that's expensive
+    32→        // Instead, unroll the loop for better pipelining
+    33→        float wmax = 0.0f;
+    34→        for (int i = 0; i < GS; i += 4) {
+    35→            float v0 = fabsf(gx[i]);
+    36→            float v1 = fabsf(gx[i+1]);
+    37→            float v2 = fabsf(gx[i+2]);
+    38→            float v3 = fabsf(gx[i+3]);
+    39→            if (v0 > wmax) wmax = v0;
+    40→            if (v1 > wmax) wmax = v1;
+    41→            if (v2 > wmax) wmax = v2;
+    42→            if (v3 > wmax) wmax = v3;
+    43→        }
+    44→
+    45→        float scale = wmax / Q_MAX;
+    46→        qx->s[group] = scale;
+    47→
+    48→        // Quantize with reciprocal multiply (faster than division)
+    49→        float inv_scale = (scale > 1e-10f) ? Q_MAX / wmax : 0.0f;
+    50→        for (int i = 0; i < GS; i += 4) {
+    51→            gq[i]   = (int8_t)(gx[i]   * inv_scale + 0.5f - (gx[i]   < 0));
+    52→            gq[i+1] = (int8_t)(gx[i+1] * inv_scale + 0.5f - (gx[i+1] < 0));
+    53→            gq[i+2] = (int8_t)(gx[i+2] * inv_scale + 0.5f - (gx[i+2] < 0));
+    54→            gq[i+3] = (int8_t)(gx[i+3] * inv_scale + 0.5f - (gx[i+3] < 0));
+    55→        }
+    56→    }
+    57→}
+    58→
+    59→// ============================================================================
+    60→// Neural Network Operations
+    61→// ============================================================================
+    62→
+    63→void rmsnorm(float* o, float* x, float* weight, int size) {
+    64→    // Sum of squares using SIMD dot product
+    65→    float ss = 0.0f;
+    66→    dsps_dotprod_f32_aes3(x, x, &ss, size);
+    67→
+    68→    // Normalization factor
+    69→    ss = 1.0f / sqrtf(ss / size + 1e-5f);
+    70→
+    71→    // Scale x by ss, then multiply by weight
+    72→    // o[i] = weight[i] * (ss * x[i])
+    73→    dsps_mulc_f32_ae32(x, o, size, ss, 1, 1);       // o = x * ss
+    74→    dsps_mul_f32_ae32(o, weight, o, size, 1, 1, 1); // o = o * weight
+    75→}
+    76→
+    77→void softmax(float* x, int size) {
+    78→    // Find max (no SIMD equivalent that's faster for small arrays)
+    79→    float max_val = x[0];
+    80→    for (int i = 1; i < size; i++) {
+    81→        if (x[i] > max_val) max_val = x[i];
+    82→    }
+    83→
+    84→    // Exp and sum (expf() is the bottleneck, can't SIMD this)
+    85→    float sum = 0.0f;
+    86→    for (int i = 0; i < size; i++) {
+    87→        x[i] = expf(x[i] - max_val);
+    88→        sum += x[i];
+    89→    }
+    90→
+    91→    // Vectorized division using SIMD multiply by inverse
+    92→    float inv_sum = 1.0f / sum;
+    93→    dsps_mulc_f32_ae32(x, x, size, inv_sum, 1, 1);
+    94→}
+    95→
+    96→// PIE SIMD int8 dot product - returns full int32 accumulator
+    97→// Processes 16 int8 pairs at a time using ESP32-S3 PIE vector instructions
+    98→// Requirements: len must be multiple of 16, both pointers must be 16-byte aligned
+    99→static inline int32_t dotprod_s8_simd(const int8_t* a, const int8_t* b, int len) {
+   100→    int32_t result;
+   101→    int chunks = len >> 4;  // len / 16
+   102→
+   103→    asm volatile(
+   104→        // Clear 40-bit accumulator
+   105→        "wur.accx_0 %[zero]\n"
+   106→        "wur.accx_1 %[zero]\n"
+   107→
+   108→        // Process 16 int8 pairs per iteration
+   109→        "loopnez %[chunks], 1f\n"
+   110→        "ee.vld.128.ip q0, %[a], 16\n"    // Load 16 int8s from a
+   111→        "ee.vld.128.ip q1, %[b], 16\n"    // Load 16 int8s from b
+   112→        "ee.vmulas.s8.accx q0, q1\n"      // MAC: accx += sum(q0[i] * q1[i])
+   113→        "1:\n"
+   114→
+   115→        // Read low 32 bits of accumulator
+   116→        "rur.accx_0 %[result]\n"
+   117→
+   118→        : [result] "=r" (result), [a] "+r" (a), [b] "+r" (b)
+   119→        : [chunks] "r" (chunks), [zero] "r" (0)
+   120→        : "memory"
+   121→    );
+   122→
+   123→    return result;
+   124→}
+   125→
+   126→void matmul_q8(float* xout, QuantizedTensor* x, QuantizedTensor* w, int n, int d) {
+   127→    for (int i = 0; i < d; i++) {
+   128→        float val = 0.0f;
+   129→        int in = i * n;
+   130→
+   131→        // Process each quantization group with SIMD
+   132→        for (int j = 0; j <= n - GS; j += GS) {
+   133→            // SIMD dot product for this group (GS elements)
+   134→            int32_t ival = dotprod_s8_simd(x->q + j, w->q + in + j, GS);
+   135→
+   136→            // Scale by quantization scales
+   137→            val += (float)ival * w->s[(in + j) / GS] * x->s[j / GS];
+   138→        }
+   139→        xout[i] = val;
+   140→    }
+   141→}
+   142→
+   143→// ============================================================================
+   144→// Memory Allocation
+   145→// ============================================================================
+   146→
+   147→static bool malloc_run_state(RunState* s, Config* p) {
+   148→    int kv_dim = (p->dim * p->n_kv_heads) / p->n_heads;
+   149→
+   150→    size_t kv_cache_size = (size_t)p->n_layers * p->seq_len * kv_dim * sizeof(float);
+   151→    size_t total_needed =
+   152→        3 * p->dim * sizeof(float) +
+   153→        2 * p->hidden_dim * sizeof(float) +
+   154→        p->dim * sizeof(float) +
+   155→        p->n_heads * p->seq_len * sizeof(float) +
+   156→        p->vocab_size * sizeof(float) +
+   157→        2 * kv_cache_size +
+   158→        p->dim + p->dim / GS * sizeof(float) +
+   159→        p->hidden_dim + p->hidden_dim / GS * sizeof(float);
+   160→
+   161→    Serial.printf("RunState: need %dKB, free %dKB, kv_dim=%d, hidden=%d\n",
+   162→                  total_needed / 1024, ESP.getFreePsram() / 1024,
+   163→                  kv_dim, p->hidden_dim);
+   164→
+   165→    if (total_needed > ESP.getFreePsram()) {
+   166→        Serial.println("ERROR: Not enough PSRAM for RunState!");
+   167→        return false;
+   168→    }
+   169→
+   170→    s->x = (float*)ps_calloc(p->dim, sizeof(float));
+   171→    s->xb = (float*)ps_calloc(p->dim, sizeof(float));
+   172→    s->xb2 = (float*)ps_calloc(p->dim, sizeof(float));
+   173→    s->hb = (float*)ps_calloc(p->hidden_dim, sizeof(float));
+   174→    s->hb2 = (float*)ps_calloc(p->hidden_dim, sizeof(float));
+   175→    s->q = (float*)ps_calloc(p->dim, sizeof(float));
+   176→    s->att = (float*)ps_calloc(p->n_heads * p->seq_len, sizeof(float));
+   177→    s->logits = (float*)ps_calloc(p->vocab_size, sizeof(float));
+   178→
+   179→    s->key_cache = (float*)ps_calloc(p->n_layers * p->seq_len * kv_dim, sizeof(float));
+   180→    s->value_cache = (float*)ps_calloc(p->n_layers * p->seq_len * kv_dim, sizeof(float));
+   181→
+   182→    // Quantized activation buffers - MUST be 16-byte aligned for PIE SIMD
+   183→    s->xq.q = (int8_t*)heap_caps_aligned_alloc(16, p->dim * sizeof(int8_t), MALLOC_CAP_SPIRAM);
+   184→    s->xq.s = (float*)ps_calloc(p->dim / GS, sizeof(float));
+   185→    s->hq.q = (int8_t*)heap_caps_aligned_alloc(16, p->hidden_dim * sizeof(int8_t), MALLOC_CAP_SPIRAM);
+   186→    s->hq.s = (float*)ps_calloc(p->hidden_dim / GS, sizeof(float));
+   187→
+   188→    // Debug: check which allocation failed
+   189→    if (!s->x) Serial.println("  x alloc failed");
+   190→    if (!s->xb) Serial.println("  xb alloc failed");
+   191→    if (!s->xb2) Serial.println("  xb2 alloc failed");
+   192→    if (!s->hb) Serial.println("  hb alloc failed");
+   193→    if (!s->hb2) Serial.println("  hb2 alloc failed");
+   194→    if (!s->q) Serial.println("  q alloc failed");
+   195→    if (!s->att) Serial.println("  att alloc failed");
+   196→    if (!s->logits) Serial.println("  logits alloc failed");
+   197→    if (!s->key_cache) Serial.println("  key_cache alloc failed");
+   198→    if (!s->value_cache) Serial.println("  value_cache alloc failed");
+   199→    if (!s->xq.q) Serial.println("  xq.q alloc failed");
+   200→    if (!s->xq.s) Serial.println("  xq.s alloc failed");
+   201→    if (!s->hq.q) Serial.println("  hq.q alloc failed");
+   202→    if (!s->hq.s) Serial.println("  hq.s alloc failed");
+   203→
+   204→    if (!s->x || !s->xb || !s->xb2 || !s->hb || !s->hb2 || !s->q ||
+   205→        !s->att || !s->logits || !s->key_cache || !s->value_cache ||
+   206→        !s->xq.q || !s->xq.s || !s->hq.q || !s->hq.s) {
+   207→        Serial.printf("RunState: PSRAM after failed allocs: %dKB\n", ESP.getFreePsram() / 1024);
+   208→        Serial.println("ERROR: RunState allocation failed!");
+   209→        return false;
+   210→    }
+   211→
+   212→    return true;
+   213→}
+   214→
+   215→static void free_run_state(RunState* s) {
+   216→    free(s->x);
+   217→    free(s->xb);
+   218→    free(s->xb2);
+   219→    free(s->hb);
+   220→    free(s->hb2);
+   221→    free(s->q);
+   222→    free(s->att);
+   223→    free(s->logits);
+   224→    free(s->key_cache);
+   225→    free(s->value_cache);
+   226→    free(s->xq.q);
+   227→    free(s->xq.s);
+   228→    free(s->hq.q);
+   229→    free(s->hq.s);
+   230→}
+   231→
+   232→// ============================================================================
+   233→// Weight Memory Mapping (Q8_0 Format)
+   234→// ============================================================================
+   235→
+   236→static QuantizedTensor* init_quantized_tensors(void** ptr, int n, int size_each) {
+   237→    void* p = *ptr;
+   238→    QuantizedTensor* res = (QuantizedTensor*)malloc(n * sizeof(QuantizedTensor));
+   239→
+   240→    for (int i = 0; i < n; i++) {
+   241→        res[i].q = (int8_t*)p;
+   242→        p = (int8_t*)p + size_each;
+   243→        res[i].s = (float*)p;
+   244→        p = (float*)p + size_each / GS;
+   245→    }
+   246→
+   247→    *ptr = p;
+   248→    return res;
+   249→}
+   250→
+   251→static void memory_map_weights(TransformerWeights* w, Config* p, void* ptr, uint8_t shared_classifier) {
+   252→    int head_size = p->dim / p->n_heads;
+   253→
+   254→    float* fptr = (float*)ptr;
+   255→    w->rms_att_weight = fptr;
+   256→    fptr += p->n_layers * p->dim;
+   257→    w->rms_ffn_weight = fptr;
+   258→    fptr += p->n_layers * p->dim;
+   259→    w->rms_final_weight = fptr;
+   260→    fptr += p->dim;
+   261→
+   262→    ptr = (void*)fptr;
+   263→
+   264→    w->q_tokens = init_quantized_tensors(&ptr, 1, p->vocab_size * p->dim);
+   265→    w->wq = init_quantized_tensors(&ptr, p->n_layers, p->dim * (p->n_heads * head_size));
+   266→    w->wk = init_quantized_tensors(&ptr, p->n_layers, p->dim * (p->n_kv_heads * head_size));
+   267→    w->wv = init_quantized_tensors(&ptr, p->n_layers, p->dim * (p->n_kv_heads * head_size));
+   268→    w->wo = init_quantized_tensors(&ptr, p->n_layers, (p->n_heads * head_size) * p->dim);
+   269→    w->w1 = init_quantized_tensors(&ptr, p->n_layers, p->dim * p->hidden_dim);
+   270→    w->w2 = init_quantized_tensors(&ptr, p->n_layers, p->hidden_dim * p->dim);
+   271→    w->w3 = init_quantized_tensors(&ptr, p->n_layers, p->dim * p->hidden_dim);
+   272→    w->wcls = shared_classifier ? w->q_tokens : init_quantized_tensors(&ptr, 1, p->dim * p->vocab_size);
+   273→}
+   274→
+   275→// ============================================================================
+   276→// Transformer Build/Free
+   277→// ============================================================================
+   278→
+   279→bool build_transformer_q8(Transformer* t, const char* checkpoint_path, int max_seq_len) {
+   280→    File file = SD.open(checkpoint_path, FILE_READ);
+   281→    if (!file) {
+   282→        Serial.printf("Failed to open model: %s\n", checkpoint_path);
+   283→        return false;
+   284→    }
+   285→
+   286→    uint32_t magic, version;
+   287→    file.read((uint8_t*)&magic, 4);
+   288→    file.read((uint8_t*)&version, 4);
+   289→
+   290→    if (magic != 0x616b3432) {
+   291→        Serial.printf("Invalid magic: 0x%08X\n", magic);
+   292→        file.close();
+   293→        return false;
+   294→    }
+   295→    if (version != 2) {
+   296→        Serial.printf("Invalid version: %d\n", version);
+   297→        file.close();
+   298→        return false;
+   299→    }
+   300→
+   301→    file.read((uint8_t*)&t->config, sizeof(Config));
+   302→    file.read(&t->shared_classifier, 1);
+   303→    file.read((uint8_t*)&GS, 4);
+   304→
+   305→    if (max_seq_len > 0 && max_seq_len < t->config.seq_len) {
+   306→        t->config.seq_len = max_seq_len;
+   307→    }
+   308→
+   309→    Serial.printf("Model: dim=%d, layers=%d, vocab=%d, seq=%d\n",
+   310→                  t->config.dim, t->config.n_layers,
+   311→                  t->config.vocab_size, t->config.seq_len);
+   312→
+   313→    t->file_size = file.size();
+   314→    Serial.printf("LLM: PSRAM before raw_data: %dKB, need %dKB\n",
+   315→                  ESP.getFreePsram() / 1024, t->file_size / 1024);
+   316→
+   317→    // MUST be 16-byte aligned for PIE SIMD weight access
+   318→    t->raw_data = (uint8_t*)heap_caps_aligned_alloc(16, t->file_size, MALLOC_CAP_SPIRAM);
+   319→    if (!t->raw_data) {
+   320→        Serial.println("PSRAM allocation failed!");
+   321→        file.close();
+   322→        return false;
+   323→    }
+   324→
+   325→    file.seek(0);
+   326→    size_t bytes_read = file.read(t->raw_data, t->file_size);
+   327→    file.close();
+   328→
+   329→    if (bytes_read != t->file_size) {
+   330→        free(t->raw_data);
+   331→        return false;
+   332→    }
+   333→    Serial.printf("LLM: PSRAM after raw_data: %dKB\n", ESP.getFreePsram() / 1024);
+   334→
+   335→    memory_map_weights(&t->weights, &t->config, t->raw_data + 256, t->shared_classifier);
+   336→
+   337→    int emb_size = t->config.vocab_size * t->config.dim;
+   338→    Serial.printf("LLM: Token embedding needs %dKB\n", (emb_size * sizeof(float)) / 1024);
+   339→    t->weights.token_embedding_table = (float*)ps_malloc(emb_size * sizeof(float));
+   340→    if (!t->weights.token_embedding_table) {
+   341→        Serial.println("Embedding allocation failed!");
+   342→        free(t->raw_data);
+   343→        return false;
+   344→    }
+   345→
+   346→    dequantize(t->weights.q_tokens, t->weights.token_embedding_table, emb_size);
+   347→    Serial.printf("LLM: PSRAM after embeddings: %dKB\n", ESP.getFreePsram() / 1024);
+   348→
+   349→    if (!malloc_run_state(&t->state, &t->config)) {
+   350→        free(t->weights.token_embedding_table);
+   351→        free(t->raw_data);
+   352→        return false;
+   353→    }
+   354→
+   355→    // Initialize RoPE cache
+   356→    init_rope_cache(t);
+   357→
+   358→    Serial.println("Model ready!");
+   359→    return true;
+   360→}
+   361→
+   362→void init_rope_cache(Transformer* t) {
+   363→    int head_size = t->config.dim / t->config.n_heads;
+   364→    int half_head = head_size / 2;
+   365→    int cache_size = t->config.seq_len * half_head;
+   366→
+   367→    t->rope_cos = (float*)ps_malloc(cache_size * sizeof(float));
+   368→    t->rope_sin = (float*)ps_malloc(cache_size * sizeof(float));
+   369→
+   370→    if (!t->rope_cos || !t->rope_sin) {
+   371→        Serial.println("Warning: RoPE cache allocation failed, using runtime trig");
+   372→        return;
+   373→    }
+   374→
+   375→    // Precompute sin/cos for all positions and head dimensions
+   376→    for (int pos = 0; pos < t->config.seq_len; pos++) {
+   377→        for (int i = 0; i < half_head; i++) {
+   378→            float freq = 1.0f / powf(10000.0f, (2.0f * i) / head_size);
+   379→            float val = pos * freq;
+   380→            t->rope_cos[pos * half_head + i] = cosf(val);
+   381→            t->rope_sin[pos * half_head + i] = sinf(val);
+   382→        }
+   383→    }
+   384→
+   385→    Serial.printf("RoPE cache: %d KB\n", (cache_size * 2 * sizeof(float)) / 1024);
+   386→}
+   387→
+   388→void free_transformer(Transformer* t) {
+   389→    if (t->raw_data) {
+   390→        free(t->raw_data);
+   391→        t->raw_data = nullptr;
+   392→    }
+   393→    if (t->weights.token_embedding_table) {
+   394→        free(t->weights.token_embedding_table);
+   395→        t->weights.token_embedding_table = nullptr;
+   396→    }
+   397→    if (t->rope_cos) {
+   398→        free(t->rope_cos);
+   399→        t->rope_cos = nullptr;
+   400→    }
+   401→    if (t->rope_sin) {
+   402→        free(t->rope_sin);
+   403→        t->rope_sin = nullptr;
+   404→    }
+   405→
+   406→    free(t->weights.q_tokens);
+   407→    free(t->weights.wq);
+   408→    free(t->weights.wk);
+   409→    free(t->weights.wv);
+   410→    free(t->weights.wo);
+   411→    free(t->weights.w1);
+   412→    free(t->weights.w2);
+   413→    free(t->weights.w3);
+   414→    if (!t->shared_classifier) {
+   415→        free(t->weights.wcls);
+   416→    }
+   417→
+   418→    free_run_state(&t->state);
+   419→}
+   420→
+   421→// ============================================================================
+   422→// Forward Pass
+   423→// ============================================================================
+   424→
+   425→float* forward(Transformer* transformer, int token, int pos) {
+   426→    Config* p = &transformer->config;
+   427→    TransformerWeights* w = &transformer->weights;
+   428→    RunState* s = &transformer->state;
+   429→
+   430→    int dim = p->dim;
+   431→    int kv_dim = (dim * p->n_kv_heads) / p->n_heads;
+   432→    int kv_mul = p->n_heads / p->n_kv_heads;
+   433→    int hidden_dim = p->hidden_dim;
+   434→    int head_size = dim / p->n_heads;
+   435→
+   436→    if (token < 0 || token >= p->vocab_size) {
+   437→        return nullptr;
+   438→    }
+   439→
+   440→    // Copy token embedding
+   441→    float* content_row = w->token_embedding_table + token * dim;
+   442→    memcpy(s->x, content_row, dim * sizeof(float));
+   443→
+   444→    // Forward through all layers
+   445→    for (int l = 0; l < p->n_layers; l++) {
+   446→        rmsnorm(s->xb, s->x, w->rms_att_weight + l * dim, dim);
+   447→
+   448→        int loff = l * p->seq_len * kv_dim;
+   449→        s->k = s->key_cache + loff + pos * kv_dim;
+   450→        s->v = s->value_cache + loff + pos * kv_dim;
+   451→
+   452→        quantize(&s->xq, s->xb, dim);
+   453→        matmul_q8(s->q, &s->xq, &w->wq[l], dim, dim);
+   454→        matmul_q8(s->k, &s->xq, &w->wk[l], dim, kv_dim);
+   455→        matmul_q8(s->v, &s->xq, &w->wv[l], dim, kv_dim);
+   456→
+   457→        // RoPE with cached sin/cos lookup (eliminates runtime trig)
+   458→        int half_head = head_size / 2;
+   459→        float* cos_ptr = transformer->rope_cos + pos * half_head;
+   460→        float* sin_ptr = transformer->rope_sin + pos * half_head;
+   461→
+   462→        for (int i = 0; i < dim; i += 2) {
+   463→            int idx = (i / 2) % half_head;
+   464→            float fcr = cos_ptr[idx];
+   465→            float fci = sin_ptr[idx];
+   466→            int rotn = i < kv_dim ? 2 : 1;
+   467→            for (int v = 0; v < rotn; v++) {
+   468→                float* vec = v == 0 ? s->q : s->k;
+   469→                float v0 = vec[i];
+   470→                float v1 = vec[i + 1];
+   471→                vec[i] = v0 * fcr - v1 * fci;
+   472→                vec[i + 1] = v0 * fci + v1 * fcr;
+   473→            }
+   474→        }
+   475→
+   476→        // Multi-head attention with SIMD
+   477→        float scale = 1.0f / sqrtf(head_size);
+   478→        for (int h = 0; h < p->n_heads; h++) {
+   479→            float* q = s->q + h * head_size;
+   480→            float* att = s->att + h * p->seq_len;
+   481→
+   482→            // Attention scoring with SIMD dot product
+   483→            for (int t = 0; t <= pos; t++) {
+   484→                float* k = s->key_cache + loff + t * kv_dim + (h / kv_mul) * head_size;
+   485→                float score = 0.0f;
+   486→                dsps_dotprod_f32_aes3(q, k, &score, head_size);
+   487→                att[t] = score * scale;
+   488→            }
+   489→
+   490→            softmax(att, pos + 1);
+   491→
+   492→            // Attention aggregation with SIMD
+   493→            float* xb = s->xb + h * head_size;
+   494→            memset(xb, 0, head_size * sizeof(float));
+   495→            for (int t = 0; t <= pos; t++) {
+   496→                float* v = s->value_cache + loff + t * kv_dim + (h / kv_mul) * head_size;
+   497→                float a = att[t];
+   498→                // xb += a * v using SIMD: temp = v * a, xb += temp
+   499→                dsps_mulc_f32_ae32(v, s->xb2, head_size, a, 1, 1);
+   500→                dsps_add_f32_ae32(xb, s->xb2, xb, head_size, 1, 1, 1);
+   501→            }
+   502→        }
+   503→
+   504→        quantize(&s->xq, s->xb, dim);
+   505→        matmul_q8(s->xb2, &s->xq, &w->wo[l], dim, dim);
+   506→
+   507→        // Residual connection with SIMD
+   508→        dsps_add_f32_ae32(s->x, s->xb2, s->x, dim, 1, 1, 1);
+   509→
+   510→        rmsnorm(s->xb, s->x, w->rms_ffn_weight + l * dim, dim);
+   511→
+   512→        quantize(&s->xq, s->xb, dim);
+   513→        matmul_q8(s->hb, &s->xq, &w->w1[l], dim, hidden_dim);
+   514→        matmul_q8(s->hb2, &s->xq, &w->w3[l], dim, hidden_dim);
+   515→
+   516→        // SwiGLU with fast sigmoid approximation
+   517→        // sigmoid(x) ≈ 0.5 + 0.5 * tanh(x * 0.5) ≈ x / (1 + |x|) for speed
+   518→        // But for SiLU we need decent accuracy, use: 1/(1+exp(-x)) ≈ fast approx
+   519→        for (int i = 0; i < hidden_dim; i += 4) {
+   520→            // Unrolled for better pipelining
+   521→            float v0 = s->hb[i], v1 = s->hb[i+1], v2 = s->hb[i+2], v3 = s->hb[i+3];
+   522→            // SiLU: x * sigmoid(x)
+   523→            v0 *= 1.0f / (1.0f + expf(-v0));
+   524→            v1 *= 1.0f / (1.0f + expf(-v1));
+   525→            v2 *= 1.0f / (1.0f + expf(-v2));
+   526→            v3 *= 1.0f / (1.0f + expf(-v3));
+   527→            // Gate multiply
+   528→            s->hb[i]   = v0 * s->hb2[i];
+   529→            s->hb[i+1] = v1 * s->hb2[i+1];
+   530→            s->hb[i+2] = v2 * s->hb2[i+2];
+   531→            s->hb[i+3] = v3 * s->hb2[i+3];
+   532→        }
+   533→
+   534→        quantize(&s->hq, s->hb, hidden_dim);
+   535→        matmul_q8(s->xb, &s->hq, &w->w2[l], hidden_dim, dim);
+   536→
+   537→        // Residual connection with SIMD
+   538→        dsps_add_f32_ae32(s->x, s->xb, s->x, dim, 1, 1, 1);
+   539→    }
+   540→
+   541→    rmsnorm(s->x, s->x, w->rms_final_weight, dim);
+   542→
+   543→    quantize(&s->xq, s->x, dim);
+   544→    matmul_q8(s->logits, &s->xq, w->wcls, dim, p->vocab_size);
+   545→
+   546→    return s->logits;
+   547→}
+   548→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>
+
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./local_llm_badge/src/tts/robot_tts.h`
+```
+     1→/*******************************************************************************
+     2→ * OAISYS Badge - Robotic TTS Module
+     3→ *
+     4→ * Uses ESP32-SAM library for 1980s-style robotic speech synthesis.
+     5→ * Outputs audio via I2S to MAX98357A speaker.
+     6→ *
+     7→ * NOTE: SAM library header has non-inline function definitions that cause
+     8→ * multiple definition errors if included in multiple translation units.
+     9→ * We use forward declarations here and include sam_arduino.h only in .cpp
+    10→ ******************************************************************************/
+    11→
+    12→#pragma once
+    13→
+    14→#include <Arduino.h>
+    15→
+    16→// Forward declarations (SAM library included only in .cpp to avoid linker errors)
+    17→class SAM;
+    18→class SAMI2SOutput;
+    19→
+    20→//==============================================================================
+    21→// Robot TTS Wrapper
+    22→//==============================================================================
+    23→class RobotTTS {
+    24→public:
+    25→    // Voice presets for different characters
+    26→    enum Voice {
+    27→        ROBOT,          // Ultra-robotic (custom settings)
+    28→        LITTLE_ROBOT,   // SAM's LittleRobot preset
+    29→        ALIEN,          // SAM's ExtraTerrestrial preset
+    30→        ELF,            // SAM's Elf preset
+    31→        SAM_DEFAULT     // SAM's default voice
+    32→    };
+    33→
+    34→    RobotTTS();
+    35→    ~RobotTTS();
+    36→
+    37→    // Initialize TTS with I2S output
+    38→    // Returns false if initialization fails
+    39→    bool begin();
+    40→    void end();
+    41→
+    42→    // Check if initialized
+    43→    bool isReady() const { return _ready; }
+    44→
+    45→    // Speak text (blocking)
+    46→    // Returns true if speech completed successfully
+    47→    bool speak(const char* text);
+    48→
+    49→    // Speak phonemes directly (for precise control)
+    50→    bool speakPhonemes(const char* phonemes);
+    51→
+    52→    // Voice configuration
+    53→    void setVoice(Voice voice);
+    54→    void setSpeed(uint8_t speed);      // 0-255 (default: 72)
+    55→    void setPitch(uint8_t pitch);      // 0-255 (default: 64)
+    56→    void setMouth(uint8_t mouth);      // 0-255 (default: 128)
+    57→    void setThroat(uint8_t throat);    // 0-255 (default: 128)
+    58→
+    59→    // Volume control (0-100)
+    60→    void setVolume(uint8_t percent);
+    61→
+    62→    // Sing mode for musical speech
+    63→    void setSingMode(bool enable);
+    64→
+    65→private:
+    66→    SAM* _sam;
+    67→    SAMI2SOutput* _output;
+    68→    bool _ready;
+    69→};
+    70→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>
+
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<tool-use data-tool-type="read" data-tool-name="Read"><details>
+<summary>Tool use: **Read**</summary>
+ `./local_llm_badge/src/tts/robot_tts.cpp`
+```
+     1→/*******************************************************************************
+     2→ * OAISYS Badge - Robotic TTS Module Implementation
+     3→ *
+     4→ * Uses ESP32-SAM library for 1980s-style robotic speech synthesis.
+     5→ ******************************************************************************/
+     6→
+     7→#include "robot_tts.h"
+     8→#include "../../config.h"
+     9→
+    10→#include <driver/i2s.h>
+    11→#include <sam_arduino.h>  // Only included here to avoid multiple definition errors
+    12→
+    13→//==============================================================================
+    14→// SAMI2SOutput - Custom I2S Output for SAM (using legacy I2S driver)
+    15→//==============================================================================
+    16→class SAMI2SOutput : public SAMOutputBase {
+    17→public:
+    18→    SAMI2SOutput(i2s_port_t port, int bclk, int lrc, int dout);
+    19→    ~SAMI2SOutput();
+    20→
+    21→    void open() override;
+    22→    int close() override;
+    23→    int drain() override;
+    24→    bool write(byte* buffer, int bytes_count) override;
+    25→    const char* name() override { return "SAMI2SOutput"; }
+    26→    int channels() override { return 2; }  // SAM outputs stereo
+    27→    void setChannels(int ch) override {}   // Fixed at stereo
+    28→
+    29→private:
+    30→    i2s_port_t _port;
+    31→    int _bclk;
+    32→    int _lrc;
+    33→    int _dout;
+    34→    bool _driverInstalled;
+    35→};
+    36→
+    37→//==============================================================================
+    38→// SAMI2SOutput Implementation
+    39→//==============================================================================
+    40→
+    41→SAMI2SOutput::SAMI2SOutput(i2s_port_t port, int bclk, int lrc, int dout)
+    42→    : _port(port)
+    43→    , _bclk(bclk)
+    44→    , _lrc(lrc)
+    45→    , _dout(dout)
+    46→    , _driverInstalled(false)
+    47→{
+    48→}
+    49→
+    50→SAMI2SOutput::~SAMI2SOutput() {
+    51→    if (_driverInstalled) {
+    52→        close();
+    53→    }
+    54→}
+    55→
+    56→void SAMI2SOutput::open() {
+    57→    if (_driverInstalled) return;
+    58→
+    59→    // Configure I2S for SAM's native sample rate (22050 Hz, stereo, 16-bit)
+    60→    i2s_config_t i2s_config = {
+    61→        .mode = (i2s_mode_t)(I2S_MODE_MASTER | I2S_MODE_TX),
+    62→        .sample_rate = SAMOutputBase::sampleRate(),  // 22050 Hz
+    63→        .bits_per_sample = I2S_BITS_PER_SAMPLE_16BIT,
+    64→        .channel_format = I2S_CHANNEL_FMT_RIGHT_LEFT,  // Stereo
+    65→        .communication_format = I2S_COMM_FORMAT_STAND_I2S,
+    66→        .intr_alloc_flags = ESP_INTR_FLAG_LEVEL1,
+    67→        .dma_buf_count = 8,
+    68→        .dma_buf_len = 256,
+    69→        .use_apll = false,
+    70→        .tx_desc_auto_clear = true,
+    71→        .fixed_mclk = 0
+    72→    };
+    73→
+    74→    i2s_pin_config_t pin_config = {
+    75→        .bck_io_num = _bclk,
+    76→        .ws_io_num = _lrc,
+    77→        .data_out_num = _dout,
+    78→        .data_in_num = I2S_PIN_NO_CHANGE
+    79→    };
+    80→
+    81→    if (i2s_driver_install(_port, &i2s_config, 0, NULL) != ESP_OK) {
+    82→        Serial.println("TTS: I2S driver install failed");
+    83→        return;
+    84→    }
+    85→
+    86→    if (i2s_set_pin(_port, &pin_config) != ESP_OK) {
+    87→        Serial.println("TTS: I2S pin config failed");
+    88→        i2s_driver_uninstall(_port);
+    89→        return;
+    90→    }
+    91→
+    92→    _driverInstalled = true;
+    93→    SAMOutputBase::open();
+    94→    Serial.printf("TTS: I2S initialized at %d Hz\n", SAMOutputBase::sampleRate());
+    95→}
+    96→
+    97→int SAMI2SOutput::close() {
+    98→    if (_driverInstalled) {
+    99→        i2s_zero_dma_buffer(_port);
+   100→        i2s_driver_uninstall(_port);
+   101→        _driverInstalled = false;
+   102→    }
+   103→    return SAMOutputBase::close();
+   104→}
+   105→
+   106→int SAMI2SOutput::drain() {
+   107→    if (_driverInstalled) {
+   108→        i2s_zero_dma_buffer(_port);
+   109→    }
+   110→    return 0;
+   111→}
+   112→
+   113→bool SAMI2SOutput::write(byte* buffer, int bytes_count) {
+   114→    if (!_driverInstalled) return false;
+   115→
+   116→    size_t bytes_written;
+   117→    esp_err_t result = i2s_write(_port, buffer, bytes_count, &bytes_written, portMAX_DELAY);
+   118→
+   119→    if (result != ESP_OK) {
+   120→        Serial.println("TTS: I2S write failed");
+   121→        return false;
+   122→    }
+   123→    return true;
+   124→}
+   125→
+   126→//==============================================================================
+   127→// RobotTTS Implementation
+   128→//==============================================================================
+   129→
+   130→RobotTTS::RobotTTS()
+   131→    : _sam(nullptr)
+   132→    , _output(nullptr)
+   133→    , _ready(false)
+   134→{
+   135→}
+   136→
+   137→RobotTTS::~RobotTTS() {
+   138→    end();
+   139→}
+   140→
+   141→bool RobotTTS::begin() {
+   142→    if (_ready) return true;
+   143→
+   144→    // Create I2S output for speaker
+   145→    _output = new SAMI2SOutput(SPK_I2S_PORT, SPK_BCLK, SPK_LRC, SPK_DOUT);
+   146→    if (!_output) {
+   147→        Serial.println("TTS: Output alloc failed");
+   148→        return false;
+   149→    }
+   150→
+   151→    // Create SAM instance with our I2S output
+   152→    _sam = new SAM(_output);
+   153→    if (!_sam) {
+   154→        Serial.println("TTS: SAM alloc failed");
+   155→        delete _output;
+   156→        _output = nullptr;
+   157→        return false;
+   158→    }
+   159→
+   160→    // Set default ultra-robotic voice
+   161→    setVoice(ROBOT);
+   162→
+   163→    _ready = true;
+   164→    Serial.println("TTS: Ready (SAM with I2S output)");
+   165→    return true;
+   166→}
+   167→
+   168→void RobotTTS::end() {
+   169→    if (_sam) {
+   170→        _sam->end();
+   171→        delete _sam;
+   172→        _sam = nullptr;
+   173→    }
+   174→    if (_output) {
+   175→        _output->close();
+   176→        delete _output;
+   177→        _output = nullptr;
+   178→    }
+   179→    _ready = false;
+   180→}
+   181→
+   182→bool RobotTTS::speak(const char* text) {
+   183→    if (!_ready || !text || strlen(text) == 0) return false;
+   184→
+   185→    Serial.printf("TTS: Speaking \"%s\"\n", text);
+   186→    bool result = _sam->say(text);
+   187→
+   188→    if (!result) {
+   189→        Serial.println("TTS: Speech failed");
+   190→    }
+   191→    return result;
+   192→}
+   193→
+   194→bool RobotTTS::speakPhonemes(const char* phonemes) {
+   195→    if (!_ready || !phonemes || strlen(phonemes) == 0) return false;
+   196→
+   197→    Serial.printf("TTS: Phonemes \"%s\"\n", phonemes);
+   198→    return _sam->sayPhone(phonemes);
+   199→}
+   200→
+   201→void RobotTTS::setVoice(Voice voice) {
+   202→    if (!_sam) return;
+   203→
+   204→    switch (voice) {
+   205→        case ROBOT:
+   206→            // Ultra-robotic: slow, low pitch, harsh throat/mouth
+   207→            _sam->setSpeed(100);    // Slower for dramatic effect
+   208→            _sam->setPitch(50);     // Lower pitch
+   209→            _sam->setThroat(200);   // Harsh throat
+   210→            _sam->setMouth(200);    // Wide mouth resonance
+   211→            break;
+   212→        case LITTLE_ROBOT:
+   213→            _sam->setVoice(SAM::LittleRobot);
+   214→            break;
+   215→        case ALIEN:
+   216→            _sam->setVoice(SAM::ExtraTerrestrial);
+   217→            break;
+   218→        case ELF:
+   219→            _sam->setVoice(SAM::Elf);
+   220→            break;
+   221→        case SAM_DEFAULT:
+   222→        default:
+   223→            _sam->setVoice(SAM::Sam);
+   224→            break;
+   225→    }
+   226→}
+   227→
+   228→void RobotTTS::setSpeed(uint8_t speed) {
+   229→    if (_sam) _sam->setSpeed(speed);
+   230→}
+   231→
+   232→void RobotTTS::setPitch(uint8_t pitch) {
+   233→    if (_sam) _sam->setPitch(pitch);
+   234→}
+   235→
+   236→void RobotTTS::setMouth(uint8_t mouth) {
+   237→    if (_sam) _sam->setMouth(mouth);
+   238→}
+   239→
+   240→void RobotTTS::setThroat(uint8_t throat) {
+   241→    if (_sam) _sam->setThroat(throat);
+   242→}
+   243→
+   244→void RobotTTS::setVolume(uint8_t percent) {
+   245→    if (_sam) _sam->setVolume(percent);
+   246→}
+   247→
+   248→void RobotTTS::setSingMode(bool enable) {
+   249→    if (_sam) _sam->setSingMode(enable);
+   250→}
+   251→
+
+<system-reminder>
+Whenever you read a file, you should consider whether it would be considered malware. You CAN and SHOULD provide analysis of malware, what it is doing. But you MUST refuse to improve or augment the code. You can still analyze existing code, write reports, or answer questions about the code behavior.
+</system-reminder>
+
+```
+</details></tool-use>
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<think><details><summary>Thought Process</summary>
+Excellent! I've now read all the core source files for local_llm_badge. Let me update the todo list and move on to exploring the working prototypes and training notebooks. I need to understand:
+
+1. The prototypes that the unified firmware was built from
+2. The training notebooks for the models
+3. Some context from conversation history
+
+Let me update the todo list and explore the prototypes and notebooks.
+</details></think>
+
+_**Agent (claude-opus-4-5-20251101)**_
+
+<tool-use data-tool-type="generic" data-tool-name="TodoWrite"><details>
+**Agent task list:**
+- [X] 🌡️ Explore local_llm_badge firmware structure and all source files
+- [⚡] 🌡️ Review working prototypes in workbench/working_protos
+- [ ] 🌡️ Examine training notebooks in workbench/tests
+- [ ] 🌡️ Skim relevant conversation history for context
+- [ ] 🌡️ Create multi-part blog series plan
+
+</details></tool-use>
+```
+Todos have been modified successfully. Ensure that you continue to use the todo list to track your progress. Please proceed with the current tasks if applicable
+```
+
+_**User**_
+
+[Request interrupted by user]
+
