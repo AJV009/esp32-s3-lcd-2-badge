@@ -4,455 +4,95 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is an ESP32-S3-LCD-2 development repository for creating OAISYS25 conference badge firmware. The project focuses on optimized video playback and hardware interfacing with the Waveshare ESP32-S3-LCD-2 development board.
+ESP32-S3-LCD-2 conference badge firmware for OAISYS25. Voice-activated badge with wake word detection, audio embedding similarity search, on-device LLM inference, and robotic TTS output.
 
 ## Hardware Target
 
-**ESP32-S3-LCD-2 Board:**
-- 240x320 ST7789 LCD display (SPI)
-- QMI8658 IMU sensor (I2C)
-- Camera support
-- SD card slot
-- 16MB Flash with FFat partition layout
+**ESP32-S3-LCD-2 Board (Waveshare):**
+- 240x320 ST7789 LCD (SPI), QMI8658 IMU (I2C), SD card, 16MB Flash, 8MB PSRAM
 
-**Key Pins:**
-- LCD: CS=45, DC=42, BL=1, SCK=39, MOSI=38, MISO=40
-- SPI shared with SD card and LCD
-- I2C: SCL=47, SDA=48 (IMU and Touch Panel)
-- Serial: TXD=43, RXD=44
-- USB: D-=19, D+=20 (occupied, not available for GPIO)
+**Pin Map:**
+| Function | Pins |
+|----------|------|
+| LCD | CS=45, DC=42, BL=1, SCK=39, MOSI=38, MISO=40 |
+| SD Card | CS=41 (shares SPI bus with LCD) |
+| I2C | SCL=47, SDA=48 |
+| Mic (INMP441) | BCK=2, WS=4, DIN=18 |
+| Speaker (MAX98357A) | BCLK=6, LRC=7, DIN=8 |
+| Serial | TX=43, RX=44 |
+| **Unavailable** | GPIO 19, 20 (USB D-/D+) |
 
 ## Repository Structure
 
 ```
 badge/
+├── local_llm_badge/           # ★ MAIN UNIFIED FIRMWARE ★
+│   ├── local_llm_badge.ino    # Main sketch - state machine
+│   ├── config.h               # Pin definitions, constants
+│   ├── src/                   # Arduino compiles recursively
+│   │   ├── display/           # video_player
+│   │   ├── sensors/           # orientation (IMU)
+│   │   ├── audio/             # mic_stream, audio_recorder
+│   │   ├── ml/                # wake_word, audio_embed, llm_*, embed_search
+│   │   └── tts/               # robot_tts (SAM)
+│   └── sd_data/               # Files to copy to SD card
 ├── workbench/
-│   ├── working_protos/        # Production-ready prototypes
-│   │   ├── oaisys_badge/      # ★ MAIN UNIFIED FIRMWARE ★
-│   │   ├── 00_video_loop*/    # MJPEG video player variants (reference)
-│   │   ├── 02_speaker_mic_combo/ # Audio I/O with downmix (reference)
-│   │   ├── 03_custom_wakeword/   # Wake word detection (reference)
-│   │   ├── 04_yamnet_audio_embedding/ # Audio embeddings (reference)
-│   │   └── 05_llm_finetuned/  # LLM inference (reference)
-│   ├── tests/                 # Experiments and PoCs
-│   │   ├── audio_semantic_xtts_ipynb/ # Embedding training
-│   │   ├── llm_qa_scaled_training/    # LLM fine-tuning
-│   │   └── *_test/            # Hardware tests
-│   └── docs/                  # Documentation
-│       ├── OAISYS_BADGE_PLAN.md   # Implementation plan
-│       ├── OAISYS_BADGE_TODO.md   # Progress tracker
-│       └── WaveShare-ESP32-S3-LCD-2-Demo/ # Vendor reference
-└── ~/Arduino/libraries/       # External Arduino libraries
-    ├── Arduino_GFX_Library/   # Display driver
-    ├── JPEGDEC/               # JPEG decoder
-    ├── EdgeNeuron/            # TFLite inference (wake word)
-    ├── TensorFlowLite_ESP32/  # TFLite (YAMNet, larger models)
-    ├── FastIMU/               # QMI8658 IMU support
-    ├── OneButton/             # Button handling
-    └── ESP32-SAM/             # Robotic TTS (to be added)
-```
-
-## Main Project: oaisys_badge
-
-**Location:** `workbench/working_protos/oaisys_badge/`
-
-**Documentation:**
-- **Plan:** `workbench/docs/OAISYS_BADGE_PLAN.md` - Full implementation plan
-- **Progress:** `workbench/docs/OAISYS_BADGE_TODO.md` - Task tracker
-
-**Structure:**
-```
-oaisys_badge/
-├── oaisys_badge.ino           # Main sketch - state machine
-├── config.h                   # Pin definitions, constants
-├── src/                       # Arduino compiles src/ recursively
-│   ├── display/
-│   │   └── video_player.cpp/h # MJPEG playback + text overlay
-│   ├── sensors/
-│   │   └── orientation.cpp/h  # IMU-based rotation
-│   ├── audio/                 # (Phase 2)
-│   ├── ml/                    # (Phase 3-4)
-│   ├── tts/                   # (Phase 5)
-│   ├── network/               # (Phase 7)
-│   └── storage/               # (Phase 7-8)
-└── sd_data/                   # Files for SD card
-    ├── config.json            # WiFi + thresholds
-    ├── media/logo.mjpeg       # Boot animation
-    ├── models/                # ML models
-    └── data/                  # Embeddings, intents
-```
-
-**SD Card Layout:**
-```
-SD:/
-├── config.json               # WiFi creds, thresholds
-├── media/
-│   └── logo.mjpeg            # Boot animation (~1.2MB)
-├── models/
-│   ├── wake_word.tflite      # Wake word (~130KB)
-│   ├── yamnet.tflite         # Audio embeddings (~2.8MB)
-│   ├── projection.tflite     # Embedding projection (~663KB)
-│   ├── llm_model.bin         # LLM Q8_0 (~6MB)
-│   └── tokenizer.bin         # BPE tokenizer (~13KB)
-├── data/
-│   ├── embeddings.bin        # 300 × 256-dim float32 (307KB)
-│   └── intents.txt           # 300 intent strings
-└── stash/                    # Unrecognized audio (auto-created)
+│   ├── working_protos/        # Reference implementations (00-05)
+│   ├── tests/                 # Hardware tests and training notebooks
+│   └── docs/
+│       ├── OAISYS_BADGE_PLAN.md   # Architecture plan
+│       └── OAISYS_BADGE_TODO.md   # Progress tracker
+└── ~/Arduino/libraries/       # Required: Arduino_GFX, JPEGDEC, EdgeNeuron,
+                               # TensorFlowLite_ESP32, FastIMU, SAM
 ```
 
 ## Development Commands
 
-### Arduino IDE
-
-**IMPORTANT: Arduino Sketch Requirements:**
-- Each `.ino` file MUST be in a folder with the same name
-- Example: `my_sketch.ino` must be in folder `my_sketch/`
-- Incorrect structure will cause "Sketch not found" errors
-
-**Build and Upload:**
+### Arduino IDE Build
 ```bash
-# Use Arduino IDE 2.x or arduino-cli
-# Select Board: ESP32S3 Dev Module
-# Partition Scheme: 16MB Flash (3MB APP/9MB FATFS) - from app3M_fat9M_16MB.csv
+# Board: ESP32S3 Dev Module
+# Flash: 16MB, Partition: 16MB Flash (3MB APP/9MB FATFS)
 # PSRAM: OPI PSRAM
+# Upload Speed: 921600
 ```
 
-**Upload Data to FFat Partition:**
+### arduino-cli (Headless Build)
 ```bash
-cd workbench/working_protos/video_loop
-./upload_to_flash.sh
+# Compile
+arduino-cli compile --fqbn esp32:esp32:esp32s3:FlashSize=16M,PartitionScheme=app3M_fat9M_16MB,PSRAM=opi \
+  local_llm_badge/
+
+# Upload
+arduino-cli upload -p /dev/ttyUSB0 --fqbn esp32:esp32:esp32s3 local_llm_badge/
+
+# Monitor
+arduino-cli monitor -p /dev/ttyUSB0 -c baudrate=115200
 ```
 
-This script:
-1. Packages `data/` folder using mkfatfs
-2. Flashes to FFat partition at offset 0x611000 (0x610000 + 0x1000)
-3. Requires `esptool.py` and `mkfatfs` tools
-
-**Serial Monitor:**
+### Upload Data to FFat Partition
 ```bash
-# Most sketches use 115200 baud
+cd workbench/working_protos/00_video_loop
+./upload_to_flash.sh  # Requires mkfatfs and esptool.py
+# Flashes data/ folder to offset 0x611000
 ```
 
-### ESP-IDF Framework
-
+### ESP-IDF (Alternative)
 ```bash
-cd workbench/ESP32-S3-LCD-2-Demo/ESP-IDF/<example_name>
-idf.py build
-idf.py flash monitor
+cd workbench/docs/WaveShare-ESP32-S3-LCD-2-Demo/ESP-IDF/<example>
+idf.py build && idf.py flash monitor
 ```
+
+**Arduino Sketch Rule:** `.ino` file MUST be in folder with same name (e.g., `my_sketch/my_sketch.ino`)
 
 ## Code Architecture
 
-### Video Player Architecture (`working_protos/00_video_loop*`)
+### State Machine (`local_llm_badge/local_llm_badge.ino`)
 
-Optimized MJPEG player variants with minimal code footprint.
-
-**Design Pattern:**
-- **MemoryStream class**: Minimal Stream implementation for PSRAM buffer access
-- **VideoPlayer class**: Encapsulates display, flash I/O, and MJPEG decoding
-- **Singleton pattern**: Static instance for JPEG callback access
-- **RAII initialization**: All setup in `begin()`, simple `play()` for loop
-
-**Variants:**
-- `00_video_loop/` - Base video loop
-- `00_video_loop_btn_pause/` - Button pause/resume
-- `00_video_loop_btn_pause_gyro_rotate/` - IMU-based orientation
-
-### LLM Inference Architecture (`working_protos/01_llm_inference*`)
-
-Port of llama2.c for on-device text generation.
-
-**Files:**
-- `llm_core.cpp/h` - Transformer forward pass, attention, RoPE
-- `tokenizer.cpp/h` - BPE tokenizer (SentencePiece format)
-- `sampler.cpp/h` - Temperature/top-p sampling
-- `sd_data/` - Model and tokenizer binaries for SD card
-
-**Model Specs:**
-- `stories15m` - 15M param TinyStories (~15MB)
-- `stories260k` - 260K param TinyStories (~300KB, faster)
-
-**Usage:** Load model from SD card to PSRAM, generate token-by-token.
-
-### Wake Word Detection (`tests/wakeword_pretrained_test/`)
-
-microWakeWord-based detection using EdgeNeuron TFLite runtime.
-
-**Pipeline:**
-1. INMP441 mic → 16kHz audio capture
-2. Microfrontend → 40-bin log-mel spectrogram (30ms window, 10ms stride)
-3. EdgeNeuron → TFLite inference every 10ms
-4. Sliding window → Probability averaging → Detection trigger
-
-**Configuration:** JSON config on SD card controls thresholds:
-```json
-{"probability_cutoff": 0.5, "sliding_window_average_size": 10, ...}
-```
-
-**Training:** See `tests/wakeword_training_ipynb_poc/` for custom wake word training via Colab.
-
-### Audio Embedding Architecture (`tests/yamnet_audio_embedding_ipynb_poc/`)
-
-YAMNet-based 1024-D audio embeddings on ESP32-S3.
-
-**Pipeline:**
-1. Dual INMP441 mics → stereo capture → mono downmix
-2. ESP-DSP accelerated FFT → 64-mel × 96-frame spectrogram
-3. TensorFlowLite_ESP32 → YAMNet inference (dual-core optimized)
-4. Extract 1024-D embedding → JSON output
-
-**Performance:** ~10-14 seconds total (inference is the bottleneck at 6-10s).
-
-### Factory Demo Architecture (`ESP32-S3-LCD-2-Demo/Arduino/examples/01_factory`)
-
-Multi-module reference implementation showing full hardware capabilities.
-
-**BSP Layer (Board Support Package):**
-- `bsp_spi.h/.cpp`: Shared SPI bus with semaphore protection
-- `bsp_i2c.h/.cpp`: I2C bus for IMU
-- `bsp_lv_port.h/.cpp`: LVGL display driver integration
-- `bsp_button.h/.cpp`: Hardware button handling
-
-**App Layer:**
-- `app_qmi8658`: IMU data reading and visualization
-- `app_system`: System monitoring (battery, brightness)
-- `app_camera`: Camera integration
-- `app_wifi`: WiFi scanning and connection
-
-**UI Layer:**
-- `lvgl_ui/`: LVGL tabview UI
-- Each tab corresponds to an app module
-
-**Initialization Sequence:**
-```cpp
-setup() {
-  bsp_i2c_init();      // I2C bus
-  bsp_lv_port_init();  // Display + LVGL
-  bsp_spi_init();      // Shared SPI
-  bsp_button_init();   // Buttons
-
-  lvgl_ui_init();      // UI components
-
-  app_*_init();        // Module initialization
-  app_*_run();         // Start module tasks
-}
-```
-
-### Key Libraries
-
-**Arduino_GFX_Library:**
-- Hardware abstraction for ST7789 display
-- SPI bus configuration: `Arduino_ESP32SPI`
-- Display driver: `Arduino_ST7789` (240x320, IPS mode)
-
-**LVGL (Light and Versatile Graphics Library):**
-- Must configure `lv_conf.h` before use
-- Factory example uses LVGL 8.x API
-- Thread safety via `lvgl_lock()`/`lvgl_unlock()`
-
-**JPEGDEC:**
-- Software JPEG decoder
-- Used by MjpegClass for frame-by-frame decoding
-- Callback-based rendering: `JPEG_DRAW_CALLBACK`
-
-**MjpegClass:**
-- Custom MJPEG container parser (not a library)
-- Searches for JPEG markers (0xFFD8/0xFFD9) in stream
-- Extracts individual frames for JPEGDEC
-
-## FFat Partition Layout
-
-From `app3M_fat9M_16MB.csv`:
-```
-# Name,   Type, SubType, Offset,  Size
-nvs,      data, nvs,     0x9000,  0x5000
-otadata,  data, ota,     0xe000,  0x2000
-app0,     app,  ota_0,   0x10000, 0x300000
-app1,     app,  ota_1,   0x310000,0x300000
-ffat,     data, fat,     0x610000,0x9E0000
-```
-
-**Important:** Flash FFat images at offset **0x611000** (+0x1000 from partition start)
-
-## PSRAM Usage
-
-**Enabled via Arduino IDE settings:** OPI PSRAM
-
-**Allocation:**
-```cpp
-uint8_t* buffer = (uint8_t*)ps_malloc(size);  // PSRAM
-uint8_t* buffer = (uint8_t*)malloc(size);     // Heap
-```
-
-**Best Practice:**
-- Large buffers (>100KB): Use PSRAM
-- Frame buffers, video data: PSRAM
-- Small work buffers: Heap
-
-## Common Patterns
-
-### Dual I2S Audio Architecture
-
-ESP32-S3 supports separate I2S buses for simultaneous input/output:
-
-```cpp
-// I2S0 for microphones (RX)
-i2s_config_t mic_config = {
-  .mode = I2S_MODE_MASTER | I2S_MODE_RX,
-  .sample_rate = 16000,
-  .bits_per_sample = I2S_BITS_PER_SAMPLE_32BIT,  // INMP441 sends 24-bit in 32-bit frame
-  .channel_format = I2S_CHANNEL_FMT_RIGHT_LEFT,
-  // ...
-};
-i2s_driver_install(I2S_NUM_0, &mic_config, 0, NULL);
-
-// I2S1 for speaker (TX)
-i2s_config_t spk_config = {
-  .mode = I2S_MODE_MASTER | I2S_MODE_TX,
-  .sample_rate = 16000,
-  .bits_per_sample = I2S_BITS_PER_SAMPLE_16BIT,
-  // ...
-};
-i2s_driver_install(I2S_NUM_1, &spk_config, 0, NULL);
-```
-
-See `workbench/working_protos/02_speaker_mic_combo/` for full duplex example.
-
-### SPI Bus Sharing
-
-Multiple devices (LCD, SD card) share SPI bus - must use semaphore:
-
-```cpp
-if (bsp_spi_lock(-1)) {
-  // SPI operations
-  bsp_spi_unlock();
-}
-```
-
-### LVGL Thread Safety
-
-All LVGL calls must be protected:
-
-```cpp
-if (lvgl_lock(-1)) {
-  // LVGL UI updates
-  lvgl_unlock();
-}
-```
-
-### Stream-based File I/O
-
-Prefer Stream abstraction for memory/file interchangeability:
-
-```cpp
-class MemoryStream : public Stream {
-  // Implement available(), read(), peek(), readBytes()
-};
-```
-
-## Optimization Philosophy
-
-The `video_loop` prototype demonstrates aggressive optimization:
-
-**Removed:**
-- All Serial.print() debug output
-- Verbose error screens
-- Statistics tracking
-- Redundant comments and temporary variables
-
-**Retained:**
-- All functionality
-- Error detection (via return values)
-- Minimal LED feedback for critical failures
-
-**Result:** 59% code reduction (250→103 lines) with zero performance impact
-
-When modifying code, prioritize:
-1. Encapsulation over globals
-2. Classes over procedural code
-3. Minimal interfaces (begin/run pattern)
-4. Fail-fast error handling
-5. Production code = no debug spam
-
-## GPIO Pin Availability
-
-Based on ESP32-S3-Touch-LCD-2 schematic **PinOut** section:
-
-**Pins broken out to headers:**
-- IO2, IO4, IO6-18, IO21, IO43, IO44, IO47, IO48
-
-**Truly free pins** (no peripherals attached):
-- **GPIO 18** - Completely free
-- **GPIO 2, 4, 6-17, 21** - Camera pins (safe if camera not attached)
-
-**Occupied pins:**
-- GPIO 0 (BOOT), 1 (BL), 5 (BAT) - System
-- GPIO 19, 20 - USB D-, D+ (**not available**)
-- GPIO 33-37 - **NOT broken out** to headers
-- GPIO 38-42, 45 - SPI (LCD/SD card)
-- GPIO 43, 44 - Serial console (U0_TXD/RXD)
-- GPIO 46 - Touch panel interrupt
-- GPIO 47, 48 - I2C (IMU and touch panel)
-
-## Audio Hardware
-
-### Microphone (INMP441)
-- **Pins:** GPIO 2 (BCK), 4 (WS), 18 (DIN)
-- **I2S Port:** I2S_NUM_0 (RX mode)
-- **Config:** Stereo capable, 24-bit samples, 16kHz sample rate
-- **Test sketch:** `workbench/mic_pin_test/` or `workbench/single_mic_test/`
-
-### Speaker (MAX98357A)
-- **Pins:** GPIO 6 (BCLK), 7 (LRC), 8 (DIN)
-- **I2S Port:** I2S_NUM_1 (TX mode)
-- **Power:** 5V recommended for full power (3-5W capable)
-- **Config:** 16-bit samples, 44.1kHz sample rate, mono/stereo
-- **Test sketch:** `workbench/tests/speaker_beep_test/`
-- **Note:** GAIN pin controls volume (Float=9dB, GND=12dB, VDD=15dB)
-
-## ML Model Deployment
-
-### SD Card Layout for Models
-```
-SD:/
-├── models/
-│   ├── hey_daisy.tflite     # Wake word model (~130KB)
-│   └── hey_daisy.json       # Detection config
-├── yamnet.tflite            # Audio embedding model (167KB-4MB)
-├── stories260k.bin          # LLM model weights
-└── tokenizer.bin            # LLM tokenizer
-```
-
-### TensorFlow Lite Libraries
-- **EdgeNeuron**: Lightweight, good for small streaming models (wake word)
-- **TensorFlowLite_ESP32**: Full-featured, needed for larger models (YAMNet)
-
-### Colab Training Pipelines
-- `audio_semantic_xtts_ipynb/` - Audio semantic embeddings with XTTS-v2
-- `llm_qa_scaled_training/` - LLM Q&A fine-tuning with phases
-- `wakeword_training_ipynb_poc/` - Custom wake word training
-
-## OAISYS Badge Implementation Phases
-
-The unified `oaisys_badge` firmware is built in 8 phases. See `workbench/docs/OAISYS_BADGE_TODO.md` for current progress.
-
-| Phase | Description | Key Files |
-|-------|-------------|-----------|
-| 1 | Core (Video + Button + Text) | `video_player.cpp`, `orientation.cpp` |
-| 2 | Wake Word + Recording | `wake_word.cpp`, `audio_recorder.cpp` |
-| 3 | Embedding + Similarity | `yamnet_embed.cpp`, `embed_search.cpp` |
-| 4 | LLM Integration | `llm_core.cpp`, `tokenizer.cpp` |
-| 5 | Robotic TTS (SAM) | `robot_tts.cpp` |
-| 6 | Deep Sleep + Wake | `sleep_manager.cpp` |
-| 7 | WiFi + Model Updates | `wifi_manager.cpp`, `model_updater.cpp` |
-| 8 | Stash Upload | `stash_manager.cpp`, `data_uploader.cpp` |
-| Backend | FastAPI + Redis | `main.py`, `workers.py` |
-
-### State Machine Flow
+The main firmware implements this flow:
 ```
 BOOT → LOGO_LOOP ←→ DEEP_SLEEP (5min idle)
-         ↓ (button/wake word)
-      RECORDING (3-5 sec)
+         ↓ (wake word: "Hey Daisy")
+      RECORDING (3-5 sec, RED screen)
          ↓
       EMBEDDING → SIMILARITY
          ↓
@@ -460,13 +100,102 @@ BOOT → LOGO_LOOP ←→ DEEP_SLEEP (5min idle)
    score < 0.7 → TTS_SORRY → STASH_DATA → LOGO_LOOP
 ```
 
-### Memory Management
-- Only ONE ML model loaded at a time
-- 6MB memory pool in PSRAM for model swapping
-- Load/unload via `begin()`/`end()` pattern
+### Module Pattern
 
-### Working Methodology
-1. Check `workbench/docs/OAISYS_BADGE_TODO.md` for current phase
-2. Reference original prototypes in `working_protos/0X_*` for implementation patterns
-3. Update TODO tracker after completing each task
-4. Test each phase before moving to next
+All modules follow `begin()`/`end()` with memory pool for sequential model loading:
+```cpp
+class MLModule {
+    bool begin(uint8_t* pool, size_t size);  // Load to shared 6MB pool
+    void end();                               // Free for next model
+};
+```
+
+### Key Implementations
+
+| Component | Location | Pattern |
+|-----------|----------|---------|
+| Video Player | `src/display/video_player.*` | MemoryStream + JPEGDEC callback |
+| Wake Word | `src/ml/wake_word.*` | EdgeNeuron + sliding window |
+| Audio Embed | `src/ml/audio_embed.*` | ESP-DSP FFT + TFLite CNN |
+| LLM | `src/ml/llm_core.*` | llama2.c port, Q8_0 quantized |
+| TTS | `src/tts/robot_tts.*` | ESP32-SAM at 22050Hz |
+| Orientation | `src/sensors/orientation.*` | QMI8658 via FastIMU |
+
+### Reference Prototypes
+
+Working examples in `workbench/working_protos/`:
+- `00_video_loop*` - MJPEG playback variants
+- `01_llm_inference*` - LLM text generation
+- `02_speaker_mic_combo` - Dual I2S audio
+- `03_custom_wakeword` - Wake word detection
+- `04_yamnet_audio_embedding` - Audio embeddings
+- `05_llm_finetuned` - Fine-tuned Q8_0 LLM
+
+## Memory & Partitions
+
+### PSRAM Budget (~8MB)
+- Video buffer: ~2MB
+- ML Pool: 6MB (shared, one model at a time)
+- Embedding DB: ~300KB
+
+### FFat Partition (16MB Flash)
+```
+Offset     Size       Name
+0x610000   0x9E0000   ffat (9.9MB)
+```
+**Flash at 0x611000** (+0x1000 from partition start)
+
+## Common Patterns
+
+### Dual I2S Audio
+```cpp
+// I2S0: Microphones (RX), 16kHz, 32-bit (INMP441 sends 24-bit in 32-bit frame)
+// I2S1: Speaker (TX), 22050Hz for SAM TTS
+```
+
+### SPI Bus Sharing (LCD + SD)
+```cpp
+// Use semaphore when shared: bsp_spi_lock(-1) / bsp_spi_unlock()
+```
+
+### PSRAM Allocation
+```cpp
+ps_malloc(size);   // Large buffers (>100KB)
+malloc(size);      // Small work buffers
+```
+
+## SD Card Layout
+```
+SD:/
+├── config.json              # Runtime config (WiFi, thresholds)
+├── media/logo.mjpeg         # Boot animation
+├── models/
+│   ├── wake_word.tflite     # 130KB
+│   ├── audio_encoder.tflite # 100-300KB (custom CNN)
+│   ├── llm_model.bin        # 6MB (Q8_0)
+│   └── tokenizer.bin        # 13KB
+└── data/
+    ├── embeddings.bin       # 300×256 float32
+    └── intents.txt          # Intent strings
+```
+
+## Implementation Progress
+
+See `workbench/docs/OAISYS_BADGE_TODO.md` for current status.
+
+| Phase | Status |
+|-------|--------|
+| 1: Video + Gyro | COMPLETE |
+| 2: Wake Word | COMPLETE |
+| 3: Embedding | IN PROGRESS (training) |
+| 4: LLM | COMPLETE |
+| 5: TTS (SAM) | COMPLETE |
+| 6-8: Sleep/WiFi/Stash | PENDING |
+
+## Design Principles
+
+1. **Single model in memory** - Sequential load/unload to 6MB pool
+2. **No debug spam** - Production builds remove Serial.print()
+3. **Encapsulation** - Classes with begin()/end() pattern
+4. **Fail-fast** - Return values, minimal error screens
+5. **SD-first** - Models and config on SD card, not flash
